@@ -1,0 +1,19 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  // ← url line has been removed (this was causing the error)
+}
+
+model Booking {
+  id            String   @id @default(cuid())
+  clerkUserId   String
+  zone          String
+  date          DateTime
+  numberOfGuests Int
+  status        String   @default("confirmed")
+  createdAt     DateTime @default(now())
+}
