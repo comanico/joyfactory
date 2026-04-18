@@ -1,19 +1,28 @@
 // prisma/schema.prisma
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "sqlite"
-  // ← url line has been removed (this was causing the error)
+  provider = "mysql"
 }
 
 model Booking {
-  id            String   @id @default(cuid())
-  clerkUserId   String
-  zone          String
-  date          DateTime
-  numberOfGuests Int
-  status        String   @default("confirmed")
-  createdAt     DateTime @default(now())
+  id              String   @id @default(cuid())
+  email           String?  // ← added (optional for now)
+  clerkUserId     String?
+  zone            String   @default("General Play Zone")
+  startTime       DateTime
+  durationHours   Int
+  numberOfGuests  Int      @default(10)
+  status          String   @default("pending")
+  paymentStatus   String   @default("pending")
+  depositPaid     Boolean  @default(false)
+  fullAmount      Int      @default(0)
+  depositAmount   Int      @default(0)
+  stripeSessionId String?
+  createdAt       DateTime @default(now())
+
+  @@index([startTime])
 }

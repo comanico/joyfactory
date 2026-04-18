@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner"
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
         </head>
         <body className="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
           {children}
+        <Toaster />
         </body>
       </html>
     </ClerkProvider>
