@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner"
+import "vanilla-calendar-pro/styles/index.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

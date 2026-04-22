@@ -42,8 +42,8 @@ export type BookingSumAggregateOutputType = {
 
 export type BookingMinAggregateOutputType = {
   id: string | null
-  email: string | null
   clerkUserId: string | null
+  email: string | null
   zone: string | null
   startTime: Date | null
   durationHours: number | null
@@ -53,14 +53,13 @@ export type BookingMinAggregateOutputType = {
   depositPaid: boolean | null
   fullAmount: number | null
   depositAmount: number | null
-  stripeSessionId: string | null
   createdAt: Date | null
 }
 
 export type BookingMaxAggregateOutputType = {
   id: string | null
-  email: string | null
   clerkUserId: string | null
+  email: string | null
   zone: string | null
   startTime: Date | null
   durationHours: number | null
@@ -70,14 +69,13 @@ export type BookingMaxAggregateOutputType = {
   depositPaid: boolean | null
   fullAmount: number | null
   depositAmount: number | null
-  stripeSessionId: string | null
   createdAt: Date | null
 }
 
 export type BookingCountAggregateOutputType = {
   id: number
-  email: number
   clerkUserId: number
+  email: number
   zone: number
   startTime: number
   durationHours: number
@@ -87,7 +85,6 @@ export type BookingCountAggregateOutputType = {
   depositPaid: number
   fullAmount: number
   depositAmount: number
-  stripeSessionId: number
   createdAt: number
   _all: number
 }
@@ -109,8 +106,8 @@ export type BookingSumAggregateInputType = {
 
 export type BookingMinAggregateInputType = {
   id?: true
-  email?: true
   clerkUserId?: true
+  email?: true
   zone?: true
   startTime?: true
   durationHours?: true
@@ -120,14 +117,13 @@ export type BookingMinAggregateInputType = {
   depositPaid?: true
   fullAmount?: true
   depositAmount?: true
-  stripeSessionId?: true
   createdAt?: true
 }
 
 export type BookingMaxAggregateInputType = {
   id?: true
-  email?: true
   clerkUserId?: true
+  email?: true
   zone?: true
   startTime?: true
   durationHours?: true
@@ -137,14 +133,13 @@ export type BookingMaxAggregateInputType = {
   depositPaid?: true
   fullAmount?: true
   depositAmount?: true
-  stripeSessionId?: true
   createdAt?: true
 }
 
 export type BookingCountAggregateInputType = {
   id?: true
-  email?: true
   clerkUserId?: true
+  email?: true
   zone?: true
   startTime?: true
   durationHours?: true
@@ -154,7 +149,6 @@ export type BookingCountAggregateInputType = {
   depositPaid?: true
   fullAmount?: true
   depositAmount?: true
-  stripeSessionId?: true
   createdAt?: true
   _all?: true
 }
@@ -247,8 +241,8 @@ export type BookingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type BookingGroupByOutputType = {
   id: string
-  email: string | null
   clerkUserId: string | null
+  email: string | null
   zone: string
   startTime: Date
   durationHours: number
@@ -258,7 +252,6 @@ export type BookingGroupByOutputType = {
   depositPaid: boolean
   fullAmount: number
   depositAmount: number
-  stripeSessionId: string | null
   createdAt: Date
   _count: BookingCountAggregateOutputType | null
   _avg: BookingAvgAggregateOutputType | null
@@ -287,8 +280,8 @@ export type BookingWhereInput = {
   OR?: Prisma.BookingWhereInput[]
   NOT?: Prisma.BookingWhereInput | Prisma.BookingWhereInput[]
   id?: Prisma.StringFilter<"Booking"> | string
-  email?: Prisma.StringNullableFilter<"Booking"> | string | null
   clerkUserId?: Prisma.StringNullableFilter<"Booking"> | string | null
+  email?: Prisma.StringNullableFilter<"Booking"> | string | null
   zone?: Prisma.StringFilter<"Booking"> | string
   startTime?: Prisma.DateTimeFilter<"Booking"> | Date | string
   durationHours?: Prisma.IntFilter<"Booking"> | number
@@ -298,14 +291,13 @@ export type BookingWhereInput = {
   depositPaid?: Prisma.BoolFilter<"Booking"> | boolean
   fullAmount?: Prisma.IntFilter<"Booking"> | number
   depositAmount?: Prisma.IntFilter<"Booking"> | number
-  stripeSessionId?: Prisma.StringNullableFilter<"Booking"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Booking"> | Date | string
 }
 
 export type BookingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
   clerkUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   zone?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   durationHours?: Prisma.SortOrder
@@ -315,7 +307,6 @@ export type BookingOrderByWithRelationInput = {
   depositPaid?: Prisma.SortOrder
   fullAmount?: Prisma.SortOrder
   depositAmount?: Prisma.SortOrder
-  stripeSessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _relevance?: Prisma.BookingOrderByRelevanceInput
 }
@@ -325,8 +316,8 @@ export type BookingWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.BookingWhereInput | Prisma.BookingWhereInput[]
   OR?: Prisma.BookingWhereInput[]
   NOT?: Prisma.BookingWhereInput | Prisma.BookingWhereInput[]
-  email?: Prisma.StringNullableFilter<"Booking"> | string | null
   clerkUserId?: Prisma.StringNullableFilter<"Booking"> | string | null
+  email?: Prisma.StringNullableFilter<"Booking"> | string | null
   zone?: Prisma.StringFilter<"Booking"> | string
   startTime?: Prisma.DateTimeFilter<"Booking"> | Date | string
   durationHours?: Prisma.IntFilter<"Booking"> | number
@@ -336,14 +327,13 @@ export type BookingWhereUniqueInput = Prisma.AtLeast<{
   depositPaid?: Prisma.BoolFilter<"Booking"> | boolean
   fullAmount?: Prisma.IntFilter<"Booking"> | number
   depositAmount?: Prisma.IntFilter<"Booking"> | number
-  stripeSessionId?: Prisma.StringNullableFilter<"Booking"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Booking"> | Date | string
 }, "id">
 
 export type BookingOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
   clerkUserId?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   zone?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   durationHours?: Prisma.SortOrder
@@ -353,7 +343,6 @@ export type BookingOrderByWithAggregationInput = {
   depositPaid?: Prisma.SortOrder
   fullAmount?: Prisma.SortOrder
   depositAmount?: Prisma.SortOrder
-  stripeSessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.BookingCountOrderByAggregateInput
   _avg?: Prisma.BookingAvgOrderByAggregateInput
@@ -367,8 +356,8 @@ export type BookingScalarWhereWithAggregatesInput = {
   OR?: Prisma.BookingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.BookingScalarWhereWithAggregatesInput | Prisma.BookingScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Booking"> | string
-  email?: Prisma.StringNullableWithAggregatesFilter<"Booking"> | string | null
   clerkUserId?: Prisma.StringNullableWithAggregatesFilter<"Booking"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"Booking"> | string | null
   zone?: Prisma.StringWithAggregatesFilter<"Booking"> | string
   startTime?: Prisma.DateTimeWithAggregatesFilter<"Booking"> | Date | string
   durationHours?: Prisma.IntWithAggregatesFilter<"Booking"> | number
@@ -378,48 +367,45 @@ export type BookingScalarWhereWithAggregatesInput = {
   depositPaid?: Prisma.BoolWithAggregatesFilter<"Booking"> | boolean
   fullAmount?: Prisma.IntWithAggregatesFilter<"Booking"> | number
   depositAmount?: Prisma.IntWithAggregatesFilter<"Booking"> | number
-  stripeSessionId?: Prisma.StringNullableWithAggregatesFilter<"Booking"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Booking"> | Date | string
 }
 
 export type BookingCreateInput = {
   id?: string
-  email?: string | null
   clerkUserId?: string | null
+  email?: string | null
   zone?: string
   startTime: Date | string
   durationHours: number
-  numberOfGuests?: number
+  numberOfGuests: number
   status?: string
   paymentStatus?: string
   depositPaid?: boolean
   fullAmount?: number
   depositAmount?: number
-  stripeSessionId?: string | null
   createdAt?: Date | string
 }
 
 export type BookingUncheckedCreateInput = {
   id?: string
-  email?: string | null
   clerkUserId?: string | null
+  email?: string | null
   zone?: string
   startTime: Date | string
   durationHours: number
-  numberOfGuests?: number
+  numberOfGuests: number
   status?: string
   paymentStatus?: string
   depositPaid?: boolean
   fullAmount?: number
   depositAmount?: number
-  stripeSessionId?: string | null
   createdAt?: Date | string
 }
 
 export type BookingUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zone?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationHours?: Prisma.IntFieldUpdateOperationsInput | number
@@ -429,14 +415,13 @@ export type BookingUpdateInput = {
   depositPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fullAmount?: Prisma.IntFieldUpdateOperationsInput | number
   depositAmount?: Prisma.IntFieldUpdateOperationsInput | number
-  stripeSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookingUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zone?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationHours?: Prisma.IntFieldUpdateOperationsInput | number
@@ -446,31 +431,29 @@ export type BookingUncheckedUpdateInput = {
   depositPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fullAmount?: Prisma.IntFieldUpdateOperationsInput | number
   depositAmount?: Prisma.IntFieldUpdateOperationsInput | number
-  stripeSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookingCreateManyInput = {
   id?: string
-  email?: string | null
   clerkUserId?: string | null
+  email?: string | null
   zone?: string
   startTime: Date | string
   durationHours: number
-  numberOfGuests?: number
+  numberOfGuests: number
   status?: string
   paymentStatus?: string
   depositPaid?: boolean
   fullAmount?: number
   depositAmount?: number
-  stripeSessionId?: string | null
   createdAt?: Date | string
 }
 
 export type BookingUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zone?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationHours?: Prisma.IntFieldUpdateOperationsInput | number
@@ -480,14 +463,13 @@ export type BookingUpdateManyMutationInput = {
   depositPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fullAmount?: Prisma.IntFieldUpdateOperationsInput | number
   depositAmount?: Prisma.IntFieldUpdateOperationsInput | number
-  stripeSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookingUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clerkUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zone?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationHours?: Prisma.IntFieldUpdateOperationsInput | number
@@ -497,7 +479,6 @@ export type BookingUncheckedUpdateManyInput = {
   depositPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fullAmount?: Prisma.IntFieldUpdateOperationsInput | number
   depositAmount?: Prisma.IntFieldUpdateOperationsInput | number
-  stripeSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -509,8 +490,8 @@ export type BookingOrderByRelevanceInput = {
 
 export type BookingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   zone?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   durationHours?: Prisma.SortOrder
@@ -520,7 +501,6 @@ export type BookingCountOrderByAggregateInput = {
   depositPaid?: Prisma.SortOrder
   fullAmount?: Prisma.SortOrder
   depositAmount?: Prisma.SortOrder
-  stripeSessionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -533,8 +513,8 @@ export type BookingAvgOrderByAggregateInput = {
 
 export type BookingMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   zone?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   durationHours?: Prisma.SortOrder
@@ -544,14 +524,13 @@ export type BookingMaxOrderByAggregateInput = {
   depositPaid?: Prisma.SortOrder
   fullAmount?: Prisma.SortOrder
   depositAmount?: Prisma.SortOrder
-  stripeSessionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type BookingMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   clerkUserId?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   zone?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   durationHours?: Prisma.SortOrder
@@ -561,7 +540,6 @@ export type BookingMinOrderByAggregateInput = {
   depositPaid?: Prisma.SortOrder
   fullAmount?: Prisma.SortOrder
   depositAmount?: Prisma.SortOrder
-  stripeSessionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -600,8 +578,8 @@ export type BoolFieldUpdateOperationsInput = {
 
 export type BookingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  email?: boolean
   clerkUserId?: boolean
+  email?: boolean
   zone?: boolean
   startTime?: boolean
   durationHours?: boolean
@@ -611,7 +589,6 @@ export type BookingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   depositPaid?: boolean
   fullAmount?: boolean
   depositAmount?: boolean
-  stripeSessionId?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["booking"]>
 
@@ -619,8 +596,8 @@ export type BookingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 
 export type BookingSelectScalar = {
   id?: boolean
-  email?: boolean
   clerkUserId?: boolean
+  email?: boolean
   zone?: boolean
   startTime?: boolean
   durationHours?: boolean
@@ -630,19 +607,18 @@ export type BookingSelectScalar = {
   depositPaid?: boolean
   fullAmount?: boolean
   depositAmount?: boolean
-  stripeSessionId?: boolean
   createdAt?: boolean
 }
 
-export type BookingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "clerkUserId" | "zone" | "startTime" | "durationHours" | "numberOfGuests" | "status" | "paymentStatus" | "depositPaid" | "fullAmount" | "depositAmount" | "stripeSessionId" | "createdAt", ExtArgs["result"]["booking"]>
+export type BookingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clerkUserId" | "email" | "zone" | "startTime" | "durationHours" | "numberOfGuests" | "status" | "paymentStatus" | "depositPaid" | "fullAmount" | "depositAmount" | "createdAt", ExtArgs["result"]["booking"]>
 
 export type $BookingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Booking"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    email: string | null
     clerkUserId: string | null
+    email: string | null
     zone: string
     startTime: Date
     durationHours: number
@@ -652,7 +628,6 @@ export type $BookingPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     depositPaid: boolean
     fullAmount: number
     depositAmount: number
-    stripeSessionId: string | null
     createdAt: Date
   }, ExtArgs["result"]["booking"]>
   composites: {}
@@ -1024,8 +999,8 @@ export interface Prisma__BookingClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface BookingFieldRefs {
   readonly id: Prisma.FieldRef<"Booking", 'String'>
-  readonly email: Prisma.FieldRef<"Booking", 'String'>
   readonly clerkUserId: Prisma.FieldRef<"Booking", 'String'>
+  readonly email: Prisma.FieldRef<"Booking", 'String'>
   readonly zone: Prisma.FieldRef<"Booking", 'String'>
   readonly startTime: Prisma.FieldRef<"Booking", 'DateTime'>
   readonly durationHours: Prisma.FieldRef<"Booking", 'Int'>
@@ -1035,7 +1010,6 @@ export interface BookingFieldRefs {
   readonly depositPaid: Prisma.FieldRef<"Booking", 'Boolean'>
   readonly fullAmount: Prisma.FieldRef<"Booking", 'Int'>
   readonly depositAmount: Prisma.FieldRef<"Booking", 'Int'>
-  readonly stripeSessionId: Prisma.FieldRef<"Booking", 'String'>
   readonly createdAt: Prisma.FieldRef<"Booking", 'DateTime'>
 }
     

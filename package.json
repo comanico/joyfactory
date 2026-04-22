@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "prisma generate && next dev",
+    "build": "prisma generate && next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/engines",
+      "prisma"
+    ]
   },
   "dependencies": {
     "@prisma/adapter-mariadb": "^7.7.0",
@@ -19,7 +26,8 @@
     "react-dom": "19.2.4",
     "resend": "^6.12.0",
     "sonner": "^2.0.7",
-    "stripe": "^22.0.2"
+    "stripe": "^22.0.2",
+    "vanilla-calendar-pro": "^3.1.0"
   },
   "devDependencies": {
     "@clerk/nextjs": "^7.2.0",

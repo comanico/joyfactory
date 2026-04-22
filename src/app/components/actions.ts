@@ -25,6 +25,8 @@ export async function createPaymentIntent(data: {
 
   const booking = await prisma.booking.create({
     data: {
+      // Guests can book without logging in; we use a stable placeholder.
+      clerkUserId: 'guest',
       email: data.email || null,
       zone: 'General Play Zone',
       startTime: new Date(), // we'll update this with real date later if needed

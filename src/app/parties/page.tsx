@@ -14,7 +14,8 @@ export default function PartiesPage() {
               Celebrate with Us
             </span>
             <h1 className="text-5xl md:text-7xl font-headline font-extrabold text-primary tracking-tighter mb-6 leading-tight">
-              Magical Parties, <br />Zero Stress.
+              Magical Parties, <br />
+              Zero Stress.
             </h1>
             <p className="text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed">
               From neon disco bashes to cozy toddler tea parties, we handle the
@@ -52,7 +53,8 @@ export default function PartiesPage() {
               Choose Your Celebration
             </h2>
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Three tiers of joy designed to fit every group size and dream theme.
+              Three tiers of joy designed to fit every group size and dream
+              theme.
             </p>
           </div>
 
@@ -66,10 +68,14 @@ export default function PartiesPage() {
                   src="https://picsum.photos/id/1015/800/600"
                 />
               </div>
-              <h3 className="text-2xl font-headline font-extrabold mb-1">Basic Fun</h3>
+              <h3 className="text-2xl font-headline font-extrabold mb-1">
+                Basic Fun
+              </h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-black text-primary">$299</span>
-                <span className="text-on-surface-variant text-sm">/ up to 10 kids • 2 hours</span>
+                <span className="text-on-surface-variant text-sm">
+                  / up to 10 kids • 2 hours
+                </span>
               </div>
               <p className="text-on-surface-variant mb-6 text-sm leading-relaxed">
                 Perfect for small, simple celebrations with all the essentials.
@@ -77,19 +83,27 @@ export default function PartiesPage() {
 
               <ul className="space-y-4 mb-8 flex-grow">
                 <li className="flex items-center gap-3 text-on-surface-variant">
-                  <span className="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
                   2 hours of play time
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
-                  <span className="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
                   Private party room
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
-                  <span className="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
                   Basic balloon &amp; streamer decor
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
-                  <span className="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
                   10 kids included
                 </li>
               </ul>
@@ -113,21 +127,51 @@ export default function PartiesPage() {
                 />
               </div>
 
-              <h3 className="text-2xl font-headline font-extrabold mb-1">Premium Joy</h3>
+              <h3 className="text-2xl font-headline font-extrabold mb-1">
+                Premium Joy
+              </h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-black">$499</span>
-                <span className="text-primary-fixed-dim text-sm">/ up to 15 kids • 3 hours</span>
+                <span className="text-primary-fixed-dim text-sm">
+                  / up to 15 kids • 3 hours
+                </span>
               </div>
               <p className="text-primary-fixed-dim mb-6 text-sm leading-relaxed">
-                The perfect balance of fun and convenience — our most chosen package.
+                The perfect balance of fun and convenience — our most chosen
+                package.
               </p>
 
               <ul className="space-y-4 mb-8 flex-grow">
-                <li className="flex items-center gap-3"><span className="material-symbols-outlined text-secondary-container text-sm">check_circle</span>3 hours of play time</li>
-                <li className="flex items-center gap-3"><span className="material-symbols-outlined text-secondary-container text-sm">check_circle</span>Fully themed decorations</li>
-                <li className="flex items-center gap-3"><span className="material-symbols-outlined text-secondary-container text-sm">check_circle</span>Pizza, juice &amp; snacks</li>
-                <li className="flex items-center gap-3"><span className="material-symbols-outlined text-secondary-container text-sm">check_circle</span>15 kids included</li>
-                <li className="flex items-center gap-3"><span className="material-symbols-outlined text-secondary-container text-sm">check_circle</span>JoyFactory gift bags for every child</li>
+                <li className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-secondary-container text-sm">
+                    check_circle
+                  </span>
+                  3 hours of play time
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-secondary-container text-sm">
+                    check_circle
+                  </span>
+                  Fully themed decorations
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-secondary-container text-sm">
+                    check_circle
+                  </span>
+                  Pizza, juice &amp; snacks
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-secondary-container text-sm">
+                    check_circle
+                  </span>
+                  15 kids included
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-secondary-container text-sm">
+                    check_circle
+                  </span>
+                  JoyFactory gift bags for every child
+                </li>
               </ul>
 
               <button className="w-full py-4 rounded-2xl bg-on-primary text-primary font-headline font-bold hover:scale-105 transition-transform">
@@ -145,22 +189,57 @@ export default function PartiesPage() {
                 />
               </div>
 
-              <h3 className="text-2xl font-headline font-extrabold mb-1">VIP Utopia</h3>
+              <h3 className="text-2xl font-headline font-extrabold mb-1">
+                VIP Utopia
+              </h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-black text-primary">$799</span>
-                <span className="text-on-surface-variant text-sm">/ up to 20 kids • Unlimited</span>
+                <span className="text-on-surface-variant text-sm">
+                  / up to 20 kids • Unlimited
+                </span>
               </div>
               <p className="text-on-surface-variant mb-6 text-sm leading-relaxed">
-                The ultimate luxury experience — go all out for a truly unforgettable day.
+                The ultimate luxury experience — go all out for a truly
+                unforgettable day.
               </p>
 
               <ul className="space-y-4 mb-8 flex-grow">
-                <li className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-secondary text-sm">check_circle</span>Unlimited play time</li>
-                <li className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-secondary text-sm">check_circle</span>Dedicated Party Host</li>
-                <li className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-secondary text-sm">check_circle</span>Gourmet catering menu</li>
-                <li className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-secondary text-sm">check_circle</span>Professional photographer</li>
-                <li className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-secondary text-sm">check_circle</span>Custom gift bags + take-home activity kit</li>
-                <li className="flex items-center gap-3 text-on-surface-variant"><span className="material-symbols-outlined text-secondary text-sm">check_circle</span>Exclusive access to VIP lounge</li>
+                <li className="flex items-center gap-3 text-on-surface-variant">
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
+                  Unlimited play time
+                </li>
+                <li className="flex items-center gap-3 text-on-surface-variant">
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
+                  Dedicated Party Host
+                </li>
+                <li className="flex items-center gap-3 text-on-surface-variant">
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
+                  Gourmet catering menu
+                </li>
+                <li className="flex items-center gap-3 text-on-surface-variant">
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
+                  Professional photographer
+                </li>
+                <li className="flex items-center gap-3 text-on-surface-variant">
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
+                  Custom gift bags + take-home activity kit
+                </li>
+                <li className="flex items-center gap-3 text-on-surface-variant">
+                  <span className="material-symbols-outlined text-secondary text-sm">
+                    check_circle
+                  </span>
+                  Exclusive access to VIP lounge
+                </li>
               </ul>
 
               <button className="w-full py-4 rounded-2xl border-2 border-primary text-primary font-headline font-bold hover:bg-primary hover:text-on-primary transition-colors">
@@ -169,9 +248,6 @@ export default function PartiesPage() {
             </div>
           </div>
         </section>
-
-        {/* Booking Form & Fun Facts sections remain the same (or you can expand them later) */}
-        {/* ... (keep the rest of your file exactly as before) ... */}
       </main>
 
       {/* Footer */}

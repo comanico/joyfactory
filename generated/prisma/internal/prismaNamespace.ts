@@ -511,8 +511,8 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const BookingScalarFieldEnum = {
   id: 'id',
-  email: 'email',
   clerkUserId: 'clerkUserId',
+  email: 'email',
   zone: 'zone',
   startTime: 'startTime',
   durationHours: 'durationHours',
@@ -522,7 +522,6 @@ export const BookingScalarFieldEnum = {
   depositPaid: 'depositPaid',
   fullAmount: 'fullAmount',
   depositAmount: 'depositAmount',
-  stripeSessionId: 'stripeSessionId',
   createdAt: 'createdAt'
 } as const
 
@@ -547,12 +546,11 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 export const BookingOrderByRelevanceFieldEnum = {
   id: 'id',
-  email: 'email',
   clerkUserId: 'clerkUserId',
+  email: 'email',
   zone: 'zone',
   status: 'status',
-  paymentStatus: 'paymentStatus',
-  stripeSessionId: 'stripeSessionId'
+  paymentStatus: 'paymentStatus'
 } as const
 
 export type BookingOrderByRelevanceFieldEnum = (typeof BookingOrderByRelevanceFieldEnum)[keyof typeof BookingOrderByRelevanceFieldEnum]

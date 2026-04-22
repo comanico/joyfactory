@@ -53,9 +53,9 @@ export async function sendConfirmationEmail({
 
     console.log('✅ Confirmation email sent successfully:', result);
     return { success: true };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('❌ Failed to send confirmation email:', error);
-    // This will now appear in your terminal so we can debug it
-    throw new Error(`Email sending failed: ${error.message}`);
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Email sending failed: ${message}`);
   }
 }

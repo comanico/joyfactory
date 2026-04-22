@@ -89,3 +89,47 @@
 .dark {
   color-scheme: dark;
 }
+
+/* Vanilla Calendar Pro theme tweaks (JoyFactory colors) */
+.jf-calendar .vanilla-calendar {
+  --vc-color-primary: var(--color-primary);
+  --vc-color-primary-hover: color-mix(in oklab, var(--color-primary) 85%, white);
+  --vc-color-secondary: var(--color-secondary);
+  --vc-color-bg: var(--color-surface-container-lowest);
+  --vc-color-text: var(--color-on-surface);
+  --vc-color-text-muted: var(--color-on-surface-variant);
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.jf-calendar .vanilla-calendar * {
+  font-family: var(--font-family-body);
+}
+
+.jf-calendar .vanilla-calendar-week__day,
+.jf-calendar .vanilla-calendar-week-number,
+.jf-calendar .vanilla-calendar-month,
+.jf-calendar .vanilla-calendar-year {
+  font-size: 0.95em;
+  font-weight: 700;
+}
+
+.jf-calendar .vanilla-calendar-date {
+  font-size: 1.05em;
+  font-weight: 700;
+}
+
+.jf-calendar .jf-cal-day {
+  border-radius: 9999px;
+  transition: transform 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.jf-calendar .jf-cal-day:hover:not(.vanilla-calendar-date_disabled) {
+  background: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  transform: translateY(-1px);
+}
+
+.jf-calendar .vanilla-calendar-date_selected {
+  background: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+}
