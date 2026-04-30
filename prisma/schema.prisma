@@ -9,18 +9,30 @@ datasource db {
 
 model Booking {
   id             String   @id @default(cuid())
-  clerkUserId    String?  @default("guest")
   email          String?
+  packageType    String   @default("basic")
   zone           String   @default("General Play Zone")
   startTime      DateTime
   durationHours  Int
   numberOfGuests Int
   status         String   @default("pending")
   paymentStatus  String   @default("pending")
+  stripeSessionId String?
+  stripePaymentIntentId String?
   depositPaid    Boolean  @default(false)
   fullAmount     Int      @default(0)
   depositAmount  Int      @default(0)
   createdAt      DateTime @default(now())
 
   @@index([startTime])
+}
+
+model Gdpr {
+  id          String   @id @default(cuid())
+  userId      String?
+  preferences Json
+  version     String   @default("1.0")
+  createdAt   DateTime @default(now())
+
+  @@map("gdpr")
 }

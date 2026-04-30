@@ -1,35 +1,41 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import BookingCalendar from "./BookingCalendar";
 import type { PackageType, Reservation } from "./bookingAvailability";
 import {
   anyReservationTouchesDay,
   computeAvailableStartTimes,
 } from "./bookingAvailability";
-
-const MOCK_RESERVATIONS: Reservation[] = [
-  // Example bookings (local time). Replace with API later.
-  {
-    start: new Date("2026-05-03T12:00:00"),
-    end: new Date("2026-05-03T14:00:00"),
-  },
-  {
-    start: new Date("2026-05-03T16:00:00"),
-    end: new Date("2026-05-03T18:00:00"),
-  },
-  {
-    start: new Date("2026-05-06T10:00:00"),
-    end: new Date("2026-05-06T20:00:00"),
-  },
-];
+import { getReservations } from "./actions";
+import { formatBucharestDate } from "../../../lib/bucharestTime";
 
 export default function BookingFlow() {
   const [packageType, setPackageType] = useState<PackageType>("premium");
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<string | null>(null);
 
-  const reservations = MOCK_RESERVATIONS;
+  const [reservations, setReservations] = useState<Reservation[]>([]);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const raw = await getReservations();
+        if (cancelled) return;
+        setReservations(
+          raw.map((r) => ({
+            start: new Date(r.start),
+            end: new Date(r.end),
+          })),
+        );
+      } catch {
+        // ignore
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const vipDayTaken = useMemo(() => {
     if (!date) return false;
@@ -205,7 +211,7 @@ export default function BookingFlow() {
                 <span className="font-headline font-bold text-on-surface">
                   Date:
                 </span>{" "}
-                {date ? date.toDateString() : "—"}
+                {date ? formatBucharestDate(date) : "—"}
               </div>
               <div>
                 <span className="font-headline font-bold text-on-surface">

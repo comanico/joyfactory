@@ -2,7 +2,12 @@
 import Navbar from "./components/Navbar";
 import QuickBooking from "./components/QuickBooking";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ package?: string; date?: string; time?: string }>;
+}) {
+  const sp = await searchParams;
   return (
     <>
       {/* Top Navigation */}
@@ -185,7 +190,11 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <QuickBooking/>
+        <QuickBooking
+          initialPackage={sp.package}
+          initialDateISO={sp.date}
+          initialTime={sp.time}
+        />
       </main>
 
       {/* Footer */}

@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Booking: 'Booking'
+  Booking: 'Booking',
+  Gdpr: 'Gdpr'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -72,14 +73,16 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const BookingScalarFieldEnum = {
   id: 'id',
-  clerkUserId: 'clerkUserId',
   email: 'email',
+  packageType: 'packageType',
   zone: 'zone',
   startTime: 'startTime',
   durationHours: 'durationHours',
   numberOfGuests: 'numberOfGuests',
   status: 'status',
   paymentStatus: 'paymentStatus',
+  stripeSessionId: 'stripeSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
   depositPaid: 'depositPaid',
   fullAmount: 'fullAmount',
   depositAmount: 'depositAmount',
@@ -89,12 +92,30 @@ export const BookingScalarFieldEnum = {
 export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
 
 
+export const GdprScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  preferences: 'preferences',
+  version: 'version',
+  createdAt: 'createdAt'
+} as const
+
+export type GdprScalarFieldEnum = (typeof GdprScalarFieldEnum)[keyof typeof GdprScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullsOrder = {
@@ -107,12 +128,40 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 export const BookingOrderByRelevanceFieldEnum = {
   id: 'id',
-  clerkUserId: 'clerkUserId',
   email: 'email',
+  packageType: 'packageType',
   zone: 'zone',
   status: 'status',
-  paymentStatus: 'paymentStatus'
+  paymentStatus: 'paymentStatus',
+  stripeSessionId: 'stripeSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId'
 } as const
 
 export type BookingOrderByRelevanceFieldEnum = (typeof BookingOrderByRelevanceFieldEnum)[keyof typeof BookingOrderByRelevanceFieldEnum]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const GdprOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  version: 'version'
+} as const
+
+export type GdprOrderByRelevanceFieldEnum = (typeof GdprOrderByRelevanceFieldEnum)[keyof typeof GdprOrderByRelevanceFieldEnum]
 

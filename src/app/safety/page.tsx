@@ -1,5 +1,6 @@
 // app/safety/page.tsx
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 
 export default function SafetyPage() {
   return (
@@ -327,12 +328,18 @@ export default function SafetyPage() {
               protocols or address specific concerns.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
-              <button className="bg-primary text-on-primary px-12 py-5 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform shadow-lg">
+              <Link
+                href="/#booking-form"
+                className="bg-primary text-on-primary px-12 py-5 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform shadow-lg text-center"
+              >
                 Book a Play Session
-              </button>
-              <button className="bg-secondary text-white px-12 py-5 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform shadow-lg">
+              </Link>
+              <Link
+                href="/contact"
+                className="bg-secondary text-white px-12 py-5 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform shadow-lg text-center"
+              >
                 Contact Safety Officer
-              </button>
+              </Link>
             </div>
           </div>
         </section>

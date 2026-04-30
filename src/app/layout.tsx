@@ -1,9 +1,9 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner"
 import "vanilla-calendar-pro/styles/index.css";
 import "./globals.css";
+import GdprConsent from "./components/GdprConsent";
 
 export const metadata: Metadata = {
   title: "JoyFactory | Zones of Pure Joy",
@@ -16,24 +16,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider afterSignOutUrl="/">   {/* ← add this line */}
-      <html lang="en" className="light">
-        <head>
-          {/* Google Fonts + Material Symbols (unchanged) */}
-          <link
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-            rel="stylesheet"
-          />
-        </head>
-        <body className="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
-          {children}
+    <html lang="en" className="light">
+      <head>
+        {/* Google Fonts + Material Symbols (unchanged) */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+        {children}
+        <GdprConsent />
         <Toaster />
-        </body>
-      </html>
-    </ClerkProvider>
+      </body>
+    </html>
   );
 }

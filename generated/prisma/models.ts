@@ -9,4 +9,5 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Booking'
+export type * from './models/Gdpr'
 export type * from './commonInputTypes'

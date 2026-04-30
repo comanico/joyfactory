@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Booking: 'Booking'
+  Booking: 'Booking',
+  Gdpr: 'Gdpr'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "booking"
+    modelProps: "booking" | "gdpr"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -470,6 +471,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Gdpr: {
+      payload: Prisma.$GdprPayload<ExtArgs>
+      fields: Prisma.GdprFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GdprFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GdprFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload>
+        }
+        findFirst: {
+          args: Prisma.GdprFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GdprFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload>
+        }
+        findMany: {
+          args: Prisma.GdprFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload>[]
+        }
+        create: {
+          args: Prisma.GdprCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload>
+        }
+        createMany: {
+          args: Prisma.GdprCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.GdprDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload>
+        }
+        update: {
+          args: Prisma.GdprUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload>
+        }
+        deleteMany: {
+          args: Prisma.GdprDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GdprUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.GdprUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprPayload>
+        }
+        aggregate: {
+          args: Prisma.GdprAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGdpr>
+        }
+        groupBy: {
+          args: Prisma.GdprGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GdprGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GdprCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GdprCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -511,14 +578,16 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const BookingScalarFieldEnum = {
   id: 'id',
-  clerkUserId: 'clerkUserId',
   email: 'email',
+  packageType: 'packageType',
   zone: 'zone',
   startTime: 'startTime',
   durationHours: 'durationHours',
   numberOfGuests: 'numberOfGuests',
   status: 'status',
   paymentStatus: 'paymentStatus',
+  stripeSessionId: 'stripeSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
   depositPaid: 'depositPaid',
   fullAmount: 'fullAmount',
   depositAmount: 'depositAmount',
@@ -528,12 +597,30 @@ export const BookingScalarFieldEnum = {
 export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
 
 
+export const GdprScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  preferences: 'preferences',
+  version: 'version',
+  createdAt: 'createdAt'
+} as const
+
+export type GdprScalarFieldEnum = (typeof GdprScalarFieldEnum)[keyof typeof GdprScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullsOrder = {
@@ -546,14 +633,42 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 export const BookingOrderByRelevanceFieldEnum = {
   id: 'id',
-  clerkUserId: 'clerkUserId',
   email: 'email',
+  packageType: 'packageType',
   zone: 'zone',
   status: 'status',
-  paymentStatus: 'paymentStatus'
+  paymentStatus: 'paymentStatus',
+  stripeSessionId: 'stripeSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId'
 } as const
 
 export type BookingOrderByRelevanceFieldEnum = (typeof BookingOrderByRelevanceFieldEnum)[keyof typeof BookingOrderByRelevanceFieldEnum]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const GdprOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  version: 'version'
+} as const
+
+export type GdprOrderByRelevanceFieldEnum = (typeof GdprOrderByRelevanceFieldEnum)[keyof typeof GdprOrderByRelevanceFieldEnum]
 
 
 
@@ -587,6 +702,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -692,6 +821,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   booking?: Prisma.BookingOmit
+  gdpr?: Prisma.GdprOmit
 }
 
 /* Types for Logging */

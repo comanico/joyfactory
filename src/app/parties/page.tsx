@@ -1,5 +1,6 @@
 // app/parties/page.tsx
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 
 export default function PartiesPage() {
   return (
@@ -22,7 +23,7 @@ export default function PartiesPage() {
               mess while you make the memories.
             </p>
             <a
-              href="#booking-form"
+              href="/#booking-form"
               className="inline-flex items-center gap-2 bg-tertiary text-on-tertiary px-10 py-4 rounded-full font-headline font-bold hover:scale-105 transition-transform shadow-lg"
             >
               Start Your Adventure
@@ -108,9 +109,12 @@ export default function PartiesPage() {
                 </li>
               </ul>
 
-              <button className="w-full py-4 rounded-2xl border-2 border-primary text-primary font-headline font-bold hover:bg-primary hover:text-on-primary transition-colors">
+              <Link
+                href="/?package=basic#booking-form"
+                className="block w-full text-center py-4 rounded-2xl border-2 border-primary text-primary font-headline font-bold hover:bg-primary hover:text-on-primary transition-colors"
+              >
                 Select Basic Fun
-              </button>
+              </Link>
             </div>
 
             {/* ==================== PREMIUM JOY ==================== */}
@@ -174,9 +178,12 @@ export default function PartiesPage() {
                 </li>
               </ul>
 
-              <button className="w-full py-4 rounded-2xl bg-on-primary text-primary font-headline font-bold hover:scale-105 transition-transform">
+              <Link
+                href="/?package=premium#booking-form"
+                className="block w-full text-center py-4 rounded-2xl bg-on-primary text-primary font-headline font-bold hover:scale-105 transition-transform"
+              >
                 Select Premium Joy
-              </button>
+              </Link>
             </div>
 
             {/* ==================== VIP UTOPIA ==================== */}
@@ -242,9 +249,12 @@ export default function PartiesPage() {
                 </li>
               </ul>
 
-              <button className="w-full py-4 rounded-2xl border-2 border-primary text-primary font-headline font-bold hover:bg-primary hover:text-on-primary transition-colors">
+              <Link
+                href="/?package=vip#booking-form"
+                className="block w-full text-center py-4 rounded-2xl border-2 border-primary text-primary font-headline font-bold hover:bg-primary hover:text-on-primary transition-colors"
+              >
                 Select VIP Utopia
-              </button>
+              </Link>
             </div>
           </div>
         </section>

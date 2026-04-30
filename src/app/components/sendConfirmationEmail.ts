@@ -3,28 +3,36 @@
 
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    throw new Error("RESEND_API_KEY is not set on the server environment.");
+  }
+  return new Resend(key);
+}
 
 export async function sendConfirmationEmail({
   email,
   bookingId,
   packageType,
   date,
-  time,
-  duration,
+  startTime,
+  endTime,
   guests,
 }: {
   email: string;
   bookingId: string;
   packageType: string;
   date: string;
-  time?: string;
-  duration: string;
+  startTime?: string;
+  endTime?: string;
   guests: number;
 }) {
   try {
+    const hasTimes = Boolean(startTime && endTime);
+    const resend = getResend();
     const result = await resend.emails.send({
-      from: 'JoyFactory Bookings <bookings@joyfactory.com>', // ← Change to your verified domain later
+      from: 'JoyFactory Bookings <info@joyfactory.com>', // ← Change to your verified domain later
       to: [email],
       subject: `🎉 Your JoyFactory ${packageType.toUpperCase()} Booking is Confirmed!`,
       html: `
@@ -36,9 +44,12 @@ export async function sendConfirmationEmail({
             <p><strong>Booking ID:</strong> ${bookingId}</p>
             <p><strong>Package:</strong> ${packageType.toUpperCase()}</p>
             <p><strong>Date:</strong> ${date}</p>
-            ${time ? `<p><strong>Start Time:</strong> ${time}</p>` : ''}
-            <p><strong>Duration:</strong> ${duration}</p>
-            <p><strong>Number of Guests:</strong> ${guests}</p>
+            ${
+              hasTimes
+                ? `<p><strong>Time:</strong> ${startTime} – ${endTime}</p>`
+                : `<p><strong>Time:</strong> Whole day</p>`
+            }
+            <p><strong>Guests included:</strong> ${guests}</p>
           </div>
 
           <p style="text-align: center; color: #63367c; font-weight: bold;">
@@ -58,4 +69,15 @@ export async function sendConfirmationEmail({
     const message = error instanceof Error ? error.message : String(error);
     throw new Error(`Email sending failed: ${message}`);
   }
+}
+
+export async function sendTestEmail(params: { to: string }) {
+  const resend = getResend();
+  const result = await resend.emails.send({
+    from: 'JoyFactory Bookings <bookings@joyfactory.com>',
+    to: [params.to],
+    subject: 'Resend test email',
+    html: '<p>If you got this, Resend is working.</p>',
+  });
+  return result;
 }

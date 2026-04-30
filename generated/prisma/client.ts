@@ -46,3 +46,8 @@ export { Prisma }
  * 
  */
 export type Booking = Prisma.BookingModel
+/**
+ * Model Gdpr
+ * 
+ */
+export type Gdpr = Prisma.GdprModel

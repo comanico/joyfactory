@@ -1,11 +1,10 @@
 // app/components/QuickBooking.tsx
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { createPaymentIntent } from './actions';
-import { sendConfirmationEmail } from './sendConfirmationEmail';
+import { createPaymentIntent, finalizeBookingAfterStripePayment, getReservations } from './actions';
 import { toast } from 'sonner';
 import BookingCalendar from './BookingCalendar';
 import type { Reservation } from './bookingAvailability';
@@ -16,7 +15,11 @@ import {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
-export default function QuickBooking() {
+export default function QuickBooking(props: {
+  initialPackage?: string;
+  initialDateISO?: string;
+  initialTime?: string;
+}) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [packageType, setPackageType] = useState<'basic' | 'premium' | 'vip'>('basic');
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -25,17 +28,49 @@ export default function QuickBooking() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [bookingId, setBookingId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
 
-  const reservations: Reservation[] = useMemo(
-    () => [
-      // Example bookings (local time). Replace with API later.
-      { start: new Date('2026-05-03T12:00:00'), end: new Date('2026-05-03T14:00:00') },
-      { start: new Date('2026-05-03T16:00:00'), end: new Date('2026-05-03T18:00:00') },
-      { start: new Date('2026-05-06T10:00:00'), end: new Date('2026-05-06T20:00:00') },
-    ],
-    [],
-  );
+  useEffect(() => {
+    const pkg = props.initialPackage;
+    const dateISO = props.initialDateISO;
+    const time = props.initialTime;
+
+    if (pkg === "basic" || pkg === "premium" || pkg === "vip") {
+      setPackageType(pkg);
+    }
+
+    if (dateISO && /^\d{4}-\d{2}-\d{2}$/.test(dateISO)) {
+      const [yyyy, mm, dd] = dateISO.split("-").map((p) => Number(p));
+      setSelectedDate(new Date(yyyy, mm - 1, dd));
+    }
+
+    if (time && /^\d{2}:\d{2}$/.test(time)) {
+      setSelectedTime(time);
+    }
+  }, [props.initialDateISO, props.initialPackage, props.initialTime]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const raw = await getReservations();
+        if (cancelled) return;
+        setReservations(
+          raw.map((r) => ({
+            start: new Date(r.start),
+            end: new Date(r.end),
+          })),
+        );
+      } catch {
+        // Reservations are best-effort UI help; server validation is authoritative.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const vipDayTaken = useMemo(() => {
     if (!selectedDate) return false;
@@ -59,12 +94,15 @@ export default function QuickBooking() {
     setSelectedTime(null);
   }, []);
 
+  const isSelectedTimeAvailable = useMemo(() => {
+    if (packageType === 'vip') return !vipDayTaken;
+    if (!selectedDate || !selectedTime || !slotInfo) return false;
+    if (!slotInfo.slots.includes(selectedTime)) return false;
+    return !slotInfo.disabled.has(selectedTime);
+  }, [packageType, selectedDate, selectedTime, slotInfo, vipDayTaken]);
+
   const isRequiredInfoComplete = firstName.trim() && lastName.trim() && phone.trim();
-  const isPackageSelectionComplete =
-    selectedDate &&
-    (packageType === 'vip'
-      ? !vipDayTaken
-      : Boolean(selectedTime));
+  const isPackageSelectionComplete = Boolean(selectedDate && isSelectedTimeAvailable);
 
   const isFormComplete = Boolean(isRequiredInfoComplete && isPackageSelectionComplete);
 
@@ -76,11 +114,16 @@ export default function QuickBooking() {
     try {
       const result = await createPaymentIntent({ 
         packageType,
+        dateISO: selectedDate!.toISOString().slice(0, 10),
+        timeHHMM: packageType === 'vip' ? null : selectedTime,
         email: email || undefined 
       });
       setClientSecret(result.clientSecret);
+      setBookingId(result.bookingId);
     } catch (error) {
-      toast.error("Failed to start payment. Please try again.");
+      toast.error(
+        error instanceof Error ? error.message : "Failed to start payment. Please try again.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -91,26 +134,15 @@ export default function QuickBooking() {
       <Elements stripe={stripePromise} options={{ clientSecret }}>
         <EmbeddedPaymentForm
           email={email}
+          bookingId={bookingId!}
           selectedDate={selectedDate!}
           packageType={packageType}
           selectedTime={selectedTime}
           onSuccess={async () => {
             toast.success("🎉 Payment successful! Your booking is confirmed.");
 
-            // Send confirmation email if email was provided
-            if (email) {
-              await sendConfirmationEmail({
-                email,
-                bookingId: "BOOK-" + Date.now().toString(36),
-                packageType,
-                date: selectedDate!.toDateString(),
-                time: selectedTime || undefined,
-                duration: packageType === 'basic' ? '2 hours' : packageType === 'premium' ? '4 hours' : '8 hours',
-                guests: packageType === 'basic' ? 10 : packageType === 'premium' ? 20 : 99,
-              });
-            }
-
             setClientSecret(null);
+            setBookingId(null);
           }}
         />
       </Elements>
@@ -118,7 +150,7 @@ export default function QuickBooking() {
   }
 
   return (
-    <section className="mt-20 mb-12">
+    <section id="booking-form" className="mt-20 mb-12">
       <div className="text-center mb-10">
         <h2 className="text-4xl font-headline font-extrabold text-primary">Book Your Joy Session</h2>
         <p className="text-on-surface-variant mt-3">Choose a date and package — we’ll take care of the rest</p>
@@ -271,7 +303,7 @@ export default function QuickBooking() {
               {!selectedDate
                 ? 'All Day Access'
                 : vipDayTaken
-                  ? 'Unavailable (already booked)'
+                  ? 'Unavailable'
                   : 'Available (whole day)'}
             </div>
           )}
@@ -293,6 +325,7 @@ export default function QuickBooking() {
 // Embedded Stripe Payment Form
 function EmbeddedPaymentForm({ email, selectedDate, packageType, selectedTime, onSuccess }: {
   email: string;
+  bookingId: string;
   selectedDate: Date;
   packageType: 'basic' | 'premium' | 'vip';
   selectedTime: string | null;
@@ -316,6 +349,15 @@ function EmbeddedPaymentForm({ email, selectedDate, packageType, selectedTime, o
     if (result.error) {
       toast.error(result.error.message || 'Payment failed');
     } else if (result.paymentIntent?.status === 'succeeded') {
+      try {
+        await finalizeBookingAfterStripePayment({
+          paymentIntentId: result.paymentIntent.id,
+        });
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Payment succeeded but confirmation failed.");
+        setIsProcessing(false);
+        return;
+      }
       onSuccess();
     }
 
