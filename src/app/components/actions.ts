@@ -9,8 +9,9 @@ import {
   computeAvailableStartTimes,
   packageDurationHours,
 } from './bookingAvailability';
-import { sendConfirmationEmail, sendTestEmail } from './sendConfirmationEmail';
-import { formatBucharestDate, formatBucharestTime } from '../../../lib/bucharestTime';
+import { sendConfirmationEmail, sendTestEmail } from "./sendConfirmationEmail";
+import { formatBucharestDate, formatBucharestTime } from "../../../lib/bucharestTime";
+import { resolvedSiteUrl } from "../../lib/siteUrl";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-04-22.dahlia',
@@ -107,8 +108,13 @@ export async function createPaymentIntent(data: {
   packageType: PackageType;
   dateISO: string; // YYYY-MM-DD
   timeHHMM?: string | null; // HH:MM, required for non-VIP
-  email?: string;
+  email: string;
 }) {
+  const email = data.email?.trim();
+  if (!email) {
+    throw new Error("Please enter your email so we can send your confirmation and reservation link.");
+  }
+
   const priceIdMap: Record<string, string> = {
     basic: process.env.STRIPE_PRICE_BASIC!,
     premium: process.env.STRIPE_PRICE_PREMIUM!,
@@ -135,7 +141,7 @@ export async function createPaymentIntent(data: {
 
   const booking = await prisma.booking.create({
     data: {
-      email: data.email || null,
+      email,
       packageType: data.packageType,
       zone: 'General Play Zone',
       startTime,
@@ -191,8 +197,8 @@ export async function finalizeBookingAfterStripePayment(data: {
   const booking = await prisma.booking.update({
     where: { id: bookingId },
     data: {
-      status: 'confirmed',
-      paymentStatus: 'paid',
+      status: "confirmed",
+      paymentStatus: "paid",
       depositPaid: true,
       stripePaymentIntentId: pi.id,
     },
@@ -206,25 +212,40 @@ export async function finalizeBookingAfterStripePayment(data: {
     },
   });
 
-  if (booking.email) {
-    const endTime = new Date(booking.startTime.getTime() + booking.durationHours * 60 * 60_000);
+  const email = booking.email?.trim();
+  if (!email) {
+    throw new Error(
+      "Email is required to complete your booking. Please contact us with your payment receipt.",
+    );
+  }
 
-    try {
-      await sendConfirmationEmail({
-        email: booking.email,
-        bookingId: booking.id,
-        packageType: booking.packageType,
-        date: formatBucharestDate(booking.startTime),
-        startTime: formatBucharestTime(booking.startTime),
-        endTime: formatBucharestTime(endTime),
-        guests: booking.numberOfGuests,
-      });
-    } catch (e) {
-      // Payment succeeded and booking is confirmed; keep the error explicit so it can be retried.
-      throw new Error(
-        `Booking confirmed, but email failed: ${e instanceof Error ? e.message : String(e)}`,
-      );
-    }
+  const endTime = new Date(
+    booking.startTime.getTime() + booking.durationHours * 60 * 60_000,
+  );
+  const base = await resolvedSiteUrl();
+  const reservationUrl = `${base}/reservation/${booking.id}`;
+
+  try {
+    await sendConfirmationEmail({
+      email,
+      reservationUrl,
+      bookingId: booking.id,
+      packageType: booking.packageType,
+      date: formatBucharestDate(booking.startTime),
+      startTime:
+        booking.packageType === "vip"
+          ? undefined
+          : formatBucharestTime(booking.startTime),
+      endTime:
+        booking.packageType === "vip"
+          ? undefined
+          : formatBucharestTime(endTime),
+      guests: booking.numberOfGuests,
+    });
+  } catch (e) {
+    throw new Error(
+      `Booking confirmed, but email failed: ${e instanceof Error ? e.message : String(e)}`,
+    );
   }
 
   return { bookingId: booking.id };

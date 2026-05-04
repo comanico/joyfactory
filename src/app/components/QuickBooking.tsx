@@ -2,6 +2,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { createPaymentIntent, finalizeBookingAfterStripePayment, getReservations } from './actions';
@@ -101,7 +102,11 @@ export default function QuickBooking(props: {
     return !slotInfo.disabled.has(selectedTime);
   }, [packageType, selectedDate, selectedTime, slotInfo, vipDayTaken]);
 
-  const isRequiredInfoComplete = firstName.trim() && lastName.trim() && phone.trim();
+  const isRequiredInfoComplete =
+    firstName.trim() &&
+    lastName.trim() &&
+    phone.trim() &&
+    email.trim();
   const isPackageSelectionComplete = Boolean(selectedDate && isSelectedTimeAvailable);
 
   const isFormComplete = Boolean(isRequiredInfoComplete && isPackageSelectionComplete);
@@ -112,11 +117,11 @@ export default function QuickBooking(props: {
     setIsLoading(true);
 
     try {
-      const result = await createPaymentIntent({ 
+      const result = await createPaymentIntent({
         packageType,
         dateISO: selectedDate!.toISOString().slice(0, 10),
-        timeHHMM: packageType === 'vip' ? null : selectedTime,
-        email: email || undefined 
+        timeHHMM: packageType === "vip" ? null : selectedTime,
+        email: email.trim(),
       });
       setClientSecret(result.clientSecret);
       setBookingId(result.bookingId);
@@ -131,16 +136,13 @@ export default function QuickBooking(props: {
 
   if (clientSecret) {
     return (
-      <Elements stripe={stripePromise} options={{ clientSecret }}>
+      <Elements
+        key={bookingId ?? "checkout"}
+        stripe={stripePromise}
+        options={{ clientSecret }}
+      >
         <EmbeddedPaymentForm
-          email={email}
-          bookingId={bookingId!}
-          selectedDate={selectedDate!}
-          packageType={packageType}
-          selectedTime={selectedTime}
-          onSuccess={async () => {
-            toast.success("🎉 Payment successful! Your booking is confirmed.");
-
+          onPaid={() => {
             setClientSecret(null);
             setBookingId(null);
           }}
@@ -202,13 +204,14 @@ export default function QuickBooking(props: {
           </div>
 
           <div>
-            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">Email Address <span className="text-xs text-on-surface-variant">(optional)</span></label>
+            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">Email address</label>
             <input
               className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
               placeholder="you@email.com"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
@@ -323,14 +326,8 @@ export default function QuickBooking(props: {
 }
 
 // Embedded Stripe Payment Form
-function EmbeddedPaymentForm({ email, selectedDate, packageType, selectedTime, onSuccess }: {
-  email: string;
-  bookingId: string;
-  selectedDate: Date;
-  packageType: 'basic' | 'premium' | 'vip';
-  selectedTime: string | null;
-  onSuccess: () => void;
-}) {
+function EmbeddedPaymentForm({ onPaid }: { onPaid: () => void }) {
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -348,17 +345,22 @@ function EmbeddedPaymentForm({ email, selectedDate, packageType, selectedTime, o
 
     if (result.error) {
       toast.error(result.error.message || 'Payment failed');
-    } else if (result.paymentIntent?.status === 'succeeded') {
+    } else if (result.paymentIntent?.status === "succeeded") {
       try {
-        await finalizeBookingAfterStripePayment({
+        const { bookingId: confirmedId } = await finalizeBookingAfterStripePayment({
           paymentIntentId: result.paymentIntent.id,
         });
+        toast.success("Payment successful! Your booking is confirmed.");
+        onPaid();
+        router.push(`/reservation/${confirmedId}`);
       } catch (e) {
-        toast.error(e instanceof Error ? e.message : "Payment succeeded but confirmation failed.");
+        toast.error(
+          e instanceof Error ? e.message : "Payment succeeded but confirmation failed.",
+        );
         setIsProcessing(false);
         return;
       }
-      onSuccess();
+      return;
     }
 
     setIsProcessing(false);
