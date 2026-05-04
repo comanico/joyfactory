@@ -9,7 +9,7 @@ export default async function SuccessPage({
   searchParams: { session_id?: string };
 }) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2026-03-25.dahlia',
+    apiVersion: '2026-04-22.dahlia',
   });
 
   const sessionId = searchParams.session_id;
