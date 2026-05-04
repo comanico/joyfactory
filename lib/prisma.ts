@@ -5,9 +5,8 @@ import { PrismaClient } from "../generated/prisma/client";
 type MariaPoolConfig = ConstructorParameters<typeof PrismaMariaDb>[0];
 
 /**
- * Prefer DATABASE_URL in deployed environments (e.g. Railway): it carries the
- * correct host, port, and SSL settings. Split DATABASE_* vars must include
- * DATABASE_PORT or MYSQLPORT — the driver defaults to 3306 otherwise.
+ * Prefer DATABASE_URL for Railway (and local): host, port, SSL in one string.
+ * Split DATABASE_* vars need DATABASE_PORT or MYSQLPORT (defaults to 3306).
  */
 function poolConfigFromEnv(): MariaPoolConfig {
   const databaseUrl = process.env.DATABASE_URL?.trim();
