@@ -1,8 +1,8 @@
 import "dotenv/config";
-import { PrismaMysql2 } from "@prisma/adapter-mysql2";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { PrismaClient } from "../generated/prisma/client";
 
-const adapter = new PrismaMysql2({
+const adapter = new PrismaMariaDb({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,

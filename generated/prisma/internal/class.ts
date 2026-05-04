@@ -17,8 +17,8 @@ import type * as Prisma from "./prismaNamespace"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.7.0",
-  "engineVersion": "75cbdc1eb7150937890ad5465d861175c6624711",
+  "clientVersion": "7.8.0",
+  "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "mysql",
   "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel Booking {\n  id                    String   @id @default(cuid())\n  email                 String?\n  packageType           String   @default(\"basic\")\n  zone                  String   @default(\"General Play Zone\")\n  startTime             DateTime\n  durationHours         Int\n  numberOfGuests        Int\n  status                String   @default(\"pending\")\n  paymentStatus         String   @default(\"pending\")\n  stripeSessionId       String?\n  stripePaymentIntentId String?\n  depositPaid           Boolean  @default(false)\n  fullAmount            Int      @default(0)\n  depositAmount         Int      @default(0)\n  createdAt             DateTime @default(now())\n\n  @@index([startTime])\n}\n\nmodel Gdpr {\n  id          String   @id @default(cuid())\n  userId      String?\n  preferences Json\n  version     String   @default(\"1.0\")\n  createdAt   DateTime @default(now())\n\n  @@map(\"gdpr\")\n}\n",
   "runtimeDataModel": {
@@ -180,7 +180,7 @@ export interface PrismaClient<
    * 
    * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => runtime.Types.Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<R>
 
