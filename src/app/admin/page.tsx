@@ -2,11 +2,14 @@ import Navbar from "@/app/components/Navbar";
 import { prisma } from "../../../lib/prisma";
 import { packageLabel } from "@/lib/packageLabels";
 import { formatBucharestDate, formatBucharestTime } from "../../../lib/bucharestTime";
+import { getServerLang, getServerT } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function AdminPage() {
+  const lang = await getServerLang();
+  const t = await getServerT(lang);
   const bookings = await prisma.booking.findMany({
     orderBy: { createdAt: "desc" },
     select: {
@@ -34,17 +37,17 @@ export default async function AdminPage() {
           <div className="flex items-end justify-between gap-6 mb-10">
             <div>
               <p className="text-sm font-headline font-bold uppercase tracking-widest text-on-surface-variant">
-                Admin
+                {t("admin.title")}
               </p>
               <h1 className="text-3xl md:text-4xl font-headline font-extrabold text-primary">
-                Reservations
+                {t("admin.reservations")}
               </h1>
               <p className="text-on-surface-variant mt-2">
-                Times shown in <span className="font-bold text-primary">Bucharest</span> time.
+                {t("admin.tzNote")}
               </p>
             </div>
             <div className="bg-secondary-container text-on-secondary-container px-5 py-3 rounded-full font-headline font-bold">
-              {bookings.length} latest
+              {bookings.length} {t("admin.latest")}
             </div>
           </div>
 
@@ -53,15 +56,15 @@ export default async function AdminPage() {
               <table className="min-w-[1100px] w-full text-left">
                 <thead className="bg-surface-container">
                   <tr className="text-xs font-headline font-extrabold uppercase tracking-widest text-on-surface-variant">
-                    <th className="px-6 py-4">When</th>
-                    <th className="px-6 py-4">Package</th>
-                    <th className="px-6 py-4">Guests</th>
-                    <th className="px-6 py-4">Email</th>
-                    <th className="px-6 py-4">Status</th>
-                    <th className="px-6 py-4">Payment</th>
-                    <th className="px-6 py-4">Deposit</th>
-                    <th className="px-6 py-4">Booking ID</th>
-                    <th className="px-6 py-4">Created</th>
+                    <th className="px-6 py-4">{t("admin.when")}</th>
+                    <th className="px-6 py-4">{t("admin.package")}</th>
+                    <th className="px-6 py-4">{t("admin.guests")}</th>
+                    <th className="px-6 py-4">{t("admin.email")}</th>
+                    <th className="px-6 py-4">{t("admin.status")}</th>
+                    <th className="px-6 py-4">{t("admin.payment")}</th>
+                    <th className="px-6 py-4">{t("admin.deposit")}</th>
+                    <th className="px-6 py-4">{t("admin.bookingId")}</th>
+                    <th className="px-6 py-4">{t("admin.created")}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30">
@@ -71,7 +74,7 @@ export default async function AdminPage() {
                     );
                     const timeLine =
                       b.packageType === "vip"
-                        ? "Whole day"
+                        ? t("reservation.wholeDay")
                         : `${formatBucharestTime(b.startTime)}–${formatBucharestTime(end)}`;
 
                     return (
@@ -86,7 +89,7 @@ export default async function AdminPage() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="inline-flex bg-primary text-on-primary px-4 py-2 rounded-full font-headline font-extrabold">
-                            {packageLabel(b.packageType)}
+                            {packageLabel({ packageType: b.packageType, lang })}
                           </span>
                         </td>
                         <td className="px-6 py-4 font-headline font-bold">
@@ -106,11 +109,11 @@ export default async function AdminPage() {
                           </span>
                           {b.depositPaid ? (
                             <div className="text-green-700 font-semibold">
-                              paid
+                              {t("admin.paid")}
                             </div>
                           ) : (
                             <div className="text-on-surface-variant">
-                              not paid
+                              {t("admin.notPaid")}
                             </div>
                           )}
                         </td>
@@ -133,7 +136,7 @@ export default async function AdminPage() {
                         className="px-6 py-10 text-on-surface-variant"
                         colSpan={9}
                       >
-                        No reservations yet.
+                        {t("admin.noReservations")}
                       </td>
                     </tr>
                   ) : null}

@@ -1,7 +1,11 @@
 // app/contact/page.tsx
 import Navbar from "../components/Navbar";
+import { getServerT } from "@/i18n/server";
+import Link from "next/link";
+import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getServerT();
   return (
     <>
       <Navbar />
@@ -10,12 +14,11 @@ export default function ContactPage() {
         {/* Hero Section */}
         <section className="py-16 md:py-24 text-center">
           <h1 className="text-6xl md:text-8xl font-black font-headline text-primary tracking-tighter mb-6 leading-none">
-            Pure Joy,<br />
-            <span className="text-secondary">Captured.</span>
+            {t("contactPage.heroTitle1")}<br />
+            <span className="text-secondary">{t("contactPage.heroTitle2")}</span>
           </h1>
           <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto font-medium">
-            Step into a world where every corner is a new adventure. Explore the
-            JoyFactory experience through our gallery.
+            {t("contactPage.heroBody")}
           </p>
         </section>
 
@@ -97,11 +100,11 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-12">
               <div className="space-y-6">
                 <h2 className="text-5xl font-black font-headline text-primary tracking-tight">
-                  Let&apos;s Talk <span className="text-secondary">Play.</span>
+                  {t("contactPage.talkTitle1")}{" "}
+                  <span className="text-secondary">{t("contactPage.talkTitle2")}</span>
                 </h2>
                 <p className="text-lg text-on-surface-variant font-medium">
-                  Have questions about our facilities, party packages, or safety
-                  protocols? Our team is here to help you plan the perfect visit.
+                  {t("contactPage.talkBody")}
                 </p>
               </div>
 
@@ -147,7 +150,7 @@ export default function ContactPage() {
               <div className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container shadow-sm border-0">
                 <img
                   className="w-full h-full object-cover grayscale brightness-110 opacity-80 hover:grayscale-0 transition-all duration-500"
-                  alt="stylized map showing the location of JoyFactory play center in a modern urban district"
+                  alt={t("contactPage.mapAlt")}
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRLBmjErwLCpBDDYOiwza1zIe_56RP9gUldt6nJ7afUpyNPSQRqUB2nR52SXhyjq7gjpfT4_ztcLrXTqw-zYXsm5LkVm7GmyId7zpljNXRvT5o4rfZCfInlY4gGCeoiRaEqbLKgWEiUOXWk5yDc7bSwJ1iqHsw4iOif2hR250S-C9q6nGVQY6tpdUW36hJIxUreykV-MrIHb5M_lCjhZHnkfHMYn4kw7snfFyBYuj_2aBQgR_MJJbCkjgsjnSHmd4cU_NR3eGtRQU"
                 />
               </div>
@@ -160,7 +163,7 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
                     <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                      First Name
+                      {t("booking.firstName")}
                     </label>
                     <input
                       className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
@@ -170,7 +173,7 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-2">
                     <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                      Last Name
+                      {t("booking.lastName")}
                     </label>
                     <input
                       className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
@@ -182,7 +185,7 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                    Email Address
+                    {t("booking.email")}
                   </label>
                   <input
                     className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
@@ -193,24 +196,24 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                    Inquiry Type
+                    {t("contactPage.inquiryType", "Tip solicitare")}
                   </label>
                   <select className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface appearance-none">
-                    <option>General Question</option>
-                    <option>Party Booking Inquiry</option>
-                    <option>Group Rates</option>
-                    <option>Safety &amp; Accessibility</option>
-                    <option>Feedback</option>
+                    <option>{t("contactPage.inquiry.general", "Întrebare generală")}</option>
+                    <option>{t("contactPage.inquiry.party", "Solicitare rezervare petrecere")}</option>
+                    <option>{t("contactPage.inquiry.group", "Tarife pentru grupuri")}</option>
+                    <option>{t("contactPage.inquiry.safety", "Siguranță & accesibilitate")}</option>
+                    <option>{t("contactPage.inquiry.feedback", "Feedback")}</option>
                   </select>
                 </div>
 
                 <div className="space-y-2">
                   <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                    Your Message
+                    {t("contactPage.message", "Mesajul tău")}
                   </label>
                   <textarea
                     className="w-full bg-surface-container-highest border-0 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
-                    placeholder="How can we help you today?"
+                    placeholder={t("contactPage.messagePlaceholder", "Cu ce te putem ajuta?")}
                     rows={4}
                   />
                 </div>
@@ -219,7 +222,7 @@ export default function ContactPage() {
                   type="submit"
                   className="w-full bg-primary text-on-primary font-headline font-bold py-5 rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all"
                 >
-                  Send Inquiry
+                  {t("contactPage.send", "Trimite solicitarea")}
                 </button>
               </form>
             </div>
@@ -229,10 +232,11 @@ export default function ContactPage() {
 
       {/* Footer (matches the style from your HTML) */}
       <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000]">
+        <FocusNewsletterOnHash />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-16 py-20 w-full max-w-screen-2xl mx-auto">
           <div className="space-y-6">
             <div className="text-2xl font-black text-[#63367c] font-headline">
-              JoyFactory
+              FunFactory
             </div>
             <p className="text-[#0e2000] opacity-80 font-body leading-relaxed max-w-xs">
               Curating elevated play experiences for the next generation of
@@ -245,44 +249,44 @@ export default function ContactPage() {
             </h4>
             <ul className="space-y-3 font-body">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/privacy"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/terms"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/safety"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
                   Safety Rules
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/contact"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="#newsletter"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
                   Join Newsletter
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -293,8 +297,9 @@ export default function ContactPage() {
             <p className="text-[#0e2000] opacity-80 font-body leading-relaxed">
               Get exclusive event invites and play tips delivered to your inbox.
             </p>
-            <div className="flex gap-2">
+            <div id="newsletter" className="flex gap-2">
               <input
+                id="newsletter-email"
                 className="bg-surface-container-lowest border-0 rounded-full px-6 py-3 w-full"
                 placeholder="Email Address"
                 type="text"
@@ -307,7 +312,7 @@ export default function ContactPage() {
         </div>
         <div className="w-full text-center py-8 border-t border-primary/10 mx-auto max-w-screen-xl">
           <p className="text-[#0e2000] opacity-60 text-sm">
-            © 2026 JoyFactory. All rights reserved. Designed for Sophisticated
+            © 2026 FunFactory. All rights reserved. Designed for Sophisticated
             Joy.
           </p>
         </div>

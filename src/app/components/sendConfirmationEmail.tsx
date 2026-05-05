@@ -37,6 +37,7 @@ export async function sendConfirmationEmail({
   startTime,
   endTime,
   guests,
+  lang,
 }: {
   email: string;
   reservationUrl: string;
@@ -46,6 +47,7 @@ export async function sendConfirmationEmail({
   startTime?: string;
   endTime?: string;
   guests: number;
+  lang: "ro" | "en";
 }) {
   const hasTimes = Boolean(startTime && endTime);
   const timeLine = hasTimes
@@ -56,16 +58,20 @@ export async function sendConfirmationEmail({
   const result = await resend.emails.send({
     from: defaultFrom(),
     to: [email],
-    subject: `Your FunFactory ${packageLabel(packageType)} reservation is confirmed`,
+    subject:
+      lang === "ro"
+        ? `Rezervarea ta FunFactory (${packageLabel({ packageType, lang })}) este confirmată`
+        : `Your FunFactory ${packageLabel({ packageType, lang })} reservation is confirmed`,
     react: (
       <ConfirmationEmail
         reservationUrl={reservationUrl}
-        packageLabel={packageLabel(packageType)}
+        packageLabel={packageLabel({ packageType, lang })}
         dateFormatted={date}
         timeLine={timeLine}
         guests={guests}
         greetingName={greetingFromEmail(email)}
         bookingReference={bookingId}
+        lang={lang}
       />
     ),
   });

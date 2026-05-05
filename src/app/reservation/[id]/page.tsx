@@ -5,18 +5,21 @@ import Navbar from "@/app/components/Navbar";
 import { getPublicReservationById } from "@/lib/bookings";
 import { packageLabel } from "@/lib/packageLabels";
 import { formatBucharestDate, formatBucharestTime } from "../../../../lib/bucharestTime";
+import { getServerLang, getServerT } from "@/i18n/server";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
+  const lang = await getServerLang();
+  const t = await getServerT(lang);
   const { id } = await params;
   const b = await getPublicReservationById(id);
-  if (!b) return { title: "Reservation | JoyFactory" };
+  if (!b) return { title: `${t("reservation.confirmed")} | FunFactory` };
   return {
-    title: `${packageLabel(b.packageType)} · ${formatBucharestDate(b.startTime)} | JoyFactory`,
-    description: "Your party reservation details at JoyFactory.",
+    title: `${packageLabel({ packageType: b.packageType, lang })} · ${formatBucharestDate(b.startTime)} | FunFactory`,
+    description: t("reservation.save"),
   };
 }
 
@@ -25,6 +28,8 @@ export default async function ReservationPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const lang = await getServerLang();
+  const t = await getServerT(lang);
   const { id } = await params;
   const booking = await getPublicReservationById(id);
   if (!booking) notFound();
@@ -34,7 +39,7 @@ export default async function ReservationPage({
   );
   const isVip = booking.packageType === "vip";
   const timeLine = isVip
-    ? "Whole day (VIP access)"
+    ? t("reservation.wholeDay")
     : `${formatBucharestTime(booking.startTime)} – ${formatBucharestTime(end)}`;
 
   return (
@@ -44,29 +49,29 @@ export default async function ReservationPage({
         <div className="max-w-lg mx-auto">
           <div className="text-center mb-10">
             <p className="text-sm font-headline font-bold uppercase tracking-widest text-on-surface-variant mb-2">
-              Reservation confirmed
+              {t("reservation.confirmed")}
             </p>
             <h1 className="text-3xl md:text-4xl font-headline font-extrabold text-primary">
-              See you at JoyFactory
+              {t("reservation.heading")}
             </h1>
             <p className="text-on-surface-variant mt-3 text-base">
-              Save this page — you can open it anytime before your party.
+              {t("reservation.save")}
             </p>
           </div>
 
           <div className="bg-white rounded-3xl shadow-xl border border-outline-variant/30 p-8 md:p-10 space-y-8">
             <div>
               <p className="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant mb-2">
-                Package
+                {t("reservation.package")}
               </p>
               <p className="inline-block bg-primary text-on-primary font-headline font-extrabold text-lg px-6 py-3 rounded-full shadow-sm">
-                {packageLabel(booking.packageType)}
+                {packageLabel({ packageType: booking.packageType, lang })}
               </p>
             </div>
 
             <div>
               <p className="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant mb-2">
-                Date
+                {t("reservation.date")}
               </p>
               <p className="text-xl font-headline font-bold text-primary">
                 {formatBucharestDate(booking.startTime)}
@@ -75,7 +80,7 @@ export default async function ReservationPage({
 
             <div>
               <p className="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant mb-2">
-                Time
+                {t("reservation.time")}
               </p>
               <p
                 className={
@@ -90,7 +95,7 @@ export default async function ReservationPage({
 
             <div>
               <p className="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant mb-2">
-                Guests included
+                {t("reservation.guests")}
               </p>
               <p className="text-lg font-headline font-bold text-on-surface">
                 {booking.numberOfGuests}
@@ -98,10 +103,10 @@ export default async function ReservationPage({
             </div>
 
             <div className="pt-4 border-t border-outline-variant/40">
-              <p className="text-xs text-on-surface-variant mb-1">Zone</p>
+              <p className="text-xs text-on-surface-variant mb-1">{t("reservation.zone")}</p>
               <p className="font-medium text-on-surface">{booking.zone}</p>
               <p className="text-xs text-on-surface-variant mt-4 font-mono break-all">
-                Ref. {booking.id}
+                {t("reservation.ref")} {booking.id}
               </p>
             </div>
           </div>
@@ -111,7 +116,7 @@ export default async function ReservationPage({
               href="/"
               className="inline-flex items-center justify-center bg-primary text-on-primary px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] transition-transform shadow-md"
             >
-              Back to home
+              {t("reservation.backHome")}
             </Link>
           </div>
         </div>

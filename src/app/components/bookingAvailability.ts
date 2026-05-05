@@ -19,6 +19,18 @@ export function toISODateLocal(date: Date) {
   return `${p.year}-${pad2(p.month)}-${pad2(p.day)}`;
 }
 
+/** ISO date for "today" in Bucharest time (YYYY-MM-DD). */
+export function bucharestTodayISO(now: Date = new Date()) {
+  return toISODateLocal(now);
+}
+
+/** ISO date for "tomorrow" in Bucharest time (YYYY-MM-DD). */
+export function bucharestTomorrowISO(now: Date = new Date()) {
+  const p = bucharestParts(now);
+  const startOfTodayWallMs = Date.UTC(p.year, p.month - 1, p.day, 0, 0, 0, 0);
+  return toISODateLocal(new Date(startOfTodayWallMs + 24 * 60 * 60_000));
+}
+
 export function isSameLocalDate(a: Date, b: Date) {
   const ap = bucharestParts(a);
   const bp = bucharestParts(b);

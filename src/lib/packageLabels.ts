@@ -1,9 +1,13 @@
-export const PACKAGE_LABELS: Record<string, string> = {
-  basic: "Basic Fun",
-  premium: "Premium Joy",
-  vip: "VIP Utopia",
-};
+import { DEFAULT_LANG, resources, type SupportedLang } from "@/i18n/resources";
 
-export function packageLabel(packageType: string) {
-  return PACKAGE_LABELS[packageType] ?? packageType;
+export function packageLabel(params: {
+  packageType: string;
+  lang?: SupportedLang;
+}) {
+  const { packageType } = params;
+  const lang = params.lang ?? DEFAULT_LANG;
+  const pkg = resources[lang]?.translation?.packages as
+    | Record<string, string>
+    | undefined;
+  return pkg?.[packageType] ?? packageType;
 }

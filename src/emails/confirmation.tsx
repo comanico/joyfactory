@@ -25,6 +25,7 @@ export type ConfirmationEmailProps = {
   guests: number;
   greetingName: string;
   bookingReference: string;
+  lang: "ro" | "en";
 };
 
 export function ConfirmationEmail({
@@ -35,51 +36,66 @@ export function ConfirmationEmail({
   guests,
   greetingName,
   bookingReference,
+  lang,
 }: ConfirmationEmailProps) {
+  const ro = lang === "ro";
   return (
-    <Html lang="en">
+    <Html lang={lang}>
       <Head />
-      <Preview>Your JoyFactory reservation is confirmed — view your details</Preview>
+      <Preview>
+        {ro
+          ? "Rezervarea ta FunFactory este confirmată — vezi detaliile"
+          : "Your FunFactory reservation is confirmed — view your details"}
+      </Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={hero}>
-            <Text style={logo}>JoyFactory</Text>
+            <Text style={logo}>FunFactory</Text>
             <Heading as="h1" style={h1}>
-              You&apos;re booked, {greetingName}!
+              {ro ? "Rezervarea ta e confirmată," : "You're booked,"}{" "}
+              {greetingName}!
             </Heading>
             <Text style={lede}>
-              Your deposit went through.{" "}
-              <span style={ledeAccent}>Save the link below</span> — you can open it anytime before your party.
+              {ro ? "Avansul a fost achitat. " : "Your deposit went through. "}{" "}
+              <span style={ledeAccent}>
+                {ro ? "Salvează linkul de mai jos" : "Save the link below"}
+              </span>{" "}
+              —{" "}
+              {ro
+                ? "îl poți deschide oricând înainte de petrecere."
+                : "you can open it anytime before your party."}
             </Text>
           </Section>
 
           <Section style={card}>
-            <Text style={label}>Package</Text>
+            <Text style={label}>{ro ? "Pachet" : "Package"}</Text>
             <Text style={packageTitle}>{packageLabel}</Text>
             <Hr style={hr} />
-            <Text style={label}>Date</Text>
+            <Text style={label}>{ro ? "Data" : "Date"}</Text>
             <Text style={valueAccent}>{dateFormatted}</Text>
             <Hr style={hr} />
-            <Text style={label}>Time</Text>
+            <Text style={label}>{ro ? "Ora" : "Time"}</Text>
             <Text style={valueAccent}>{timeLine}</Text>
             <Hr style={hr} />
-            <Text style={label}>Guests included</Text>
+            <Text style={label}>{ro ? "Invitați incluși" : "Guests included"}</Text>
             <Text style={valueSecondary}>{guests}</Text>
             <Hr style={hr} />
-            <Text style={label}>Reference</Text>
+            <Text style={label}>{ro ? "Referință" : "Reference"}</Text>
             <Text style={mono}>{bookingReference}</Text>
           </Section>
 
           <Section style={{ textAlign: "center", marginTop: 28 }}>
             <Link href={reservationUrl} style={ctaLink}>
-              View your reservation →
+              {ro ? "Vezi rezervarea →" : "View your reservation →"}
             </Link>
           </Section>
 
           <Text style={footer}>
-            <span style={{ color: primary, fontWeight: 700 }}>Sophisticated joy</span>
-            {" "}for little adventurers ·{" "}
-            <span style={{ color: secondary, fontWeight: 700 }}>JoyFactory</span>
+            <span style={{ color: primary, fontWeight: 700 }}>
+              {ro ? "Bucurie sofisticată" : "Sophisticated joy"}
+            </span>
+            {ro ? " pentru micii aventurieri · " : " for little adventurers · "}
+            <span style={{ color: secondary, fontWeight: 700 }}>FunFactory</span>
           </Text>
         </Container>
       </Body>

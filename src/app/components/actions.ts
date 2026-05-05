@@ -187,6 +187,7 @@ export async function confirmBookingPaid(data: { bookingId: string }) {
 
 export async function finalizeBookingAfterStripePayment(data: {
   paymentIntentId: string;
+  lang?: "ro" | "en";
 }) {
   const pi = await stripe.paymentIntents.retrieve(data.paymentIntentId);
   if (pi.status !== 'succeeded') {
@@ -245,6 +246,7 @@ export async function finalizeBookingAfterStripePayment(data: {
           ? undefined
           : formatBucharestTime(endTime),
       guests: booking.numberOfGuests,
+      lang: data.lang === "en" ? "en" : "ro",
     });
   } catch (e) {
     throw new Error(

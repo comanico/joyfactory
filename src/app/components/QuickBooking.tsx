@@ -8,6 +8,7 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 import { createPaymentIntent, finalizeBookingAfterStripePayment, getReservations } from './actions';
 import { toast } from 'sonner';
 import BookingCalendar from './BookingCalendar';
+import { useTranslation } from "react-i18next";
 import type { Reservation } from './bookingAvailability';
 import {
   anyReservationTouchesDay,
@@ -21,6 +22,7 @@ export default function QuickBooking(props: {
   initialDateISO?: string;
   initialTime?: string;
 }) {
+  const { t } = useTranslation();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [packageType, setPackageType] = useState<'basic' | 'premium' | 'vip'>('basic');
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -127,7 +129,7 @@ export default function QuickBooking(props: {
       setBookingId(result.bookingId);
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to start payment. Please try again.",
+        error instanceof Error ? error.message : t("errors.startPaymentFailed", "Nu am putut porni plata. Încearcă din nou."),
       );
     } finally {
       setIsLoading(false);
@@ -154,15 +156,15 @@ export default function QuickBooking(props: {
   return (
     <section id="booking-form" className="mt-20 mb-12">
       <div className="text-center mb-10">
-        <h2 className="text-4xl font-headline font-extrabold text-primary">Book Your Joy Session</h2>
-        <p className="text-on-surface-variant mt-3">Choose a date and package — we’ll take care of the rest</p>
+        <h2 className="text-4xl font-headline font-extrabold text-primary">{t("booking.title")}</h2>
+        <p className="text-on-surface-variant mt-3">{t("booking.subtitle")}</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12 items-stretch">
         
         {/* Calendar */}
         <div className="h-full flex flex-col">
-          <h3 className="font-headline font-bold text-xl mb-6 text-primary">Select a Date</h3>
+          <h3 className="font-headline font-bold text-xl mb-6 text-primary">{t("booking.selectDate")}</h3>
           <div className="flex-1">
             <BookingCalendar
               packageType={packageType}
@@ -176,11 +178,11 @@ export default function QuickBooking(props: {
         {/* Form */}
         <div className="h-full flex flex-col">
           <div className="space-y-6 flex-1">
-          <h3 className="font-headline font-bold text-xl mb-6 text-primary">Your Details</h3>
+          <h3 className="font-headline font-bold text-xl mb-6 text-primary">{t("booking.yourDetails")}</h3>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">First Name</label>
+              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.firstName")}</label>
               <input
                 className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
                 placeholder="Alex"
@@ -191,7 +193,7 @@ export default function QuickBooking(props: {
               />
             </div>
             <div>
-              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">Last Name</label>
+              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.lastName")}</label>
               <input
                 className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
                 placeholder="Joyner"
@@ -204,7 +206,7 @@ export default function QuickBooking(props: {
           </div>
 
           <div>
-            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">Email address</label>
+            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.email")}</label>
             <input
               className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
               placeholder="you@email.com"
@@ -216,7 +218,7 @@ export default function QuickBooking(props: {
           </div>
 
           <div>
-            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">Phone Number</label>
+            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.phone")}</label>
             <input
               className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
               placeholder="+1 (555) 123-4567"
@@ -233,7 +235,7 @@ export default function QuickBooking(props: {
         <div className="md:col-span-2 space-y-6">
           {/* Package Selector */}
           <div>
-            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">Choose Package</label>
+            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">{t("booking.choosePackage")}</label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <button
                 type="button"
@@ -241,7 +243,7 @@ export default function QuickBooking(props: {
                 className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
                   ${packageType === 'basic' ? 'bg-primary text-white shadow-md border-primary' : 'bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant'}`}
               >
-                Basic Fun
+                {t("packages.basic")}
               </button>
               <button
                 type="button"
@@ -249,7 +251,7 @@ export default function QuickBooking(props: {
                 className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
                   ${packageType === 'premium' ? 'bg-primary text-white shadow-md border-primary' : 'bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant'}`}
               >
-                Premium Joy
+                {t("packages.premium")}
               </button>
               <button
                 type="button"
@@ -257,7 +259,7 @@ export default function QuickBooking(props: {
                 className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
                   ${packageType === 'vip' ? 'bg-primary text-white shadow-md border-primary' : 'bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant'}`}
               >
-                VIP Utopia
+                {t("packages.vip")}
               </button>
             </div>
           </div>
@@ -265,10 +267,10 @@ export default function QuickBooking(props: {
           {/* Time Slots */}
           {packageType !== 'vip' && (
             <div>
-              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">Select Start Time</label>
+              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">{t("booking.selectStartTime")}</label>
               {!selectedDate ? (
                 <div className="rounded-3xl bg-surface-container text-on-surface-variant px-6 py-4 text-sm font-medium">
-                  Select a date to see available start times.
+                  {t("booking.selectDateToSeeTimes")}
                 </div>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -304,10 +306,10 @@ export default function QuickBooking(props: {
               ].join(' ')}
             >
               {!selectedDate
-                ? 'All Day Access'
+                ? t("booking.vipAllDay")
                 : vipDayTaken
-                  ? 'Unavailable'
-                  : 'Available (whole day)'}
+                  ? t("booking.vipUnavailable")
+                  : t("booking.vipAvailableWholeDay")}
             </div>
           )}
 
@@ -317,7 +319,7 @@ export default function QuickBooking(props: {
             className={`w-full py-6 rounded-3xl font-headline font-bold text-xl transition-all shadow-lg
               ${isFormComplete ? 'bg-primary text-on-primary hover:scale-[1.02]' : 'bg-primary/15 text-primary opacity-60 cursor-not-allowed'}`}
           >
-            {isLoading ? 'Preparing payment...' : 'Pay 10% Deposit & Confirm'}
+            {isLoading ? t("booking.preparingPayment") : t("booking.payDeposit")}
           </button>
         </div>
       </div>
@@ -328,6 +330,7 @@ export default function QuickBooking(props: {
 // Embedded Stripe Payment Form
 function EmbeddedPaymentForm({ onPaid }: { onPaid: () => void }) {
   const router = useRouter();
+  const { t, i18n } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -344,18 +347,19 @@ function EmbeddedPaymentForm({ onPaid }: { onPaid: () => void }) {
     });
 
     if (result.error) {
-      toast.error(result.error.message || 'Payment failed');
+      toast.error(result.error.message || t("errors.paymentFailed", "Plata a eșuat"));
     } else if (result.paymentIntent?.status === "succeeded") {
       try {
         const { bookingId: confirmedId } = await finalizeBookingAfterStripePayment({
           paymentIntentId: result.paymentIntent.id,
+          lang: (i18n.language === "en" ? "en" : "ro") as "ro" | "en",
         });
-        toast.success("Payment successful! Your booking is confirmed.");
+        toast.success(t("toasts.paymentSuccess", "Plata a reușit! Rezervarea ta este confirmată."));
         onPaid();
         router.push(`/reservation/${confirmedId}`);
       } catch (e) {
         toast.error(
-          e instanceof Error ? e.message : "Payment succeeded but confirmation failed.",
+          e instanceof Error ? e.message : t("errors.confirmationFailed", "Plata a reușit, dar confirmarea a eșuat."),
         );
         setIsProcessing(false);
         return;
@@ -374,7 +378,7 @@ function EmbeddedPaymentForm({ onPaid }: { onPaid: () => void }) {
         disabled={!stripe || isProcessing}
         className="w-full bg-primary text-on-primary py-6 rounded-3xl font-headline font-bold text-xl hover:scale-[1.02] transition-transform"
       >
-        {isProcessing ? 'Processing payment...' : 'Complete Payment'}
+        {isProcessing ? t("booking.processingPayment") : t("booking.completePayment")}
       </button>
     </form>
   );

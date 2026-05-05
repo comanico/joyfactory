@@ -4,19 +4,26 @@ import { Toaster } from "sonner"
 import "vanilla-calendar-pro/styles/index.css";
 import "./globals.css";
 import GdprConsent from "./components/GdprConsent";
+import { I18nProvider } from "@/i18n/client";
+import { getServerLang, getServerT } from "@/i18n/server";
 
-export const metadata: Metadata = {
-  title: "JoyFactory | Zones of Pure Joy",
-  description: "Sophisticated indoor playground for kids 3-12",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getServerT();
+  const brand = t("brand");
+  return {
+    title: `${brand} | Zones of Pure Joy`,
+    description: "Sophisticated indoor playground for kids 3-12",
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const lang = await getServerLang();
   return (
-    <html lang="en" className="light">
+    <html lang={lang} className="light">
       <head>
         {/* Google Fonts + Material Symbols (unchanged) */}
         <link
@@ -29,7 +36,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
-        {children}
+        <I18nProvider initialLang={lang}>{children}</I18nProvider>
         <GdprConsent />
         <Toaster />
       </body>

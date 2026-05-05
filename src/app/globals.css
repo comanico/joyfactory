@@ -90,7 +90,7 @@
   color-scheme: dark;
 }
 
-/* Vanilla Calendar Pro theme tweaks (JoyFactory colors) */
+/* Vanilla Calendar Pro theme tweaks (FunFactory colors) */
 .jf-calendar .vanilla-calendar {
   --vc-color-primary: var(--color-primary);
   --vc-color-primary-hover: color-mix(in oklab, var(--color-primary) 85%, white);

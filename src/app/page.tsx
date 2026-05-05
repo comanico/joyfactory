@@ -1,12 +1,16 @@
 // app/page.tsx
 import Navbar from "./components/Navbar";
+import Link from "next/link";
 import QuickBooking from "./components/QuickBooking";
+import { getServerT } from "@/i18n/server";
+import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: Promise<{ package?: string; date?: string; time?: string }>;
 }) {
+  const t = await getServerT();
   const sp = await searchParams;
   return (
     <>
@@ -18,16 +22,14 @@ export default async function Home({
         {/* Hero Header */}
         <header className="mb-20 max-w-3xl">
           <span className="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full font-label font-bold text-sm uppercase tracking-widest mb-6 inline-block">
-            Explore Our World
+            {t("home.explore")}
           </span>
           <h1 className="text-6xl md:text-8xl font-headline font-black text-primary tracking-tighter leading-[0.9] mb-8">
-            Zones of <br />
-            <span className="text-secondary italic">Pure Joy.</span>
+            {t("home.heroTitleLine1")} <br />
+            <span className="text-secondary italic">{t("home.heroTitleEmphasis")}</span>
           </h1>
           <p className="text-xl md:text-2xl text-on-surface-variant leading-relaxed font-medium">
-            Designed for sophisticated play. Each zone is a carefully curated
-            environment that balances high-energy physical activity with creative
-            discovery.
+            {t("home.heroBody")}
           </p>
         </header>
 
@@ -47,16 +49,15 @@ export default async function Home({
                   blur_on
                 </span>
                 <h3 className="text-4xl font-headline font-extrabold text-white">
-                  The Infinity Ball Pit
+                  {t("home.infinityTitle")}
                 </h3>
               </div>
               <div className="flex justify-between items-end">
                 <p className="text-white/90 text-lg max-w-lg leading-snug">
-                  A sea of 50,000 antimicrobial pearls. Dive into a sensory-rich
-                  landscape designed for physical buoyancy and tactile delight.
+                  {t("home.infinityBody")}
                 </p>
                 <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full text-white font-bold border border-white/30">
-                  Ages 3-12
+                  {t("home.ages")}
                 </div>
               </div>
             </div>
@@ -69,12 +70,11 @@ export default async function Home({
                 child_care
               </span>
               <h3 className="text-4xl font-headline font-black text-on-tertiary-container leading-tight mb-4">
-                Toddler <br />
-                Sanctuary
+                {t("home.toddlerTitleLine1")} <br />
+                {t("home.toddlerTitleLine2")}
               </h3>
               <p className="text-on-tertiary-container/80 text-lg leading-relaxed">
-                Soft edges, organic shapes, and gentle sensory panels for our
-                smallest explorers.
+                {t("home.toddlerBody")}
               </p>
             </div>
             <div className="mt-8 relative z-10">
@@ -83,13 +83,13 @@ export default async function Home({
                   <span className="material-symbols-outlined text-sm">
                     check_circle
                   </span>
-                  Fully Padded Surfaces
+                  {t("home.toddlerBullet1")}
                 </li>
                 <li className="flex items-center gap-3 text-on-tertiary-container font-semibold">
                   <span className="material-symbols-outlined text-sm">
                     check_circle
                   </span>
-                  Sensory Wall Panels
+                  {t("home.toddlerBullet2")}
                 </li>
               </ul>
             </div>
@@ -107,19 +107,18 @@ export default async function Home({
             </div>
             <div>
               <h3 className="text-2xl font-headline font-extrabold text-primary mb-2">
-                Canopy Jungle Gym
+                {t("home.jungleTitle")}
               </h3>
               <p className="text-on-surface-variant leading-relaxed">
-                A multi-level architectural maze of sustainable timber and rope
-                bridges.
+                {t("home.jungleBody")}
               </p>
             </div>
             <div className="mt-auto pt-4 flex gap-2">
               <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">
-                Agility
+                {t("home.jungleTag1")}
               </span>
               <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">
-                Nature-Inspired
+                {t("home.jungleTag2")}
               </span>
             </div>
           </div>
@@ -128,15 +127,14 @@ export default async function Home({
             <div className="grid grid-cols-2 h-full">
               <div className="p-10 flex flex-col justify-center">
                 <h3 className="text-3xl font-headline font-black text-secondary mb-4 leading-tight">
-                  Sky-High <br />
-                  Climbing
+                  {t("home.climbTitleLine1")} <br />
+                  {t("home.climbTitleLine2")}
                 </h3>
                 <p className="text-on-surface-variant text-sm mb-6 leading-relaxed">
-                  Custom-molded geometric holds and auto-belay systems for safe,
-                  gravity-defying fun.
+                  {t("home.climbBody")}
                 </p>
                 <button className="flex items-center gap-2 text-secondary font-bold group-hover:gap-4 transition-all">
-                  Learn Techniques{" "}
+                  {t("home.climbCta")}{" "}
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </button>
               </div>
@@ -159,10 +157,10 @@ export default async function Home({
               palette
             </span>
             <h3 className="text-2xl font-headline font-black text-on-secondary-container mb-2">
-              Art Atelier
+              {t("home.artTitle")}
             </h3>
             <p className="text-on-secondary-container/80 text-sm">
-              Where little Picassos find their digital and physical canvas.
+              {t("home.artBody")}
             </p>
             <div className="absolute top-0 right-0 p-4">
               <div className="w-12 h-12 bg-on-secondary-container/10 rounded-full animate-pulse"></div>
@@ -177,17 +175,19 @@ export default async function Home({
               </div>
               <div>
                 <h4 className="font-headline font-bold text-xl text-on-surface">
-                  Safety First, Always.
+                  {t("home.safetyBannerTitle")}
                 </h4>
                 <p className="text-on-surface-variant">
-                  Cleaned hourly with eco-certified sanitizers. Fully supervised
-                  by trained &apos;Joy Guides&apos;.
+                  {t("home.safetyBannerBody")}
                 </p>
               </div>
             </div>
-            <button className="bg-secondary text-on-secondary px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-lg whitespace-nowrap">
-              View Safety Protocol
-            </button>
+            <Link
+              href="/safety"
+              className="bg-secondary text-on-secondary px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-lg whitespace-nowrap"
+            >
+              {t("home.safetyBannerCta")}
+            </Link>
           </div>
         </div>
         <QuickBooking
@@ -199,52 +199,82 @@ export default async function Home({
 
       {/* Footer */}
       <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000] font-['Plus_Jakarta_Sans'] leading-relaxed">
+        <FocusNewsletterOnHash />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-16 py-20 w-full">
           <div className="flex flex-col gap-6">
-            <div className="text-2xl font-black text-[#63367c]">JoyFactory</div>
+            <div className="text-2xl font-black text-[#63367c]">FunFactory</div>
             <p className="text-[#0e2000] opacity-80 max-w-xs">
-              Redefining the indoor playground experience through the lens of
-              sophisticated joy and architectural wonder.
+              {t("footer.about")}
             </p>
           </div>
           <div className="flex flex-col gap-4">
             <h4 className="font-bold text-[#63367c] uppercase tracking-widest text-sm mb-2">
-              Explore
+              {t("footer.explore")}
             </h4>
             <div className="flex flex-col gap-3">
-              <a href="#" className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all">
-                Terms of Service
-              </a>
-              <a href="#" className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all">
-                Safety Rules
-              </a>
+              <Link
+                href="/privacy"
+                className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
+              >
+                {t("footer.privacy")}
+              </Link>
+              <Link
+                href="/terms"
+                className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
+              >
+                {t("footer.terms")}
+              </Link>
+              <Link
+                href="/safety"
+                className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
+              >
+                {t("footer.safety")}
+              </Link>
             </div>
           </div>
           <div className="flex flex-col gap-4">
             <h4 className="font-bold text-[#63367c] uppercase tracking-widest text-sm mb-2">
-              Connect
+              {t("footer.connect")}
             </h4>
             <div className="flex flex-col gap-3">
-              <a href="#" className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all">
-                Contact Us
-              </a>
-              <a href="#" className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all font-bold text-[#63367c]">
-                Join Newsletter
-              </a>
+              <Link
+                href="/contact"
+                className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
+              >
+                {t("footer.contact")}
+              </Link>
+              <Link
+                href="#newsletter"
+                className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all font-bold text-[#63367c]"
+              >
+                {t("footer.newsletter")}
+              </Link>
             </div>
-            <div className="flex gap-4 mt-4">
-              <div className="w-10 h-10 rounded-full bg-[#63367c] flex items-center justify-center text-white cursor-pointer hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-sm">share</span>
+
+            <div id="newsletter" className="pt-4">
+              <div className="font-bold text-[#63367c] uppercase tracking-widest text-sm mb-2">
+                {t("footer.stay")}
+              </div>
+              <p className="text-[#0e2000] opacity-80 text-sm mb-3">
+                {t("footer.stayBody")}
+              </p>
+              <div className="flex gap-2">
+                <input
+                  id="newsletter-email"
+                  className="bg-surface-container-lowest border-0 rounded-full px-6 py-3 w-full"
+                  placeholder={t("footer.emailPlaceholder")}
+                  type="email"
+                />
+                <button className="bg-primary text-on-primary px-5 rounded-full font-bold shrink-0">
+                  {t("footer.subscribe")}
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div className="px-16 pb-12 border-t border-primary/10 pt-8 text-center md:text-left">
           <p className="text-[#0e2000] opacity-60 text-sm">
-            © 2026 JoyFactory. All rights reserved. Designed for Sophisticated Joy.
+            {t("footer.copyright")}
           </p>
         </div>
       </footer>

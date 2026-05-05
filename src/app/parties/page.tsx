@@ -1,8 +1,10 @@
 // app/parties/page.tsx
 import Navbar from "../components/Navbar";
 import Link from "next/link";
+import { getServerT } from "@/i18n/server";
 
-export default function PartiesPage() {
+export default async function PartiesPage() {
+  const t = await getServerT();
   return (
     <>
       <Navbar />
@@ -12,21 +14,20 @@ export default function PartiesPage() {
         <header className="relative mb-24 overflow-hidden rounded-xl bg-surface-container-low p-12 md:p-20 flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1 z-10">
             <span className="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container font-headline font-bold text-sm mb-6">
-              Celebrate with Us
+              {t("parties.badge")}
             </span>
             <h1 className="text-5xl md:text-7xl font-headline font-extrabold text-primary tracking-tighter mb-6 leading-tight">
-              Magical Parties, <br />
-              Zero Stress.
+              {t("parties.heroTitleLine1")} <br />
+              {t("parties.heroTitleLine2")}
             </h1>
             <p className="text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed">
-              From neon disco bashes to cozy toddler tea parties, we handle the
-              mess while you make the memories.
+              {t("parties.heroBody")}
             </p>
             <a
               href="/#booking-form"
               className="inline-flex items-center gap-2 bg-tertiary text-on-tertiary px-10 py-4 rounded-full font-headline font-bold hover:scale-105 transition-transform shadow-lg"
             >
-              Start Your Adventure
+              {t("parties.heroCta")}
               <span className="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
@@ -35,13 +36,13 @@ export default function PartiesPage() {
             <div className="w-full h-[400px] rounded-xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
               <img
                 className="w-full h-full object-cover"
-                alt="vibrant children's birthday party room with colorful balloons, streamers, and a decorated table in a modern indoor playground"
+                alt={t("parties.heroAlt")}
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe5fPtJKm5hUVJhOPJJWScxMmJkoeiNOQKsvsKCoSRNn6uOQPAwOduf62KYsEI88k4_pJZhMfeyzkwPjqWQVO80jgH5YIeTktQs9M3Y05rNpdiI8sGZAkbBYx92dgrC7qxO_eWh5H9FOE7lE4b2hNWC4Iwx8AuLeiPoshrJfEkDl1mvViX2SKVRCPnWYYcVQbq9661gkfGHaIAWtwcJscQ7WaZ_QbCFiBwsLxWQX_BZS9kBO6SOlhwdM_50XpZo8yqdKZlDipHkeI"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary-fixed rounded-full flex items-center justify-center p-6 text-center animate-bounce shadow-xl">
               <span className="font-headline font-black text-on-secondary-fixed text-lg">
-                Top Rated Venue 2024!
+                {t("parties.topRated")}
               </span>
             </div>
           </div>
@@ -51,11 +52,10 @@ export default function PartiesPage() {
         <section className="mb-32">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-headline font-extrabold text-on-surface tracking-tight mb-4">
-              Choose Your Celebration
+              {t("parties.chooseTitle")}
             </h2>
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Three tiers of joy designed to fit every group size and dream
-              theme.
+              {t("parties.chooseBody")}
             </p>
           </div>
 
@@ -65,21 +65,21 @@ export default function PartiesPage() {
               <div className="rounded-2xl overflow-hidden mb-6 h-48">
                 <img
                   className="w-full h-full object-cover"
-                  alt="Basic Fun party setup"
+                  alt={t("parties.packages.basic.alt")}
                   src="https://picsum.photos/id/1015/800/600"
                 />
               </div>
               <h3 className="text-2xl font-headline font-extrabold mb-1">
-                Basic Fun
+                {t("packages.basic")}
               </h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-black text-primary">$299</span>
                 <span className="text-on-surface-variant text-sm">
-                  / up to 10 kids • 2 hours
+                  {t("parties.packages.basic.priceMeta")}
                 </span>
               </div>
               <p className="text-on-surface-variant mb-6 text-sm leading-relaxed">
-                Perfect for small, simple celebrations with all the essentials.
+                {t("parties.packages.basic.blurb")}
               </p>
 
               <ul className="space-y-4 mb-8 flex-grow">
@@ -87,25 +87,25 @@ export default function PartiesPage() {
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  2 hours of play time
+                  {t("parties.packages.basic.f1")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Private party room
+                  {t("parties.packages.basic.f2")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Basic balloon &amp; streamer decor
+                  {t("parties.packages.basic.f3")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  10 kids included
+                  {t("parties.packages.basic.f4")}
                 </li>
               </ul>
 
@@ -113,36 +113,35 @@ export default function PartiesPage() {
                 href="/?package=basic#booking-form"
                 className="block w-full text-center py-4 rounded-2xl border-2 border-primary text-primary font-headline font-bold hover:bg-primary hover:text-on-primary transition-colors"
               >
-                Select Basic Fun
+                {t("parties.selectBasic")}
               </Link>
             </div>
 
             {/* ==================== PREMIUM JOY ==================== */}
             <div className="bg-primary text-on-primary p-8 rounded-3xl flex flex-col scale-105 shadow-2xl relative z-10 overflow-hidden">
               <div className="absolute top-0 right-0 px-6 py-2 bg-tertiary-container text-on-tertiary-container text-xs font-bold rounded-bl-3xl">
-                MOST POPULAR
+                {t("parties.mostPopular")}
               </div>
 
               <div className="rounded-2xl overflow-hidden mb-6 h-48">
                 <img
                   className="w-full h-full object-cover"
-                  alt="Premium Joy party"
+                  alt={t("parties.packages.premium.alt")}
                   src="https://picsum.photos/id/133/800/600"
                 />
               </div>
 
               <h3 className="text-2xl font-headline font-extrabold mb-1">
-                Premium Joy
+                {t("packages.premium")}
               </h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-black">$499</span>
                 <span className="text-primary-fixed-dim text-sm">
-                  / up to 15 kids • 3 hours
+                  {t("parties.packages.premium.priceMeta")}
                 </span>
               </div>
               <p className="text-primary-fixed-dim mb-6 text-sm leading-relaxed">
-                The perfect balance of fun and convenience — our most chosen
-                package.
+                {t("parties.packages.premium.blurb")}
               </p>
 
               <ul className="space-y-4 mb-8 flex-grow">
@@ -150,31 +149,31 @@ export default function PartiesPage() {
                   <span className="material-symbols-outlined text-secondary-container text-sm">
                     check_circle
                   </span>
-                  3 hours of play time
+                  {t("parties.packages.premium.f1")}
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-secondary-container text-sm">
                     check_circle
                   </span>
-                  Fully themed decorations
+                  {t("parties.packages.premium.f2")}
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-secondary-container text-sm">
                     check_circle
                   </span>
-                  Pizza, juice &amp; snacks
+                  {t("parties.packages.premium.f3")}
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-secondary-container text-sm">
                     check_circle
                   </span>
-                  15 kids included
+                  {t("parties.packages.premium.f4")}
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-secondary-container text-sm">
                     check_circle
                   </span>
-                  JoyFactory gift bags for every child
+                  {t("parties.giftBags")}
                 </li>
               </ul>
 
@@ -182,7 +181,7 @@ export default function PartiesPage() {
                 href="/?package=premium#booking-form"
                 className="block w-full text-center py-4 rounded-2xl bg-on-primary text-primary font-headline font-bold hover:scale-105 transition-transform"
               >
-                Select Premium Joy
+                {t("parties.packages.premium.select")}
               </Link>
             </div>
 
@@ -191,23 +190,22 @@ export default function PartiesPage() {
               <div className="rounded-2xl overflow-hidden mb-6 h-48">
                 <img
                   className="w-full h-full object-cover"
-                  alt="VIP Utopia party"
+                  alt={t("parties.packages.vip.alt")}
                   src="https://picsum.photos/id/201/800/600"
                 />
               </div>
 
               <h3 className="text-2xl font-headline font-extrabold mb-1">
-                VIP Utopia
+                {t("packages.vip")}
               </h3>
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-black text-primary">$799</span>
                 <span className="text-on-surface-variant text-sm">
-                  / up to 20 kids • Unlimited
+                  {t("parties.packages.vip.priceMeta")}
                 </span>
               </div>
               <p className="text-on-surface-variant mb-6 text-sm leading-relaxed">
-                The ultimate luxury experience — go all out for a truly
-                unforgettable day.
+                {t("parties.packages.vip.blurb")}
               </p>
 
               <ul className="space-y-4 mb-8 flex-grow">
@@ -215,37 +213,37 @@ export default function PartiesPage() {
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Unlimited play time
+                  {t("parties.packages.vip.f1")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Dedicated Party Host
+                  {t("parties.packages.vip.f2")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Gourmet catering menu
+                  {t("parties.packages.vip.f3")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Professional photographer
+                  {t("parties.packages.vip.f4")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Custom gift bags + take-home activity kit
+                  {t("parties.packages.vip.f5")}
                 </li>
                 <li className="flex items-center gap-3 text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary text-sm">
                     check_circle
                   </span>
-                  Exclusive access to VIP lounge
+                  {t("parties.packages.vip.f6")}
                 </li>
               </ul>
 
@@ -253,7 +251,7 @@ export default function PartiesPage() {
                 href="/?package=vip#booking-form"
                 className="block w-full text-center py-4 rounded-2xl border-2 border-primary text-primary font-headline font-bold hover:bg-primary hover:text-on-primary transition-colors"
               >
-                Select VIP Utopia
+                {t("parties.packages.vip.select")}
               </Link>
             </div>
           </div>

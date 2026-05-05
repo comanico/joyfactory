@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 type Preferences = {
   necessary: true;
@@ -9,11 +10,12 @@ type Preferences = {
   marketing: boolean;
 };
 
-const CONSENT_KEY = "joyfactory_gdpr_consent";
-const SESSION_SEEN_KEY = "joyfactory_gdpr_seen_this_session";
+const CONSENT_KEY = "funfactory_gdpr_consent";
+const SESSION_SEEN_KEY = "funfactory_gdpr_seen_this_session";
 const VERSION = "1.0";
 
 export default function GdprConsent() {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [preferences, setPreferences] = useState<Preferences>({
     necessary: true,
@@ -91,15 +93,14 @@ export default function GdprConsent() {
               cookie
             </span>
             <h2 className="font-headline font-black text-[#63367c] text-2xl tracking-tighter">
-              Cookies make the joy last longer!
+              {t("gdpr.title")}
             </h2>
           </div>
 
           <p className="text-[#0e2000] text-sm leading-relaxed mb-6">
-            We use cookies so you can book sessions and see our live availability
-            calendar. Choose your preferences.{" "}
+            {t("gdpr.body")}{" "}
             <Link href="/privacy" className="underline hover:text-[#63367c]">
-              Full Privacy Policy
+              {t("gdpr.fullPolicy")}
             </Link>
             .
           </p>
@@ -111,14 +112,14 @@ export default function GdprConsent() {
                   shield
                 </span>
                 <div>
-                  <span className="font-headline font-bold">Necessary</span>
+                  <span className="font-headline font-bold">{t("gdpr.necessary")}</span>
                   <p className="text-xs text-on-surface-variant">
-                    Booking calendar, packages, availability checks
+                    {t("gdpr.necessaryDesc")}
                   </p>
                 </div>
               </div>
               <span className="px-4 py-1 bg-[#63367c] text-white text-xs rounded-full font-medium">
-                Always on
+                {t("gdpr.alwaysOn")}
               </span>
             </div>
 
@@ -128,9 +129,9 @@ export default function GdprConsent() {
                   bar_chart
                 </span>
                 <div>
-                  <span className="font-headline font-bold">Analytics</span>
+                  <span className="font-headline font-bold">{t("gdpr.analytics")}</span>
                   <p className="text-xs text-on-surface-variant">
-                    Anonymous stats so we can improve the experience
+                    {t("gdpr.analyticsDesc")}
                   </p>
                 </div>
               </div>
@@ -151,9 +152,9 @@ export default function GdprConsent() {
                   campaign
                 </span>
                 <div>
-                  <span className="font-headline font-bold">Marketing</span>
+                  <span className="font-headline font-bold">{t("gdpr.marketing")}</span>
                   <p className="text-xs text-on-surface-variant">
-                    Special offers &amp; reminders (optional)
+                    {t("gdpr.marketingDesc")}
                   </p>
                 </div>
               </div>
@@ -174,19 +175,18 @@ export default function GdprConsent() {
               onClick={rejectAll}
               className="flex-1 py-4 rounded-2xl border-2 border-[#63367c] text-[#63367c] font-headline font-bold hover:bg-[#63367c]/10 transition-colors"
             >
-              Only Necessary
+              {t("gdpr.onlyNecessary")}
             </button>
             <button
               onClick={accept}
               className="flex-1 py-4 rounded-2xl bg-[#63367c] text-white font-headline font-bold hover:scale-105 active:scale-95 transition-all shadow-md"
             >
-              Accept
+              {t("gdpr.accept")}
             </button>
           </div>
 
           <p className="text-[#0e2000]/60 text-xs text-center mt-4">
-            You can change these choices anytime by clearing site data in your
-            browser settings.
+            {t("gdpr.changeLater")}
           </p>
         </div>
       </div>

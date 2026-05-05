@@ -3,7 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Calendar } from "vanilla-calendar-pro";
 import type { PackageType, Reservation } from "./bookingAvailability";
-import { computeDisabledDatesForPackage, toISODateLocal } from "./bookingAvailability";
+import {
+  bucharestTodayISO,
+  computeDisabledDatesForPackage,
+  toISODateLocal,
+} from "./bookingAvailability";
 
 function getIsoDateFromEl(el: HTMLElement | null): string | null {
   if (!el) return null;
@@ -80,7 +84,12 @@ export default function BookingCalendar({
   }, [packageType]);
 
   const disabledDates = useMemo(
-    () => computeDisabledDatesForPackage(packageType, reservations),
+    () => {
+      const todayISO = bucharestTodayISO();
+      const base = computeDisabledDatesForPackage(packageType, reservations);
+      const merged = new Set<string>([...base, todayISO]);
+      return Array.from(merged);
+    },
     [packageType, reservations],
   );
 
@@ -128,6 +137,8 @@ export default function BookingCalendar({
 
         // Calendar already prevents click for disabled dates; this is just a guard.
         if (disabledDatesRef.current.includes(iso)) return;
+        // Always block same-day bookings (Bucharest time).
+        if (iso === bucharestTodayISO()) return;
 
         // Avoid timezone shifts (treat ISO date as a local calendar day).
         const [yyyy, mm, dd] = iso.split("-").map((p) => Number(p));
@@ -149,6 +160,12 @@ export default function BookingCalendar({
   useEffect(() => {
     const cal = calendarRef.current;
     if (!cal) return;
+
+    // If a same-day date is currently selected (e.g. after midnight), clear it.
+    if (value && toISODateLocal(value) === bucharestTodayISO()) {
+      onChangeRef.current(null);
+      return;
+    }
 
     cal.set(
       {
