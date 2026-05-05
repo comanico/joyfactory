@@ -3,6 +3,9 @@ import { prisma } from "../../../lib/prisma";
 import { packageLabel } from "@/lib/packageLabels";
 import { formatBucharestDate, formatBucharestTime } from "../../../lib/bucharestTime";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AdminPage() {
   const bookings = await prisma.booking.findMany({
     orderBy: { createdAt: "desc" },
