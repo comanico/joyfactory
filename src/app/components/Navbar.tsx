@@ -38,7 +38,10 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link href="/contact" className="bg-primary text-on-primary px-8 py-3 rounded-full font-headline font-bold scale-95 active:scale-95 transition-all hover:scale-105 shadow-md">
+          <Link
+            href="/#booking-form"
+            className="bg-primary text-on-primary px-8 py-3 rounded-full font-headline font-bold scale-95 active:scale-95 transition-all hover:scale-105 shadow-md"
+          >
             Book Now
           </Link>
         </div>

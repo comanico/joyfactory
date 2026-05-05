@@ -10,41 +10,37 @@ import {
   packageDurationHours,
 } from './bookingAvailability';
 import { sendConfirmationEmail, sendTestEmail } from "./sendConfirmationEmail";
-import { formatBucharestDate, formatBucharestTime } from "../../../lib/bucharestTime";
+import {
+  bucharestWallTimeToUtcDate,
+  formatBucharestDate,
+  formatBucharestTime,
+} from "../../../lib/bucharestTime";
 import { resolvedSiteUrl } from "../../lib/siteUrl";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-04-22.dahlia',
 });
 
-function parseLocalDateTimeFromSelection(params: {
+function parseBucharestDateTimeFromSelection(params: {
   dateISO: string; // YYYY-MM-DD
-  timeHHMM?: string | null; // HH:MM (local), optional for VIP
+  timeHHMM?: string | null; // HH:MM (Bucharest wall time), optional for VIP
   fallbackHour?: number;
 }) {
-  const { dateISO, timeHHMM, fallbackHour = 10 } = params;
-  const [yyyy, mm, dd] = dateISO.split('-').map((p) => Number(p));
-
-  const hourMinute = timeHHMM?.split(':').map((p) => Number(p));
-  const hh = hourMinute?.[0];
-  const min = hourMinute?.[1];
-
-  if (
-    typeof hh === 'number' &&
-    Number.isFinite(hh) &&
-    typeof min === 'number' &&
-    Number.isFinite(min)
-  ) {
-    return new Date(yyyy, mm - 1, dd, hh, min, 0, 0);
-  }
-
-  return new Date(yyyy, mm - 1, dd, fallbackHour, 0, 0, 0);
+  return bucharestWallTimeToUtcDate(params);
 }
 
-function buildReservationRangeFromBooking(b: { startTime: Date; durationHours: number }): Reservation {
+function buildReservationRangeFromBooking(b: {
+  startTime: Date;
+  durationHours: number;
+  packageType: string;
+}): Reservation {
+  // Buffer hour after Basic/Premium bookings for cleanup/reset.
+  const bufferHours = b.packageType === "vip" ? 0 : 1;
   return {
     start: b.startTime,
-    end: new Date(b.startTime.getTime() + b.durationHours * 60 * 60_000),
+    end: new Date(
+      b.startTime.getTime() + (b.durationHours + bufferHours) * 60 * 60_000,
+    ),
   };
 }
 
@@ -54,7 +50,7 @@ async function listConfirmedReservations(): Promise<Reservation[]> {
       depositPaid: true,
       status: { not: 'cancelled' },
     },
-    select: { startTime: true, durationHours: true },
+    select: { startTime: true, durationHours: true, packageType: true },
   });
 
   return bookings.map(buildReservationRangeFromBooking);
@@ -73,8 +69,12 @@ function validateSelectionAgainstReservations(params: {
   reservations: Reservation[];
 }) {
   const { pkg, dateISO, timeHHMM, reservations } = params;
-  const date = parseLocalDateTimeFromSelection({ dateISO, fallbackHour: 12 });
-  date.setHours(0, 0, 0, 0);
+  // Interpret day boundaries in Bucharest so VIP day blocking matches the UX.
+  const date = parseBucharestDateTimeFromSelection({
+    dateISO,
+    timeHHMM: "00:00",
+    fallbackHour: 0,
+  });
 
   if (pkg === 'vip') {
     if (anyReservationTouchesDay(reservations, date)) {
@@ -136,8 +136,12 @@ export async function createPaymentIntent(data: {
 
   const startTime =
     data.packageType === 'vip'
-      ? parseLocalDateTimeFromSelection({ dateISO: data.dateISO, fallbackHour: 10 })
-      : parseLocalDateTimeFromSelection({ dateISO: data.dateISO, timeHHMM: data.timeHHMM, fallbackHour: 10 });
+      ? parseBucharestDateTimeFromSelection({ dateISO: data.dateISO, fallbackHour: 10 })
+      : parseBucharestDateTimeFromSelection({
+          dateISO: data.dateISO,
+          timeHHMM: data.timeHHMM,
+          fallbackHour: 10,
+        });
 
   const booking = await prisma.booking.create({
     data: {
