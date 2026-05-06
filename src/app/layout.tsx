@@ -13,6 +13,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `${brand} | Zones of Pure Joy`,
     description: "Sophisticated indoor playground for kids 3-12",
+    icons: {
+      icon: [
+        {
+          url: "/FunFactory%20Logo%20SVG.svg",
+          type: "image/svg+xml",
+        },
+      ],
+    },
   };
 }
 
@@ -25,6 +33,11 @@ export default async function RootLayout({
   return (
     <html lang={lang} className="light">
       <head>
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/FunFactory%20Logo%20SVG.svg"
+        />
         {/* Google Fonts + Material Symbols (unchanged) */}
         <link
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;display=swap"
