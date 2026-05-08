@@ -3,6 +3,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useId, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_LANG, type SupportedLang } from "@/i18n/resources";
 
@@ -10,6 +11,8 @@ export default function Navbar() {
   const { t, i18n } = useTranslation();
   const pathname = usePathname();
   const router = useRouter();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileMenuId = useId();
 
   const isActive = (path: string) => pathname === path;
 
@@ -23,12 +26,19 @@ export default function Navbar() {
     router.refresh();
   };
 
+  const activeLang = useMemo(
+    () => (i18n.language || DEFAULT_LANG) as SupportedLang,
+    [i18n.language],
+  );
+
   return (
     <nav className="bg-[#efffd9] dark:bg-[#0e2000] backdrop-blur-xl bg-opacity-80 w-full sticky top-0 z-50 shadow-sm">
-      <div className="flex justify-between items-center px-12 py-6 max-w-screen-2xl mx-auto">
+      <div className="px-6 sm:px-8 md:px-12 py-6 max-w-screen-2xl mx-auto">
+        <div className="flex justify-between items-center">
         <Link
           href="/"
           className="text-3xl font-black text-[#63367c] dark:text-[#dbffb6] tracking-tighter font-headline hover:opacity-90 transition-opacity"
+          onClick={() => setMobileOpen(false)}
         >
           FunFactory
         </Link>
@@ -58,7 +68,7 @@ export default function Navbar() {
               onClick={() => onChangeLang("ro")}
               className={[
                 "px-3 py-1 rounded-full font-headline font-extrabold text-sm transition-colors",
-                (i18n.language || DEFAULT_LANG) === "ro"
+                activeLang === "ro"
                   ? "bg-primary text-on-primary"
                   : "text-on-surface-variant hover:text-primary",
               ].join(" ")}
@@ -70,7 +80,7 @@ export default function Navbar() {
               onClick={() => onChangeLang("en")}
               className={[
                 "px-3 py-1 rounded-full font-headline font-extrabold text-sm transition-colors",
-                (i18n.language || DEFAULT_LANG) === "en"
+                activeLang === "en"
                   ? "bg-primary text-on-primary"
                   : "text-on-surface-variant hover:text-primary",
               ].join(" ")}
@@ -84,7 +94,126 @@ export default function Navbar() {
           >
             {t("nav.bookNow")}
           </Link>
+
+          <button
+            type="button"
+            className="md:hidden inline-flex items-center justify-center rounded-full border border-outline-variant/30 bg-white/60 backdrop-blur-md w-12 h-12 text-on-surface-variant hover:text-primary transition-colors"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-controls={mobileMenuId}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            <span className="material-symbols-outlined">
+              {mobileOpen ? "close" : "menu"}
+            </span>
+          </button>
         </div>
+      </div>
+
+      <div
+        id={mobileMenuId}
+        className={[
+          "md:hidden overflow-hidden transition-[max-height,opacity] duration-200",
+          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+        ].join(" ")}
+      >
+        <div className="pt-4 pb-2">
+          <div className="flex flex-col gap-2 font-headline font-bold tracking-tight">
+            <Link
+              href="/"
+              className={[
+                "rounded-2xl px-4 py-3 transition-colors",
+                isActive("/")
+                  ? "bg-white/70 text-[#63367c]"
+                  : "text-[#0e2000] dark:text-[#efffd9] opacity-80 hover:bg-white/60 hover:opacity-100",
+              ].join(" ")}
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("nav.playZones")}
+            </Link>
+            <Link
+              href="/parties"
+              className={[
+                "rounded-2xl px-4 py-3 transition-colors",
+                isActive("/parties")
+                  ? "bg-white/70 text-[#63367c]"
+                  : "text-[#0e2000] dark:text-[#efffd9] opacity-80 hover:bg-white/60 hover:opacity-100",
+              ].join(" ")}
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("nav.parties")}
+            </Link>
+            <Link
+              href="/cafe"
+              className={[
+                "rounded-2xl px-4 py-3 transition-colors",
+                isActive("/cafe")
+                  ? "bg-white/70 text-[#63367c]"
+                  : "text-[#0e2000] dark:text-[#efffd9] opacity-80 hover:bg-white/60 hover:opacity-100",
+              ].join(" ")}
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("nav.cafe")}
+            </Link>
+            <Link
+              href="/safety"
+              className={[
+                "rounded-2xl px-4 py-3 transition-colors",
+                isActive("/safety")
+                  ? "bg-white/70 text-[#63367c]"
+                  : "text-[#0e2000] dark:text-[#efffd9] opacity-80 hover:bg-white/60 hover:opacity-100",
+              ].join(" ")}
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("nav.safety")}
+            </Link>
+            <Link
+              href="/contact"
+              className={[
+                "rounded-2xl px-4 py-3 transition-colors",
+                isActive("/contact")
+                  ? "bg-white/70 text-[#63367c]"
+                  : "text-[#0e2000] dark:text-[#efffd9] opacity-80 hover:bg-white/60 hover:opacity-100",
+              ].join(" ")}
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("nav.contact")}
+            </Link>
+
+            <div className="mt-2 flex items-center justify-between rounded-2xl px-4 py-3 bg-white/40 backdrop-blur-md border border-outline-variant/30">
+              <div className="text-sm font-extrabold opacity-80">
+                {t("nav.language", { defaultValue: "Language" })}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => onChangeLang("ro")}
+                  className={[
+                    "px-3 py-1 rounded-full font-headline font-extrabold text-sm transition-colors",
+                    activeLang === "ro"
+                      ? "bg-primary text-on-primary"
+                      : "text-on-surface-variant hover:text-primary",
+                  ].join(" ")}
+                >
+                  RO
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onChangeLang("en")}
+                  className={[
+                    "px-3 py-1 rounded-full font-headline font-extrabold text-sm transition-colors",
+                    activeLang === "en"
+                      ? "bg-primary text-on-primary"
+                      : "text-on-surface-variant hover:text-primary",
+                  ].join(" ")}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </nav>
   );
