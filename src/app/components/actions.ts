@@ -162,6 +162,7 @@ export async function createPaymentIntent(data: {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: depositAmount,
     currency: 'ron',
+    payment_method_types: ["card"],
     metadata: {
       bookingId: booking.id,
       packageType: data.packageType,
