@@ -113,6 +113,49 @@ export default function QuickBooking(props: {
 
   const isFormComplete = Boolean(isRequiredInfoComplete && isPackageSelectionComplete);
 
+  const packageDetails = useMemo(() => {
+    const baseKey = `parties.packages.${packageType}` as const;
+    const meta =
+      packageType === "basic"
+        ? t(`${baseKey}.priceMeta`, "/ up to 10 kids • 2 hours")
+        : packageType === "premium"
+          ? t(`${baseKey}.priceMeta`, "/ up to 15 kids • 3 hours")
+          : t(`${baseKey}.priceMeta`, "/ up to 20 kids • Unlimited");
+    const title =
+      packageType === "basic"
+        ? t("packages.basic")
+        : packageType === "premium"
+          ? t("packages.premium")
+          : t("packages.vip");
+    const blurb = t(`${baseKey}.blurb`);
+
+    const features =
+      packageType === "basic"
+        ? [
+            t(`${baseKey}.f1`),
+            t(`${baseKey}.f2`),
+            t(`${baseKey}.f3`),
+            t(`${baseKey}.f4`),
+          ]
+        : packageType === "premium"
+          ? [
+              t(`${baseKey}.f1`),
+              t(`${baseKey}.f2`),
+              t(`${baseKey}.f3`),
+              t(`${baseKey}.f4`),
+            ]
+          : [
+              t(`${baseKey}.f1`),
+              t(`${baseKey}.f2`),
+              t(`${baseKey}.f3`),
+              t(`${baseKey}.f4`),
+              t(`${baseKey}.f5`),
+              t(`${baseKey}.f6`),
+            ];
+
+    return { title, meta, blurb, features };
+  }, [packageType, t]);
+
   const handleCreatePayment = async () => {
     if (!isFormComplete) return;
 
@@ -233,94 +276,276 @@ export default function QuickBooking(props: {
 
         {/* Package + Time + Payment (full width) */}
         <div className="md:col-span-2 space-y-6">
-          {/* Package Selector */}
-          <div>
-            <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">{t("booking.choosePackage")}</label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          {/* Mobile layout: selection -> details -> hours -> payment */}
+          <div className="grid grid-cols-1 gap-6 md:hidden">
+            <div>
+              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">
+                {t("booking.choosePackage")}
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPackageType("basic");
+                    setSelectedTime(null);
+                  }}
+                  className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
+                    ${packageType === "basic" ? "bg-primary text-white shadow-md border-primary" : "bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant"}`}
+                >
+                  {t("packages.basic")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPackageType("premium");
+                    setSelectedTime(null);
+                  }}
+                  className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
+                    ${packageType === "premium" ? "bg-primary text-white shadow-md border-primary" : "bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant"}`}
+                >
+                  {t("packages.premium")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPackageType("vip");
+                    setSelectedTime(null);
+                  }}
+                  className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
+                    ${packageType === "vip" ? "bg-primary text-white shadow-md border-primary" : "bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant"}`}
+                >
+                  {t("packages.vip")}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="rounded-3xl bg-surface-container-lowest border border-outline-variant/20 shadow-sm p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-2xl font-headline font-extrabold text-primary">
+                      {packageDetails.title}
+                    </div>
+                    <div className="text-on-surface-variant font-medium mt-1">
+                      {packageDetails.meta}
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-4 text-on-surface-variant font-medium">
+                  {packageDetails.blurb}
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {packageDetails.features.map((f) => (
+                    <li key={f} className="flex gap-2 text-on-surface">
+                      <span className="material-symbols-outlined text-primary text-[20px] leading-6">
+                        check_circle
+                      </span>
+                      <span className="font-medium">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              {packageType !== "vip" && (
+                <div>
+                  <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">
+                    {t("booking.selectStartTime")}
+                  </label>
+                  {!selectedDate ? (
+                    <div className="rounded-3xl bg-surface-container text-on-surface-variant px-6 py-4 text-sm font-medium">
+                      {t("booking.selectDateToSeeTimes")}
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 auto-rows-fr">
+                      {(slotInfo?.slots ?? []).map((time) => {
+                        const isSelected = selectedTime === time;
+                        const isDisabled = slotInfo?.disabled.has(time) ?? false;
+                        return (
+                          <button
+                            key={time}
+                            disabled={isDisabled}
+                            onClick={() => setSelectedTime(time)}
+                            className={`w-full h-full min-h-[72px] px-7 py-5 text-lg font-headline font-bold rounded-3xl border-2 transition-all flex items-center justify-center text-center
+                              ${isDisabled ? "opacity-50 cursor-not-allowed border-outline-variant/30 text-on-surface-variant bg-white/70" : isSelected ? "bg-primary text-white border-primary" : "border-primary text-primary hover:bg-primary hover:text-white"}`}
+                          >
+                            {time}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {packageType === "vip" && (
+                <div
+                  className={[
+                    "rounded-3xl p-6 text-center font-headline font-bold text-lg",
+                    !selectedDate
+                      ? "bg-primary/10 text-primary"
+                      : vipDayTaken
+                        ? "bg-error-container text-on-error-container"
+                        : "bg-secondary-container text-on-secondary-container",
+                  ].join(" ")}
+                >
+                  {!selectedDate
+                    ? t("booking.vipAllDay")
+                    : vipDayTaken
+                      ? t("booking.vipUnavailable")
+                      : t("booking.vipAvailableWholeDay")}
+                </div>
+              )}
+            </div>
+
+            <div>
               <button
-                type="button"
-                onClick={() => { setPackageType('basic'); setSelectedTime(null); }}
-                className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
-                  ${packageType === 'basic' ? 'bg-primary text-white shadow-md border-primary' : 'bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant'}`}
+                onClick={handleCreatePayment}
+                disabled={!isFormComplete || isLoading}
+                className={`w-full py-6 rounded-3xl font-headline font-bold text-xl transition-all shadow-lg
+                  ${isFormComplete ? "bg-primary text-on-primary hover:scale-[1.02]" : "bg-primary/15 text-primary opacity-60 cursor-not-allowed"}`}
               >
-                {t("packages.basic")}
-              </button>
-              <button
-                type="button"
-                onClick={() => { setPackageType('premium'); setSelectedTime(null); }}
-                className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
-                  ${packageType === 'premium' ? 'bg-primary text-white shadow-md border-primary' : 'bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant'}`}
-              >
-                {t("packages.premium")}
-              </button>
-              <button
-                type="button"
-                onClick={() => { setPackageType('vip'); setSelectedTime(null); }}
-                className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
-                  ${packageType === 'vip' ? 'bg-primary text-white shadow-md border-primary' : 'bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant'}`}
-              >
-                {t("packages.vip")}
+                {isLoading ? t("booking.preparingPayment") : t("booking.payDeposit")}
               </button>
             </div>
           </div>
 
-          {/* Time Slots */}
-          {packageType !== 'vip' && (
-            <div>
-              <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">{t("booking.selectStartTime")}</label>
-              {!selectedDate ? (
-                <div className="rounded-3xl bg-surface-container text-on-surface-variant px-6 py-4 text-sm font-medium">
-                  {t("booking.selectDateToSeeTimes")}
+          {/* Desktop layout: left column stacks, right column stacks (decoupled heights) */}
+          <div className="hidden md:grid md:grid-cols-2 gap-6 items-start">
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">
+                  {t("booking.choosePackage")}
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPackageType("basic");
+                      setSelectedTime(null);
+                    }}
+                    className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
+                      ${packageType === "basic" ? "bg-primary text-white shadow-md border-primary" : "bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant"}`}
+                  >
+                    {t("packages.basic")}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPackageType("premium");
+                      setSelectedTime(null);
+                    }}
+                    className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
+                      ${packageType === "premium" ? "bg-primary text-white shadow-md border-primary" : "bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant"}`}
+                  >
+                    {t("packages.premium")}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPackageType("vip");
+                      setSelectedTime(null);
+                    }}
+                    className={`w-full py-4 text-sm font-headline font-bold rounded-3xl transition-all border-2
+                      ${packageType === "vip" ? "bg-primary text-white shadow-md border-primary" : "bg-surface-container-highest border-outline-variant/20 hover:bg-white/60 text-on-surface-variant"}`}
+                  >
+                    {t("packages.vip")}
+                  </button>
                 </div>
-              ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-                  {(slotInfo?.slots ?? []).map((time) => {
-                    const isSelected = selectedTime === time;
-                    const isDisabled = slotInfo?.disabled.has(time) ?? false;
-                    return (
-                      <button
-                        key={time}
-                        disabled={isDisabled}
-                        onClick={() => setSelectedTime(time)}
-                        className={`w-full px-4 py-3 text-base font-headline font-bold rounded-3xl border-2 transition-all
-                          ${isDisabled ? 'opacity-50 cursor-not-allowed border-outline-variant/30 text-on-surface-variant bg-white/70' : isSelected ? 'bg-primary text-white border-primary' : 'border-primary text-primary hover:bg-primary hover:text-white'}`}
-                      >
-                        {time}
-                      </button>
-                    );
-                  })}
+              </div>
+
+              {/* Time Slots / VIP availability directly under package selection */}
+              <div>
+                {packageType !== "vip" && (
+                  <div>
+                    <label className="block text-sm font-headline font-bold text-on-surface-variant mb-3">
+                      {t("booking.selectStartTime")}
+                    </label>
+                    {!selectedDate ? (
+                      <div className="rounded-3xl bg-surface-container text-on-surface-variant px-6 py-4 text-sm font-medium">
+                        {t("booking.selectDateToSeeTimes")}
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-6 gap-2 auto-rows-fr">
+                        {(slotInfo?.slots ?? []).map((time) => {
+                          const isSelected = selectedTime === time;
+                          const isDisabled = slotInfo?.disabled.has(time) ?? false;
+                          return (
+                            <button
+                              key={time}
+                              disabled={isDisabled}
+                              onClick={() => setSelectedTime(time)}
+                              className={`w-full h-full min-h-[72px] px-7 py-5 text-lg font-headline font-bold rounded-3xl border-2 transition-all flex items-center justify-center text-center
+                                ${isDisabled ? "opacity-50 cursor-not-allowed border-outline-variant/30 text-on-surface-variant bg-white/70" : isSelected ? "bg-primary text-white border-primary" : "border-primary text-primary hover:bg-primary hover:text-white"}`}
+                            >
+                              {time}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {packageType === "vip" && (
+                  <div
+                    className={[
+                      "rounded-3xl p-6 text-center font-headline font-bold text-lg",
+                      !selectedDate
+                        ? "bg-primary/10 text-primary"
+                        : vipDayTaken
+                          ? "bg-error-container text-on-error-container"
+                          : "bg-secondary-container text-on-secondary-container",
+                    ].join(" ")}
+                  >
+                    {!selectedDate
+                      ? t("booking.vipAllDay")
+                      : vipDayTaken
+                        ? t("booking.vipUnavailable")
+                        : t("booking.vipAvailableWholeDay")}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-3xl bg-surface-container-lowest border border-outline-variant/20 shadow-sm p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-2xl font-headline font-extrabold text-primary">
+                      {packageDetails.title}
+                    </div>
+                    <div className="text-on-surface-variant font-medium mt-1">
+                      {packageDetails.meta}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          )}
+                <p className="mt-4 text-on-surface-variant font-medium">
+                  {packageDetails.blurb}
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {packageDetails.features.map((f) => (
+                    <li key={f} className="flex gap-2 text-on-surface">
+                      <span className="material-symbols-outlined text-primary text-[20px] leading-6">
+                        check_circle
+                      </span>
+                      <span className="font-medium">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          {packageType === 'vip' && (
-            <div
-              className={[
-                'rounded-3xl p-6 text-center font-headline font-bold text-lg',
-                !selectedDate
-                  ? 'bg-primary/10 text-primary'
-                  : vipDayTaken
-                    ? 'bg-error-container text-on-error-container'
-                    : 'bg-secondary-container text-on-secondary-container',
-              ].join(' ')}
-            >
-              {!selectedDate
-                ? t("booking.vipAllDay")
-                : vipDayTaken
-                  ? t("booking.vipUnavailable")
-                  : t("booking.vipAvailableWholeDay")}
+              <button
+                onClick={handleCreatePayment}
+                disabled={!isFormComplete || isLoading}
+                className={`w-full py-6 rounded-3xl font-headline font-bold text-xl transition-all shadow-lg
+                  ${isFormComplete ? "bg-primary text-on-primary hover:scale-[1.02]" : "bg-primary/15 text-primary opacity-60 cursor-not-allowed"}`}
+              >
+                {isLoading ? t("booking.preparingPayment") : t("booking.payDeposit")}
+              </button>
             </div>
-          )}
-
-          <button
-            onClick={handleCreatePayment}
-            disabled={!isFormComplete || isLoading}
-            className={`w-full py-6 rounded-3xl font-headline font-bold text-xl transition-all shadow-lg
-              ${isFormComplete ? 'bg-primary text-on-primary hover:scale-[1.02]' : 'bg-primary/15 text-primary opacity-60 cursor-not-allowed'}`}
-          >
-            {isLoading ? t("booking.preparingPayment") : t("booking.payDeposit")}
-          </button>
+          </div>
         </div>
       </div>
     </section>

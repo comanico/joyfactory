@@ -79,6 +79,10 @@ export default async function SuccessPage({
         <p className="text-xs text-on-surface-variant mt-8">
           {t("success.emailSent")}
         </p>
+
+        <p className="text-xs text-on-surface-variant mt-4">
+          {t("success.cancellationPolicy")}
+        </p>
       </div>
     </div>
   );

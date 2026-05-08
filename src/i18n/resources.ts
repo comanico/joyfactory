@@ -48,6 +48,8 @@ export const resources = {
         emailSent: "Un email de confirmare a fost trimis în inbox.",
         paymentNotCompleted: "Plata nu a fost finalizată",
         paymentIssue: "A apărut o problemă la plată.",
+        cancellationPolicy:
+          "Politică anulare: poți anula cu cel puțin 2 zile înainte pentru a primi banii înapoi. În caz contrar, avansul nu se returnează.",
       },
       reservation: {
         confirmed: "Rezervare confirmată",
@@ -424,6 +426,8 @@ export const resources = {
         emailSent: "A confirmation email has been sent to your inbox.",
         paymentNotCompleted: "Payment not completed",
         paymentIssue: "Something went wrong with the payment.",
+        cancellationPolicy:
+          "Cancellation policy: cancel at least 2 days in advance for a refund. Otherwise, the deposit is non-refundable.",
       },
       reservation: {
         confirmed: "Reservation confirmed",

@@ -23,9 +23,12 @@ export default async function SafetyPage() {
               <p className="text-xl text-on-surface-variant leading-relaxed max-w-lg">
                 {t("safetyPage.heroBody")}
               </p>
-              <button className="bg-primary text-on-primary px-10 py-5 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform shadow-xl">
+              <Link
+                href="/#booking-form"
+                className="inline-flex bg-primary text-on-primary px-10 py-5 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform shadow-xl"
+              >
                 {t("safetyPage.heroCta")}
-              </button>
+              </Link>
             </div>
 
             <div className="md:w-1/2 relative">

@@ -112,6 +112,11 @@ export default async function ReservationPage({
           </div>
 
           <div className="text-center mt-10">
+            <div className="mb-6 rounded-3xl border border-red-200 bg-red-50 px-6 py-5 text-left">
+              <p className="font-headline font-extrabold text-red-700">
+                {t("success.cancellationPolicy")}
+              </p>
+            </div>
             <Link
               href="/"
               className="inline-flex items-center justify-center bg-primary text-on-primary px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-[1.02] transition-transform shadow-md"
