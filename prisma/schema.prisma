@@ -9,6 +9,9 @@ datasource db {
 
 model Booking {
   id             String   @id @default(cuid())
+  firstName      String?
+  lastName       String?
+  phone          String?
   email          String?
   packageType    String   @default("basic")
   zone           String   @default("General Play Zone")

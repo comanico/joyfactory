@@ -166,6 +166,9 @@ export default function QuickBooking(props: {
         packageType,
         dateISO: selectedDate!.toISOString().slice(0, 10),
         timeHHMM: packageType === "vip" ? null : selectedTime,
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        phone: phone.trim(),
         email: email.trim(),
       });
       setClientSecret(result.clientSecret);

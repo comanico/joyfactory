@@ -1,5 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner"
 import "vanilla-calendar-pro/styles/index.css";
 import "./globals.css";
@@ -49,9 +50,11 @@ export default async function RootLayout({
         />
       </head>
       <body className="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
-        <I18nProvider initialLang={lang}>{children}</I18nProvider>
-        <GdprConsent />
-        <Toaster />
+        <ClerkProvider signInUrl="/sign-in" signInFallbackRedirectUrl="/admin" afterSignOutUrl="/">
+          <I18nProvider initialLang={lang}>{children}</I18nProvider>
+          <GdprConsent />
+          <Toaster />
+        </ClerkProvider>
       </body>
     </html>
   );

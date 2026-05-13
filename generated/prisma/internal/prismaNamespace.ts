@@ -578,6 +578,9 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const BookingScalarFieldEnum = {
   id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
   email: 'email',
   packageType: 'packageType',
   zone: 'zone',
@@ -633,6 +636,9 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 export const BookingOrderByRelevanceFieldEnum = {
   id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
   email: 'email',
   packageType: 'packageType',
   zone: 'zone',

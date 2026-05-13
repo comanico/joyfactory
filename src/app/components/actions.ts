@@ -108,9 +108,18 @@ export async function createPaymentIntent(data: {
   packageType: PackageType;
   dateISO: string; // YYYY-MM-DD
   timeHHMM?: string | null; // HH:MM, required for non-VIP
+  firstName: string;
+  lastName: string;
+  phone: string;
   email: string;
 }) {
+  const firstName = data.firstName?.trim();
+  const lastName = data.lastName?.trim();
+  const phone = data.phone?.trim();
   const email = data.email?.trim();
+  if (!firstName || !lastName || !phone) {
+    throw new Error("Please enter your full contact details before paying.");
+  }
   if (!email) {
     throw new Error("Please enter your email so we can send your confirmation and reservation link.");
   }
@@ -145,6 +154,9 @@ export async function createPaymentIntent(data: {
 
   const booking = await prisma.booking.create({
     data: {
+      firstName,
+      lastName,
+      phone,
       email,
       packageType: data.packageType,
       zone: 'General Play Zone',
