@@ -3,12 +3,21 @@
 
 import Stripe from 'stripe';
 import { prisma } from '../../../lib/prisma';
-import type { PackageType, Reservation } from './bookingAvailability';
+import type { Reservation } from './bookingAvailability';
 import {
   anyReservationTouchesDay,
   computeAvailableStartTimes,
-  packageDurationHours,
 } from './bookingAvailability';
+import {
+  isPackageType,
+  packageDurationHours,
+  packageGuestCount,
+  type PackageType,
+} from '@/lib/packages';
+import {
+  fetchAllPackageDepositQuotes,
+  fetchPackageDepositQuote,
+} from '@/lib/stripePackages';
 import { sendConfirmationEmail, sendTestEmail } from "./sendConfirmationEmail";
 import {
   bucharestWallTimeToUtcDate,
@@ -34,8 +43,7 @@ function buildReservationRangeFromBooking(b: {
   durationHours: number;
   packageType: string;
 }): Reservation {
-  // Buffer hour after Basic/Premium bookings for cleanup/reset.
-  const bufferHours = b.packageType === "vip" ? 0 : 1;
+  const bufferHours = 1;
   return {
     start: b.startTime,
     end: new Date(
@@ -54,6 +62,23 @@ async function listConfirmedReservations(): Promise<Reservation[]> {
   });
 
   return bookings.map(buildReservationRangeFromBooking);
+}
+
+export async function getPackageDepositQuotes() {
+  const quotes = await fetchAllPackageDepositQuotes(stripe);
+  return Object.fromEntries(
+    Object.entries(quotes).map(([pkg, q]) => [
+      pkg,
+      {
+        depositLei: q.depositLei,
+        fullPriceLei: q.fullPriceLei,
+        name: q.name,
+      },
+    ]),
+  ) as Record<
+    PackageType,
+    { depositLei: number; fullPriceLei: number; name: string }
+  >;
 }
 
 export async function getReservations() {
@@ -75,13 +100,6 @@ function validateSelectionAgainstReservations(params: {
     timeHHMM: "00:00",
     fallbackHour: 0,
   });
-
-  if (pkg === 'vip') {
-    if (anyReservationTouchesDay(reservations, date)) {
-      throw new Error('Selected day is unavailable for VIP.');
-    }
-    return;
-  }
 
   if (!timeHHMM) {
     throw new Error('Please select a start time.');
@@ -124,16 +142,14 @@ export async function createPaymentIntent(data: {
     throw new Error("Please enter your email so we can send your confirmation and reservation link.");
   }
 
-  const priceIdMap: Record<string, string> = {
-    basic: process.env.STRIPE_PRICE_BASIC!,
-    premium: process.env.STRIPE_PRICE_PREMIUM!,
-    vip: process.env.STRIPE_PRICE_VIP!,
-  };
+  if (!isPackageType(data.packageType)) {
+    throw new Error("Invalid package selection.");
+  }
 
-  const fullPriceId = priceIdMap[data.packageType];
-
-  const price = await stripe.prices.retrieve(fullPriceId);
-  const depositAmount = Math.round((price.unit_amount || 0) * 0.1);
+  const quote = await fetchPackageDepositQuote(stripe, data.packageType);
+  // Stripe Price is already the 10% deposit; metadata `full_price` is the package total in LEI.
+  const depositAmount = quote.depositAmountMinor;
+  const fullAmount = quote.fullAmountMinor;
 
   const reservations = await listConfirmedReservations();
   validateSelectionAgainstReservations({
@@ -143,14 +159,11 @@ export async function createPaymentIntent(data: {
     reservations,
   });
 
-  const startTime =
-    data.packageType === 'vip'
-      ? parseBucharestDateTimeFromSelection({ dateISO: data.dateISO, fallbackHour: 10 })
-      : parseBucharestDateTimeFromSelection({
-          dateISO: data.dateISO,
-          timeHHMM: data.timeHHMM,
-          fallbackHour: 10,
-        });
+  const startTime = parseBucharestDateTimeFromSelection({
+    dateISO: data.dateISO,
+    timeHHMM: data.timeHHMM,
+    fallbackHour: 10,
+  });
 
   const booking = await prisma.booking.create({
     data: {
@@ -161,13 +174,13 @@ export async function createPaymentIntent(data: {
       packageType: data.packageType,
       zone: 'General Play Zone',
       startTime,
-      durationHours: data.packageType === 'vip' ? 10 : packageDurationHours(data.packageType),
-      numberOfGuests: data.packageType === 'basic' ? 10 : data.packageType === 'premium' ? 20 : 99,
+      durationHours: packageDurationHours(data.packageType),
+      numberOfGuests: packageGuestCount(data.packageType),
       status: 'pending',
       paymentStatus: 'pending',
       depositPaid: false,
-      fullAmount: price.unit_amount || 0,
-      depositAmount: depositAmount,
+      fullAmount,
+      depositAmount,
     },
   });
 
@@ -250,14 +263,8 @@ export async function finalizeBookingAfterStripePayment(data: {
       bookingId: booking.id,
       packageType: booking.packageType,
       date: formatBucharestDate(booking.startTime),
-      startTime:
-        booking.packageType === "vip"
-          ? undefined
-          : formatBucharestTime(booking.startTime),
-      endTime:
-        booking.packageType === "vip"
-          ? undefined
-          : formatBucharestTime(endTime),
+      startTime: formatBucharestTime(booking.startTime),
+      endTime: formatBucharestTime(endTime),
       guests: booking.numberOfGuests,
       lang: data.lang === "en" ? "en" : "ro",
     });
@@ -291,13 +298,6 @@ export async function getNextAvailableSelection(data: { packageType: PackageType
     day.setDate(today.getDate() + i);
 
     const dateISO = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, '0')}-${String(day.getDate()).padStart(2, '0')}`;
-
-    if (data.packageType === 'vip') {
-      if (!anyReservationTouchesDay(reservations, day)) {
-        return { dateISO, timeHHMM: null as string | null };
-      }
-      continue;
-    }
 
     const slotInfo = computeAvailableStartTimes({
       pkg: data.packageType,

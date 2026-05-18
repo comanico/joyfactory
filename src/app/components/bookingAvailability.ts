@@ -1,4 +1,10 @@
-export type PackageType = "basic" | "premium" | "vip";
+import {
+  packageDurationHours as durationForPackage,
+  type PackageType,
+} from "@/lib/packages";
+
+export type { PackageType };
+export { durationForPackage as packageDurationHours };
 
 export type Reservation = {
   start: Date;
@@ -9,22 +15,15 @@ function pad2(n: number) {
   return String(n).padStart(2, "0");
 }
 
-/**
- * ISO date in **Bucharest time** (YYYY-MM-DD).
- * We intentionally do not use the browser/server local timezone because bookings
- * are scheduled in Bucharest time regardless of where the viewer is.
- */
 export function toISODateLocal(date: Date) {
   const p = bucharestParts(date);
   return `${p.year}-${pad2(p.month)}-${pad2(p.day)}`;
 }
 
-/** ISO date for "today" in Bucharest time (YYYY-MM-DD). */
 export function bucharestTodayISO(now: Date = new Date()) {
   return toISODateLocal(now);
 }
 
-/** ISO date for "tomorrow" in Bucharest time (YYYY-MM-DD). */
 export function bucharestTomorrowISO(now: Date = new Date()) {
   const p = bucharestParts(now);
   const startOfTodayWallMs = Date.UTC(p.year, p.month - 1, p.day, 0, 0, 0, 0);
@@ -64,10 +63,6 @@ function bucharestParts(date: Date) {
   };
 }
 
-/**
- * Map a real instant into a comparable timestamp in "Bucharest wall time".
- * (We treat the Bucharest formatted components as UTC.)
- */
 function bucharestWallMs(date: Date) {
   const p = bucharestParts(date);
   return Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second, 0);
@@ -85,6 +80,7 @@ export function anyReservationTouchesDay(reservations: Reservation[], day: Date)
   });
 }
 
+/** Legacy VIP bookings may still block whole days on the calendar. */
 export function computeDisabledDatesForPackage(
   pkg: PackageType,
   reservations: Reservation[],
@@ -93,7 +89,6 @@ export function computeDisabledDatesForPackage(
 
   const disabled = new Set<string>();
   for (const r of reservations) {
-    // Conservative: for VIP, if any booking touches a calendar day, block that day.
     const sp = bucharestParts(r.start);
     const ep = bucharestParts(r.end);
 
@@ -106,12 +101,6 @@ export function computeDisabledDatesForPackage(
     }
   }
   return Array.from(disabled);
-}
-
-export function packageDurationHours(pkg: PackageType) {
-  if (pkg === "basic") return 2;
-  if (pkg === "premium") return 4;
-  return 10; // VIP uses day-level logic; duration here isn't used for slot checks
 }
 
 export function overlaps(aStart: Date, aEnd: Date, bStart: Date, bEnd: Date) {
@@ -128,17 +117,13 @@ export function computeAvailableStartTimes(params: {
 }) {
   const { pkg, date, reservations, openHour, closeHour, stepMinutes } = params;
 
-  if (pkg === "vip") return { slots: [], disabled: new Set<string>() };
-
-  const durationHrs = packageDurationHours(pkg);
+  const durationHrs = durationForPackage(pkg);
   const slots: string[] = [];
   const disabled = new Set<string>();
 
   const dayReservations = reservations.filter((r) => anyReservationTouchesDay([r], date));
 
   const d = bucharestParts(date);
-  // We build the timeline in "Bucharest wall time" (not real UTC instants).
-  // This keeps slot labels stable (10:00 means 10:00 Bucharest).
   const startMs = Date.UTC(d.year, d.month - 1, d.day, openHour, 0, 0, 0);
   const endMs = Date.UTC(d.year, d.month - 1, d.day, closeHour, 0, 0, 0);
 
@@ -150,7 +135,6 @@ export function computeAvailableStartTimes(params: {
     if (slotEndMs > endMs) break;
 
     const t = new Date(tMs);
-    // Since `tMs` is a wall-time timestamp (encoded as UTC), read it back via UTC getters.
     const label = `${pad2(t.getUTCHours())}:${pad2(t.getUTCMinutes())}`;
     slots.push(label);
 
@@ -164,4 +148,3 @@ export function computeAvailableStartTimes(params: {
 
   return { slots, disabled };
 }
-
