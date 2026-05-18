@@ -342,20 +342,6 @@ export const resources = {
           "Educatoare zâmbitoare în uniformă colorată, dând high five unui copil într-un centru de joacă sigur",
         staffImg2Alt:
           "Membru al echipei demonstrând o trusă de prim ajutor prietenoasă pentru copii într-o sală de joacă luminoasă",
-        cleaningTitle: "Ritmul curățeniei zilnice",
-        cleaningSubtitle: "Transparență despre cum păstrăm totul impecabil.",
-        cleaningPreOpen: "ÎNAINTE DE DESCHIDERE",
-        cleaningHourly: "DIN ORĂ ÎN ORĂ",
-        cleaningClosing: "ÎNCHIDERE",
-        cleaningDeepTitle: "Igienizare profundă",
-        cleaningDeepBody:
-          "Pulverizare electrostatică completă a echipamentelor și a zonelor atinse frecvent, cu dezinfectanți non-toxici.",
-        cleaningSweepTitle: "Curățare puncte de contact",
-        cleaningSweepBody:
-          "Ștergere balustrade, mânere, mese din cafenea. Monitorizare igienă grup sanitar.",
-        cleaningZoneTitle: "Îngrijire pe zone",
-        cleaningZoneBody:
-          "Curățenie intensivă pentru piscina cu bile, zonele de toddler și facilitățile de schimbare.",
         faqTitle: "Întrebări frecvente despre siguranță",
         faqQ1: "Care este limita de vârstă pentru piscina cu bile?",
         faqA1:
@@ -377,6 +363,15 @@ export const resources = {
         footerTerms: "Termeni și condiții",
         footerFaq: "FAQ siguranță",
         footerCopyright: "© 2026 FunFactory Play Centers. Toate drepturile rezervate.",
+      },
+      underConstruction: {
+        metaTitle: "FunFactory — în construcție",
+        metaDescription:
+          "Site-ul FunFactory este în construcție. Te rugăm să revii mai târziu.",
+        badge: "În curând",
+        title: "FunFactory — în construcție",
+        body: "Site-ul este în construcție. Te rugăm să revii mai târziu.",
+        footer: "© 2026 FunFactory. Toate drepturile rezervate.",
       },
       gdpr: {
         title: "Cookie-urile fac bucuria să dureze mai mult!",
@@ -732,20 +727,6 @@ export const resources = {
           "Smiling educator in a colorful uniform giving a high five to a child in a safe play center",
         staffImg2Alt:
           "Professional staff member demonstrating a child-friendly first aid kit in a bright playroom",
-        cleaningTitle: "Daily Cleaning Rhythm",
-        cleaningSubtitle: "Transparency in how we keep things sparkling.",
-        cleaningPreOpen: "PRE-OPEN",
-        cleaningHourly: "HOURLY",
-        cleaningClosing: "CLOSING",
-        cleaningDeepTitle: "Deep Sanitization",
-        cleaningDeepBody:
-          "Full electrostatic spray of all equipment and high-touch surfaces using non-toxic disinfectants.",
-        cleaningSweepTitle: "Touchpoint Sweep",
-        cleaningSweepBody:
-          "Wiping down railings, door handles, and café tables. Monitoring restroom cleanliness.",
-        cleaningZoneTitle: "Zone-Specific Care",
-        cleaningZoneBody:
-          "Intensive cleaning of ball pits, toddler areas, and changing facilities.",
         faqTitle: "Safety FAQ",
         faqQ1: "What is the age limit for the ball pit?",
         faqA1:
@@ -767,6 +748,15 @@ export const resources = {
         footerTerms: "Terms of Service",
         footerFaq: "Safety FAQ",
         footerCopyright: "© 2026 FunFactory Play Centers. All rights reserved.",
+      },
+      underConstruction: {
+        metaTitle: "FunFactory — Under Construction",
+        metaDescription:
+          "The FunFactory website is under construction. Please check back later.",
+        badge: "Coming soon",
+        title: "FunFactory — Under Construction",
+        body: "This site is under construction. Please check back later.",
+        footer: "© 2026 FunFactory. All rights reserved.",
       },
       gdpr: {
         title: "Cookies make the joy last longer!",

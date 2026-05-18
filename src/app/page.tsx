@@ -41,7 +41,7 @@ export default async function Home({
             <img
               className="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
               alt="luxury indoor ball pit with thousands of white and pastel purple balls in a modern minimalist playroom setting"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjLbKIF5iDa8XcC8-5q0Mq8GnXQzAHf_V1F0jCSxuIkVGOJKdJ4OVYj-wosxTtEGZRNUSnRYX_o_xzVMNsrewsgtHQJMLdEp2tf7J71I1IIWnm8hdM5eP0Onbp3enE345vSY4PWtdHhmo00YJLUsQ-2uU0e3DywWgzyGETrOOGLOHbQovxP2XRd-VKtf4mm0Vhnq_ktc2SNimouFGmpo3VQT_X-rvBYF8HXS7TUgXYyU_AwL8Y_y8QBLj6-Bvwzo8ToflQPRDGq5g"
+              src="/ball-pit-homepage.JPG"
             />
             <div className="absolute bottom-0 left-0 p-12 z-20 w-full">
               <div className="flex items-center gap-3 mb-4">
@@ -142,7 +142,7 @@ export default async function Home({
                 <img
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   alt="colorful geometric climbing wall inside a bright modern recreational facility with safety mats"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_s2ve6akmUEw50QT7E2HctUEX9TgsEG1N6aMOF_a9NkfEWnoLMNYFF_GDcCSP4rYY_MVBvd7U4DVfxiYzNPdanMy-_U_liVuj_aqDmMjWf-CZCDOX8rcFj8AXfzhQzHSnwORxT4FkFL4QjrrLbh5MFINRAf3U3k91nZsuJ9Dg9N_Gt2SdTv8DMOj7t4aCZK1f-rgzGPg8Uwdrp2v6akNGfEf1gRWXOyyiBCpvy-T6-IWFdmE4C1LYiZVp8YL0t1hcT0mlzkkQ_t0"
+                  src="/climbing-homepage.JPG"
                 />
               </div>
             </div>
