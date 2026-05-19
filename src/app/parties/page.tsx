@@ -46,7 +46,7 @@ export default async function PartiesPage() {
               <ProtectedImage
                 className="w-full h-full object-cover"
                 alt={t("parties.heroAlt")}
-                src={mediaUrl("memories.jpg")}
+                src={mediaUrl("memories.JPG")}
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary-fixed rounded-full flex items-center justify-center p-6 text-center animate-bounce shadow-xl">

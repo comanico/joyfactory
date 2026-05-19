@@ -123,7 +123,7 @@ export default async function PartyPackageCard({
         <ProtectedImage
           className="w-full h-full object-cover"
           alt={t(`${baseKey}.alt`)}
-          src={mediaUrl(`${packageId}.jpg`)}
+          src={mediaUrl(`${packageId}.JPG`)}
         />
       </div>
       <h3 className="text-xl font-headline font-extrabold mb-2">

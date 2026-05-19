@@ -72,19 +72,52 @@ export async function GET(
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const filePath = path.join(process.cwd(), "public", filename);
-
-  try {
-    const data = await readFile(filePath);
-    return new NextResponse(data, {
-      headers: {
-        "Content-Type": mime,
-        "Content-Disposition": "inline",
-        "Cache-Control": "private, max-age=86400",
-        "X-Content-Type-Options": "nosniff",
-      },
-    });
-  } catch {
+  const data = await readPublicFile(filename);
+  if (!data) {
     return new NextResponse("Not found", { status: 404 });
   }
+
+  return new NextResponse(new Uint8Array(data), {
+    headers: {
+      "Content-Type": mime,
+      "Content-Disposition": "inline",
+      "Cache-Control": "private, max-age=86400",
+      "X-Content-Type-Options": "nosniff",
+    },
+  });
+}
+
+/** Try .JPG URL and common on-disk spellings (Linux is case-sensitive). */
+function fileCandidates(filename: string): string[] {
+  const base = path.basename(filename);
+  const dir = path.dirname(filename);
+  const prefix = dir === "." ? "" : `${dir}/`;
+
+  if (/\.(jpe?g)$/i.test(base)) {
+    const stem = base.replace(/\.(jpe?g)$/i, "");
+    const names = [
+      `${stem}.JPG`,
+      `${stem}.jpg`,
+      `${stem}.jpeg`,
+      `${stem}.JPEG`,
+      base,
+    ];
+    return [...new Set(names.map((n) => `${prefix}${n}`))];
+  }
+
+  return [filename];
+}
+
+async function readPublicFile(filename: string): Promise<Buffer | null> {
+  const publicDir = path.join(process.cwd(), "public");
+
+  for (const candidate of fileCandidates(filename)) {
+    try {
+      return await readFile(path.join(publicDir, candidate));
+    } catch {
+      /* try next spelling */
+    }
+  }
+
+  return null;
 }

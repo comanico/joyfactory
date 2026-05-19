@@ -35,7 +35,7 @@ export default async function CafePage() {
               <ProtectedImage
                 className="w-full h-full object-cover"
                 alt="modern cozy café with large windows overlooking indoor playground, parents relaxing with coffee"
-                src={mediaUrl("cafenea.jpg")}
+                src={mediaUrl("cafenea.JPG")}
               />
             </div>
             <div className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-3xl shadow-xl flex items-center gap-4">

@@ -109,7 +109,7 @@ export default async function Home({
               <ProtectedImage
                 className="w-full h-full object-cover"
                 alt={t("home.jungleAlt")}
-                src={mediaUrl("jungle.jpg")}
+                src={mediaUrl("jungle.JPG")}
               />
             </div>
             <div>

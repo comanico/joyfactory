@@ -37,7 +37,7 @@ export default async function ContactPage() {
             <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="vibrant indoor playground with soft purple and green climbing structures, sun streaming through large windows, children laughing in the distance"
-              src={mediaUrl("imagination.jpg")}
+              src={mediaUrl("imagination.JPG")}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-2xl">
@@ -51,7 +51,7 @@ export default async function ContactPage() {
             <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="close up of a child's hands navigating colorful rounded bouldering grips in a safe, soft-textured indoor climbing area"
-              src={mediaUrl("climber.jpg")}
+              src={mediaUrl("climber.JPG")}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-xl">
@@ -65,7 +65,7 @@ export default async function ContactPage() {
             <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="overhead view of a modern ball pit filled with pastel purple and lime green balls, minimalist and high-end playground aesthetic"
-              src={mediaUrl("society.jpg")}
+              src={mediaUrl("society.JPG")}
             />
           </div>
 
@@ -74,7 +74,7 @@ export default async function ContactPage() {
             <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="a cozy reading nook for kids with soft organic shaped cushions in a high-end educational play space"
-              src={mediaUrl("relax.jpg")}
+              src={mediaUrl("relax.JPG")}
             />
           </div>
 
@@ -83,7 +83,7 @@ export default async function ContactPage() {
             <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="group of happy toddlers playing with interactive wall panels that glow with soft light, modern educational toys"
-              src={mediaUrl("screen.jpg")}
+              src={mediaUrl("screen.JPG")}
             />
           </div>
 
@@ -91,7 +91,7 @@ export default async function ContactPage() {
             <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="wide shot of a clean, sophisticated café area for parents overlooking the play zone, soft lighting and premium furniture"
-              src={mediaUrl("cloud.jpg")}
+              src={mediaUrl("cloud.JPG")}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-2xl">
