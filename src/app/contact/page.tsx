@@ -3,6 +3,12 @@ import Navbar from "../components/Navbar";
 import { getServerT } from "@/i18n/server";
 import Link from "next/link";
 import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
+import ContactMap from "@/app/components/ContactMap";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return buildPageMetadata({ page: "contact", path: "/contact" });
+}
 
 export default async function ContactPage() {
   const t = await getServerT();
@@ -29,7 +35,7 @@ export default async function ContactPage() {
             <img
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="vibrant indoor playground with soft purple and green climbing structures, sun streaming through large windows, children laughing in the distance"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzaRgJjsJM9D8b0447wVLkctG940uliIFTuKuUlJD7OIctlf2cvRxvR1du4I1T_6wNYU92sM1edwNFTv2UCOgFSccpPkMPRDaGNzv0rjnham2tJm8IOcbLmVPynCTfVPhdCaE2PjL37oDjhk-LaCwzAtsbUG_q3SU5CSnd1RDLvLKZwEpp5KHwFVkILLu40bJlx7PDLBSgbphwzjI6_p587D9BeFWW8NaOK13imUKwDHsgIj_GyU2dafQoaLpWbOO21Xkw22cF2yg"
+              src="/imagination.jpg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-2xl">
@@ -43,7 +49,7 @@ export default async function ContactPage() {
             <img
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="close up of a child's hands navigating colorful rounded bouldering grips in a safe, soft-textured indoor climbing area"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9SqA_IhwC5ZeNWG2KwtFWc64hlBa_8R3ZF8_cg-Bx3TKaCer2PXl8I-dLuSVvPzdSKpVJ6WaYCDYAf9P4ZMcmzNGuI1m34ucB0sGrSxU8VhGGX-7sESzIzOrRD9UNg4ds4MhoiOYv2lGA95uljxPShvstgTZiG8aqk-J7t3lp6Udw9juQe5to4MOxeR1ir3CUpsPdzkPKiHwZXHe97DvcO_SHMjmo3il3OWgKFglGI0XiNx_kul_2vvh8PUxro9T7zt24CRDsZs"
+              src="/climber.jpg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-xl">
@@ -57,7 +63,7 @@ export default async function ContactPage() {
             <img
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="overhead view of a modern ball pit filled with pastel purple and lime green balls, minimalist and high-end playground aesthetic"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKkQ_yf8QDm08Y9dIeUcUQNIwvpVF8_LjzAM50xy8_aK2E3QpbN8K9u9bi946oJnDLFVVApFkdMbbkZnGTcGe6DAr6P4aJ0D1wX2O8sGhFe4CzpJtkumWopFChkX85zLmeX05XjB0tmP4WgWtbIEL6hPGMOAwoqRixXH2b49olJmSkGxT6fWdlXsSuX90IcUjPvFbj0WRmchgdXvMylmGvTIlmvybg26HIRp8n05I0kFD5VEWPQXMcDWr2dQHhQNXWeG2c39tY2cc"
+              src="/society.jpg"
             />
           </div>
 
@@ -66,7 +72,7 @@ export default async function ContactPage() {
             <img
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="a cozy reading nook for kids with soft organic shaped cushions in a high-end educational play space"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuChH7oZbi1nTz5rFFEnqxT03BJ8iDK00YChUunpx9ESNeSyl4GWom5bqxKeDEKTuKHi6Z_9-ThExdbu4FS3iqmu9IDvKxdtrrpHG53zL9-BwjmCyr5tTtng1BOZ6iQf8Dz1vh4oMw2lQFa-hT8jxG-qpyf-STDGdu78XqvoMXaW1z4fyg_QIr5ub8EmtV05tsG5ODCx5IdO68JaGd38UIxEatnHnWHcb66REndtwUq2d7BeOP0aru_yaZo-h-V61lJzztUesqGpKn0"
+              src="/relax.jpg"
             />
           </div>
 
@@ -75,7 +81,7 @@ export default async function ContactPage() {
             <img
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="group of happy toddlers playing with interactive wall panels that glow with soft light, modern educational toys"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDNV5khDPN4n6b1hUxNbMfph8cYkBBpvB2789DLZRNzhHFkxKKPcmHuhhkfj3SMyg3ZqngBoILAsD3-kk2UOH6vdODZea0aDYI8Ek6yeAZGU1ZJPaRRsv-FUy_ljZqSP9YEcmAeuLfcOvJr4lonj1G9S6VMKEy2i0SZ98FQvWw9S1n1e_0ul3sgz3_JMIVl7xOYHurqLQos48fXZSEk15oOD2y3fqhHKsXbe6y25-db-BO4oURBrxSqlhpZAnEUxuvlv6lE3uvLvw"
+              src="/screen.jpg"
             />
           </div>
 
@@ -83,7 +89,7 @@ export default async function ContactPage() {
             <img
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="wide shot of a clean, sophisticated café area for parents overlooking the play zone, soft lighting and premium furniture"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbq0AybmxlIU8N2u15fMunxj4DU62upsGb4E0hPt2rkjioocfR57jQvWE43ysUdMbjmsWse_KM8MJKHBnHE2oUs83qyVO6hohmGeqcgDveulax7f1hRdNCvgqzkp-7yC_QEQ7L4RNqaofvHmoqUMxdB0sfGeUA4C6Qzu7KbVqlGkMNF9ivh_xcD1BauvLXt_21yHfcg2oBS2ZECL60aZks6jtqlCEvzSU46_LuPxgOqlNy6jydejcip-d_P9ETCKMgc1DGz3pLvdo"
+              src="/cloud.jpg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-2xl">
@@ -119,12 +125,10 @@ export default async function ContactPage() {
                   </span>
                   <div>
                     <h4 className="font-headline font-bold text-on-surface">
-                      Visit Us
+                      {t("contactPage.visitUs")}
                     </h4>
                     <p className="text-on-surface-variant">
-                      123 Playful Plaza, Creative District
-                      <br />
-                      Wonderland, NY 10001
+                      {t("contactPage.visitAddress")}
                     </p>
                   </div>
                 </div>
@@ -139,21 +143,21 @@ export default async function ContactPage() {
                   </span>
                   <div>
                     <h4 className="font-headline font-bold text-on-surface">
-                      Call Us
+                      {t("contactPage.callUs")}
                     </h4>
-                    <p className="text-on-surface-variant">+1 (555) 987-6543</p>
+                    <p className="text-on-surface-variant">
+                      <a
+                        href={`tel:${t("contactPage.phoneTel")}`}
+                        className="hover:text-primary transition-colors font-medium"
+                      >
+                        {t("contactPage.phoneDisplay")}
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Map Image */}
-              <div className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container shadow-sm border-0">
-                <img
-                  className="w-full h-full object-cover grayscale brightness-110 opacity-80 hover:grayscale-0 transition-all duration-500"
-                  alt={t("contactPage.mapAlt")}
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRLBmjErwLCpBDDYOiwza1zIe_56RP9gUldt6nJ7afUpyNPSQRqUB2nR52SXhyjq7gjpfT4_ztcLrXTqw-zYXsm5LkVm7GmyId7zpljNXRvT5o4rfZCfInlY4gGCeoiRaEqbLKgWEiUOXWk5yDc7bSwJ1iqHsw4iOif2hR250S-C9q6nGVQY6tpdUW36hJIxUreykV-MrIHb5M_lCjhZHnkfHMYn4kw7snfFyBYuj_2aBQgR_MJJbCkjgsjnSHmd4cU_NR3eGtRQU"
-                />
-              </div>
+              <ContactMap />
             </div>
 
             {/* Inquiry Form */}

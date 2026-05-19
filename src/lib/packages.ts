@@ -1,13 +1,32 @@
 export const PACKAGE_TYPES = ["basic", "start", "premium", "vip"] as const;
 export type PackageType = (typeof PACKAGE_TYPES)[number];
 
+/** Display order for tier upgrades on the parties page. */
+export const PACKAGE_TIER_ORDER: PackageType[] = [...PACKAGE_TYPES];
+
 export function isPackageType(value: string | undefined | null): value is PackageType {
   return PACKAGE_TYPES.includes(value as PackageType);
 }
 
-/** Party duration in hours (3h party + 1h bonus). */
-export function packageDurationHours(_pkg: PackageType): number {
-  return 4;
+/** Party time shown to guests (e.g. 10:00–13:00). */
+export const PARTY_DURATION_HOURS = 3;
+
+/** Cleaning buffer after the party (e.g. hour 14 → 13:00–14:00); not shown to guests. */
+export const PARTY_CLEANING_BUFFER_HOURS = 1;
+
+/** Guest-facing party length stored on bookings. */
+export function packagePartyDurationHours(_pkg: PackageType): number {
+  return PARTY_DURATION_HOURS;
+}
+
+/** Room hold on the calendar: party + cleaning buffer (e.g. 10:00–14:00). */
+export function packageSchedulingBlockHours(_pkg: PackageType): number {
+  return PARTY_DURATION_HOURS + PARTY_CLEANING_BUFFER_HOURS;
+}
+
+/** @deprecated Use packagePartyDurationHours or packageSchedulingBlockHours. */
+export function packageDurationHours(pkg: PackageType): number {
+  return packagePartyDurationHours(pkg);
 }
 
 export function packageGuestCount(pkg: PackageType): number {

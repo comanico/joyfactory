@@ -7,6 +7,57 @@ export const resources = {
   ro: {
     translation: {
       brand: BRAND,
+      seo: {
+        siteName: BRAND,
+        defaultTitle: `${BRAND} — Loc de joacă indoor premium pentru copii`,
+        defaultDescription:
+          "FunFactory: petreceri private, zone de joacă moderne, cafenea pentru părinți și rezervări online. Siguranță, distracție și experiențe memorabile pentru copii.",
+        keywords:
+          "FunFactory, loc de joacă copii, petrecere copii, joacă indoor, petrecere privată, zonă de joacă, cafenea părinți, rezervare petrecere, petrecere aniversare",
+        ogImageAlt: `Logo ${BRAND}`,
+        pages: {
+          home: {
+            title: `${BRAND} — Zone de joacă & petreceri pentru copii`,
+            description:
+              "Descoperă FunFactory: piscină cu bile, cățărare, petreceri FUN BASIC–VIP și rezervare online. Joacă sigură și distracție pentru întreaga familie.",
+          },
+          parties: {
+            title: `Petreceri copii — Pachete FUN BASIC, START, PREMIUM & VIP`,
+            description:
+              "Organizează petrecerea perfectă la FunFactory: pachete de la 1000 LEI, meniu pentru copii, gazdă dedicată, VR și experiențe VIP. Rezervă acum.",
+          },
+          cafe: {
+            title: `Cafenea ${BRAND} — Cafea & gustări cu vedere la zona de joacă`,
+            description:
+              "Relaxează-te la cafeneaua FunFactory în timp ce copiii se joacă. Cafea proaspătă, patiserie și produse prietenoase cu copiii.",
+          },
+          safety: {
+            title: `Siguranță ${BRAND} — Protocoale și standarde pentru joacă indoor`,
+            description:
+              "Află cum FunFactory pune siguranța pe primul loc: personal instruit, curățenie riguroasă, zone securizate și inspecții regulate.",
+          },
+          contact: {
+            title: `Contact ${BRAND} — Întrebări, rezervări & vizite`,
+            description:
+              "Contactează echipa FunFactory pentru rezervări de petrecere, întrebări despre facilități sau informații despre siguranță și program.",
+          },
+          privacy: {
+            title: `Politica de confidențialitate — ${BRAND}`,
+            description:
+              "Cum FunFactory colectează, folosește și protejează datele tale personale, inclusiv rezervări și preferințe cookie.",
+          },
+          terms: {
+            title: `Termeni și condiții — ${BRAND}`,
+            description:
+              "Termenii de utilizare a site-ului și serviciilor FunFactory, inclusiv reguli de rezervare și condiții pentru petreceri.",
+          },
+          underConstruction: {
+            title: `${BRAND} — în construcție`,
+            description:
+              "Site-ul FunFactory este în construcție. Revino în curând pentru rezervări și noutăți.",
+          },
+        },
+      },
       nav: {
         playZones: "Zone de joacă",
         parties: "Petreceri",
@@ -139,11 +190,12 @@ export const resources = {
           "Margini moi, forme organice și panouri senzoriale blânde pentru cei mai mici exploratori.",
         toddlerBullet1: "Suprafețe complet capitonate",
         toddlerBullet2: "Panouri senzoriale interactive",
-        jungleTitle: "Junglă suspendată",
+        jungleTitle: "Tiroliană 8 m",
         jungleBody:
-          "Un labirint arhitectural pe mai multe niveluri, din lemn sustenabil și punți de frânghie.",
-        jungleTag1: "Agilitate",
-        jungleTag2: "Inspirat din natură",
+          "Zbor deasupra zonei de joacă pe o tiroliană de 8 metri — senzație de viteză, cu ham și supraveghere din partea echipei.",
+        jungleAlt: "Copii pe tiroliană în zona de joacă FunFactory",
+        jungleTag1: "8 metri",
+        jungleTag2: "Cu ham de siguranță",
         climbTitleLine1: "Cățărare",
         climbTitleLine2: "la înălțime",
         climbBody:
@@ -242,11 +294,12 @@ export const resources = {
         heroCta: "Începe aventura",
         heroAlt:
           "Cameră vibrantă pentru petrecere, cu baloane colorate și masă decorată într-un loc de joacă indoor modern",
-        topRated: "Locație de top 2024!",
+        topRated: "Locație de top!",
         chooseTitle: "Alege-ți sărbătoarea",
         chooseBody:
           "Patru pachete de petrecere — de la joacă pură la experiența VIP completă.",
         mostPopular: "CEL MAI POPULAR",
+        noMenuFeature: "FĂRĂ MENIU (poți aduce mâncare și snackuri!)",
         packages: {
           basic: {
             alt: "Petrecere FUN BASIC la FunFactory",
@@ -271,7 +324,7 @@ export const resources = {
               "Baloane de săpun",
               "Mini-discotecă (muzică distractivă și jocuri de lumini)",
               "Apă nelimitată",
-              "FĂRĂ MENIU (poți aduce mâncare și snackuri!)",
+              "__no_menu__",
             ],
           },
           start: {
@@ -282,11 +335,10 @@ export const resources = {
             blurb:
               "Toate facilitățile de joacă din FUN BASIC, plus meniu pentru copii.",
             includesLabel: "Include:",
+            inheritedFromLabel: "Din FUN BASIC",
+            plusLabel: "În plus:",
             select: "Alege FUN START",
-            features: [
-              "Toate facilitățile de joacă din FUN BASIC (spațiu exclusiv, invitație, zonă modulară, tiroliană, arcade, PS4, subsoccer, jocuri și jucării, accesorii, cifră aniversară, baloane de săpun, mini-discotecă, apă nelimitată)",
-              "Meniu pentru copii",
-            ],
+            features: ["Meniu pentru copii"],
           },
           premium: {
             alt: "Petrecere FUN PREMIUM la FunFactory",
@@ -295,7 +347,9 @@ export const resources = {
             duration: "3 ore de petrecere + 1 oră GRATIS",
             blurb:
               "Tot ce include FUN START, plus gazdă dedicată, VR și surprize premium.",
-            includesLabel: "Include tot din FUN START, plus:",
+            includesLabel: "Include:",
+            inheritedFromLabel: "Din FUN START",
+            plusLabel: "În plus:",
             select: "Alege FUN PREMIUM",
             features: [
               "Gazdă dedicată (care se ocupă de tot)",
@@ -311,7 +365,9 @@ export const resources = {
             duration: "3 ore de petrecere + 1 oră GRATIS",
             blurb:
               "Experiența completă — decor personalizat, foto, catering și tot ce oferă FUN PREMIUM.",
-            includesLabel: "Include tot din FUN PREMIUM, plus:",
+            includesLabel: "Include:",
+            inheritedFromLabel: "Din FUN PREMIUM",
+            plusLabel: "În plus:",
             select: "Alege FUN VIP EXPERIENCE",
             features: [
               "Echipament VR – 2 h",
@@ -324,6 +380,38 @@ export const resources = {
             ],
           },
         },
+        extras: {
+          title: "Opțiuni disponibile (pentru toate pachetele)",
+          intro:
+            "Orice opțiune de mai jos poate fi adăugată la orice pachet, la cerere — contactează-ne prin email sau telefon.",
+          contactCta: "Contactează-ne pentru opțiuni extra",
+          items: {
+            customDecor: {
+              name: "Decor personalizat",
+              price: "100 lei",
+            },
+            photoMagnets: {
+              name: "Servicii foto – poze magnet",
+              price: "100 lei",
+            },
+            heliumBalloons: {
+              name: "Baloane heliu",
+              price: "10 lei / balon",
+            },
+            pinata: {
+              name: "Piñata cu dulciuri",
+              price: "150 lei / 15 copii",
+            },
+            vr: {
+              name: "Echipament VR",
+              price: "100 lei / 1h",
+            },
+            extraChild: {
+              name: "Copil suplimentar",
+              price: "50 lei",
+            },
+          },
+        },
       },
       contactPage: {
         heroTitle1: "Bucurie pură,",
@@ -331,11 +419,17 @@ export const resources = {
         heroBody:
           "Intră într-o lume în care fiecare colț e o nouă aventură. Descoperă experiența FunFactory prin galeria noastră.",
         mapAlt:
-          "Hartă stilizată care arată locația centrului de joacă FunFactory într-un cartier urban modern",
-        talkTitle1: "Hai să vorbim",
+          "Hartă Google cu locația FunFactory, str. I.M. Klein nr. 10, Făgăraș",
+        openInMaps: "Deschide în Google Maps",
+        talkTitle1: "Hai să vorbim de",
         talkTitle2: "joacă.",
         talkBody:
           "Ai întrebări despre facilități, pachete de petrecere sau protocoale de siguranță? Echipa noastră te ajută să planifici vizita perfectă.",
+        visitUs: "Vizitează-ne",
+        visitAddress: "str. I.M. Klein, nr. 10, Făgăraș, jud. Brașov",
+        callUs: "Sună-ne",
+        phoneDisplay: "0767742053",
+        phoneTel: "+40767742053",
         inquiryType: "Tip solicitare",
         inquiry: {
           general: "Întrebare generală",
@@ -436,6 +530,57 @@ export const resources = {
   en: {
     translation: {
       brand: BRAND,
+      seo: {
+        siteName: BRAND,
+        defaultTitle: `${BRAND} — Premium indoor play for kids`,
+        defaultDescription:
+          "FunFactory: private parties, modern play zones, parent café, and online booking. Safe, joyful experiences kids remember.",
+        keywords:
+          "FunFactory, kids play center, children party, indoor play, private party, play zone, parent cafe, party booking, birthday party",
+        ogImageAlt: `${BRAND} logo`,
+        pages: {
+          home: {
+            title: `${BRAND} — Play zones & kids parties`,
+            description:
+              "Discover FunFactory: ball pit, climbing, FUN BASIC–VIP party packages, and online booking. Safe play and joy for the whole family.",
+          },
+          parties: {
+            title: `Kids parties — FUN BASIC, START, PREMIUM & VIP packages`,
+            description:
+              "Host the perfect party at FunFactory: packages from 1000 RON, kids menu, dedicated host, VR, and VIP experiences. Book now.",
+          },
+          cafe: {
+            title: `${BRAND} Café — Coffee & treats with a view of play zones`,
+            description:
+              "Relax at the FunFactory café while kids play. Fresh coffee, pastries, and kid-friendly bites.",
+          },
+          safety: {
+            title: `${BRAND} Safety — Protocols for indoor play`,
+            description:
+              "Learn how FunFactory puts safety first: trained staff, rigorous cleaning, secure zones, and regular inspections.",
+          },
+          contact: {
+            title: `Contact ${BRAND} — Questions, bookings & visits`,
+            description:
+              "Reach the FunFactory team for party bookings, facility questions, or safety and hours information.",
+          },
+          privacy: {
+            title: `Privacy Policy — ${BRAND}`,
+            description:
+              "How FunFactory collects, uses, and protects your personal data, including bookings and cookie preferences.",
+          },
+          terms: {
+            title: `Terms of Service — ${BRAND}`,
+            description:
+              "Terms of use for the FunFactory website and services, including booking rules and party conditions.",
+          },
+          underConstruction: {
+            title: `${BRAND} — Under Construction`,
+            description:
+              "The FunFactory website is under construction. Please check back soon for bookings and updates.",
+          },
+        },
+      },
       nav: {
         playZones: "Play Zones",
         parties: "Parties",
@@ -568,11 +713,12 @@ export const resources = {
           "Soft edges, organic shapes, and gentle sensory panels for our smallest explorers.",
         toddlerBullet1: "Fully Padded Surfaces",
         toddlerBullet2: "Sensory Wall Panels",
-        jungleTitle: "Canopy Jungle Gym",
+        jungleTitle: "8 m Zip Line",
         jungleBody:
-          "A multi-level architectural maze of sustainable timber and rope bridges.",
-        jungleTag1: "Agility",
-        jungleTag2: "Nature-Inspired",
+          "Soar above the play floor on an 8-meter zip line — a rush of speed with a safety harness and staff supervision.",
+        jungleAlt: "Children on the zip line in the FunFactory play zone",
+        jungleTag1: "8 meters",
+        jungleTag2: "Safety harness",
         climbTitleLine1: "Sky-High",
         climbTitleLine2: "Climbing",
         climbBody:
@@ -668,11 +814,12 @@ export const resources = {
         heroCta: "Start Your Adventure",
         heroAlt:
           "Vibrant children's birthday party room with colorful balloons and a decorated table in a modern indoor playground",
-        topRated: "Top Rated Venue 2024!",
+        topRated: "Top Rated Venue!",
         chooseTitle: "Choose Your Celebration",
         chooseBody:
           "Four party packages — from pure play to the full VIP experience.",
         mostPopular: "MOST POPULAR",
+        noMenuFeature: "NO MENU (you may bring food and snacks!)",
         packages: {
           basic: {
             alt: "FUN BASIC party at FunFactory",
@@ -697,7 +844,7 @@ export const resources = {
               "Bubble balloons",
               "Mini disco (fun music & light games)",
               "Unlimited water",
-              "NO MENU (you may bring food and snacks!)",
+              "__no_menu__",
             ],
           },
           start: {
@@ -708,11 +855,10 @@ export const resources = {
             blurb:
               "All FUN BASIC play facilities, plus a kids menu.",
             includesLabel: "Includes:",
+            inheritedFromLabel: "From FUN BASIC",
+            plusLabel: "Plus:",
             select: "Choose FUN START",
-            features: [
-              "All FUN BASIC play facilities (exclusive space, invitation, modular zone, zip line, arcade, PS4, subsoccer, games & toys, accessories, birthday number, bubble balloons, mini disco, unlimited water)",
-              "Kids menu",
-            ],
+            features: ["Kids menu"],
           },
           premium: {
             alt: "FUN PREMIUM party at FunFactory",
@@ -721,7 +867,9 @@ export const resources = {
             duration: "3 hours of party + 1 hour FREE",
             blurb:
               "Everything in FUN START, plus a dedicated host, VR, and premium extras.",
-            includesLabel: "Includes everything in FUN START, plus:",
+            includesLabel: "Includes:",
+            inheritedFromLabel: "From FUN START",
+            plusLabel: "Plus:",
             select: "Choose FUN PREMIUM",
             features: [
               "Dedicated host (handles everything)",
@@ -737,7 +885,9 @@ export const resources = {
             duration: "3 hours of party + 1 hour FREE",
             blurb:
               "The complete experience — custom décor, photos, catering, and all FUN PREMIUM perks.",
-            includesLabel: "Includes everything in FUN PREMIUM, plus:",
+            includesLabel: "Includes:",
+            inheritedFromLabel: "From FUN PREMIUM",
+            plusLabel: "Plus:",
             select: "Choose FUN VIP EXPERIENCE",
             features: [
               "VR equipment – 2 h",
@@ -750,6 +900,38 @@ export const resources = {
             ],
           },
         },
+        extras: {
+          title: "Available add-ons (for all packages)",
+          intro:
+            "Any option below can be added to any package upon request — contact us by email or phone.",
+          contactCta: "Contact us for add-ons",
+          items: {
+            customDecor: {
+              name: "Custom décor",
+              price: "100 RON",
+            },
+            photoMagnets: {
+              name: "Photo service – magnet prints",
+              price: "100 RON",
+            },
+            heliumBalloons: {
+              name: "Helium balloons",
+              price: "10 RON / balloon",
+            },
+            pinata: {
+              name: "Candy piñata",
+              price: "150 RON / 15 children",
+            },
+            vr: {
+              name: "VR equipment",
+              price: "100 RON / 1h",
+            },
+            extraChild: {
+              name: "Extra child",
+              price: "50 RON",
+            },
+          },
+        },
       },
       contactPage: {
         heroTitle1: "Pure Joy,",
@@ -757,11 +939,17 @@ export const resources = {
         heroBody:
           "Step into a world where every corner is a new adventure. Explore the FunFactory experience through our gallery.",
         mapAlt:
-          "stylized map showing the location of FunFactory play center in a modern urban district",
+          "Google Map showing FunFactory at 10 I.M. Klein St., Făgăraș",
+        openInMaps: "Open in Google Maps",
         talkTitle1: "Let's Talk",
         talkTitle2: "Play.",
         talkBody:
           "Have questions about our facilities, party packages, or safety protocols? Our team is here to help you plan the perfect visit.",
+        visitUs: "Visit Us",
+        visitAddress: "10 I.M. Klein St., Făgăraș, Brașov County, Romania",
+        callUs: "Call Us",
+        phoneDisplay: "0767742053",
+        phoneTel: "+40767742053",
         inquiryType: "Inquiry Type",
         inquiry: {
           general: "General Question",

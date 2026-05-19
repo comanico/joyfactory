@@ -1,6 +1,11 @@
 // app/cafe/page.tsx
 import Navbar from "../components/Navbar";
 import { getServerT } from "@/i18n/server";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return buildPageMetadata({ page: "cafe", path: "/cafe" });
+}
 
 export default async function CafePage() {
   const t = await getServerT();
@@ -28,7 +33,7 @@ export default async function CafePage() {
               <img
                 className="w-full h-full object-cover"
                 alt="modern cozy café with large windows overlooking indoor playground, parents relaxing with coffee"
-                src="https://picsum.photos/id/1015/1200/800"
+                src="/cafenea.jpg"
               />
             </div>
             <div className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-3xl shadow-xl flex items-center gap-4">
@@ -84,25 +89,6 @@ export default async function CafePage() {
                 <li className="flex justify-between"><span>Cheese Quesadilla</span><span className="font-medium">$5.75</span></li>
               </ul>
               <p className="text-xs mt-8 opacity-75">{t("cafe.kidsNote")}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Our Café */}
-        <section className="bg-surface-container rounded-3xl p-12 md:p-16 text-center">
-          <h2 className="text-3xl font-headline font-extrabold mb-8">{t("cafe.whyTitle")}</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center">
-              <span className="material-symbols-outlined text-5xl text-secondary mb-4">visibility</span>
-              <p className="font-medium">{t("cafe.why1")}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="material-symbols-outlined text-5xl text-secondary mb-4">eco</span>
-              <p className="font-medium">{t("cafe.why2")}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="material-symbols-outlined text-5xl text-secondary mb-4">schedule</span>
-              <p className="font-medium">{t("cafe.why3")}</p>
             </div>
           </div>
         </section>

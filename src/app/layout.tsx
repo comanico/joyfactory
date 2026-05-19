@@ -1,28 +1,15 @@
 // app/layout.tsx
-import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner"
 import "vanilla-calendar-pro/styles/index.css";
 import "./globals.css";
 import GdprConsent from "./components/GdprConsent";
 import { I18nProvider } from "@/i18n/client";
-import { getServerLang, getServerT } from "@/i18n/server";
+import { getServerLang } from "@/i18n/server";
+import { getRootMetadata } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getServerT();
-  const brand = t("brand");
-  return {
-    title: `${brand} | Zones of Pure Joy`,
-    description: "Sophisticated indoor playground for kids 3-12",
-    icons: {
-      icon: [
-        {
-          url: "/FunFactory%20Logo%20SVG.svg",
-          type: "image/svg+xml",
-        },
-      ],
-    },
-  };
+export async function generateMetadata() {
+  return getRootMetadata();
 }
 
 export default async function RootLayout({

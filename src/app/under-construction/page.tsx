@@ -1,12 +1,13 @@
 import { getServerT } from "@/i18n/server";
 import LangSwitch from "./LangSwitch";
+import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata() {
-  const t = await getServerT();
-  return {
-    title: t("underConstruction.metaTitle"),
-    description: t("underConstruction.metaDescription"),
-  };
+  return buildPageMetadata({
+    page: "underConstruction",
+    path: "/under-construction",
+    noIndex: true,
+  });
 }
 
 export default async function UnderConstructionPage() {

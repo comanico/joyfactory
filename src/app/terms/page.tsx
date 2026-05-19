@@ -1,5 +1,10 @@
 import Navbar from "@/app/components/Navbar";
 import { getServerLang, getServerT } from "@/i18n/server";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return buildPageMetadata({ page: "terms", path: "/terms" });
+}
 
 export default async function TermsPage() {
   const lang = await getServerLang();

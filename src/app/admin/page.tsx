@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import Navbar from "@/app/components/Navbar";
 import { prisma } from "../../../lib/prisma";
 import { packageLabel } from "@/lib/packageLabels";
 import { formatBucharestDate, formatBucharestTime } from "../../../lib/bucharestTime";
+import { partyDurationFromStored, partyEndTime } from "@/lib/bookingTime";
 import { getServerLang, getServerT } from "@/i18n/server";
 import { getAdminAccessState } from "@/lib/adminAuth";
 import { deleteReservationAction } from "./actions";
@@ -9,6 +11,11 @@ import DeleteReservationButton from "./DeleteReservationButton";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "Admin",
+  robots: { index: false, follow: false },
+};
 
 export default async function AdminPage() {
   const lang = await getServerLang();
@@ -117,13 +124,8 @@ export default async function AdminPage() {
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30">
                   {bookings.map((b) => {
-                    const end = new Date(
-                      b.startTime.getTime() + b.durationHours * 60 * 60_000,
-                    );
-                    const timeLine =
-                      b.packageType === "vip"
-                        ? t("reservation.wholeDay")
-                        : `${formatBucharestTime(b.startTime)}–${formatBucharestTime(end)}`;
+                    const end = partyEndTime(b.startTime, b.durationHours);
+                    const timeLine = `${formatBucharestTime(b.startTime)}–${formatBucharestTime(end)}`;
                     const fullName =
                       [b.firstName, b.lastName].filter(Boolean).join(" ") || "—";
 
@@ -137,7 +139,7 @@ export default async function AdminPage() {
                             {timeLine}
                           </div>
                           <div className="text-xs text-on-surface-variant mt-1">
-                            {b.durationHours}
+                            {partyDurationFromStored(b.durationHours)}
                             {t("admin.hoursShort")}
                           </div>
                         </td>

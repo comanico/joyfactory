@@ -10,10 +10,11 @@ import {
 } from './bookingAvailability';
 import {
   isPackageType,
-  packageDurationHours,
   packageGuestCount,
+  packagePartyDurationHours,
   type PackageType,
 } from '@/lib/packages';
+import { partyEndTime, schedulingEndTime } from '@/lib/bookingTime';
 import {
   fetchAllPackageDepositQuotes,
   fetchPackageDepositQuote,
@@ -41,14 +42,10 @@ function parseBucharestDateTimeFromSelection(params: {
 function buildReservationRangeFromBooking(b: {
   startTime: Date;
   durationHours: number;
-  packageType: string;
 }): Reservation {
-  const bufferHours = 1;
   return {
     start: b.startTime,
-    end: new Date(
-      b.startTime.getTime() + (b.durationHours + bufferHours) * 60 * 60_000,
-    ),
+    end: schedulingEndTime(b.startTime, b.durationHours),
   };
 }
 
@@ -174,7 +171,7 @@ export async function createPaymentIntent(data: {
       packageType: data.packageType,
       zone: 'General Play Zone',
       startTime,
-      durationHours: packageDurationHours(data.packageType),
+      durationHours: packagePartyDurationHours(data.packageType),
       numberOfGuests: packageGuestCount(data.packageType),
       status: 'pending',
       paymentStatus: 'pending',
@@ -250,9 +247,7 @@ export async function finalizeBookingAfterStripePayment(data: {
     );
   }
 
-  const endTime = new Date(
-    booking.startTime.getTime() + booking.durationHours * 60 * 60_000,
-  );
+  const endTime = partyEndTime(booking.startTime, booking.durationHours);
   const base = await resolvedSiteUrl();
   const reservationUrl = `${base}/reservation/${booking.id}`;
 

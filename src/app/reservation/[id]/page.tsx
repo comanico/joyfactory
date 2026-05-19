@@ -5,6 +5,7 @@ import Navbar from "@/app/components/Navbar";
 import { getPublicReservationById } from "@/lib/bookings";
 import { packageLabel } from "@/lib/packageLabels";
 import { formatBucharestDate, formatBucharestTime } from "../../../../lib/bucharestTime";
+import { partyEndTime } from "@/lib/bookingTime";
 import { getServerLang, getServerT } from "@/i18n/server";
 
 export async function generateMetadata({
@@ -16,10 +17,18 @@ export async function generateMetadata({
   const t = await getServerT(lang);
   const { id } = await params;
   const b = await getPublicReservationById(id);
-  if (!b) return { title: `${t("reservation.confirmed")} | FunFactory` };
+  if (!b) {
+    return {
+      title: { absolute: `${t("reservation.confirmed")} | FunFactory` },
+      robots: { index: false, follow: false },
+    };
+  }
   return {
-    title: `${packageLabel({ packageType: b.packageType, lang })} · ${formatBucharestDate(b.startTime)} | FunFactory`,
+    title: {
+      absolute: `${packageLabel({ packageType: b.packageType, lang })} · ${formatBucharestDate(b.startTime)} | FunFactory`,
+    },
     description: t("reservation.save"),
+    robots: { index: false, follow: false },
   };
 }
 
@@ -34,13 +43,8 @@ export default async function ReservationPage({
   const booking = await getPublicReservationById(id);
   if (!booking) notFound();
 
-  const end = new Date(
-    booking.startTime.getTime() + booking.durationHours * 60 * 60_000,
-  );
-  const isVip = booking.packageType === "vip";
-  const timeLine = isVip
-    ? t("reservation.wholeDay")
-    : `${formatBucharestTime(booking.startTime)} – ${formatBucharestTime(end)}`;
+  const end = partyEndTime(booking.startTime, booking.durationHours);
+  const timeLine = `${formatBucharestTime(booking.startTime)} – ${formatBucharestTime(end)}`;
 
   return (
     <>
@@ -82,13 +86,7 @@ export default async function ReservationPage({
               <p className="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant mb-2">
                 {t("reservation.time")}
               </p>
-              <p
-                className={
-                  isVip
-                    ? "text-xl font-headline font-bold text-on-secondary-container bg-secondary-container/40 inline-block px-5 py-3 rounded-3xl"
-                    : "text-xl font-headline font-bold text-primary border-2 border-primary inline-block px-5 py-3 rounded-3xl"
-                }
-              >
+              <p className="text-xl font-headline font-bold text-primary border-2 border-primary inline-block px-5 py-3 rounded-3xl">
                 {timeLine}
               </p>
             </div>

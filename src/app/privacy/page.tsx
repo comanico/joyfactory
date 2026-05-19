@@ -1,5 +1,10 @@
 import Navbar from "@/app/components/Navbar";
 import { getServerLang, getServerT } from "@/i18n/server";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return buildPageMetadata({ page: "privacy", path: "/privacy" });
+}
 
 export default async function PrivacyPage() {
   const lang = await getServerLang();

@@ -1,10 +1,6 @@
-import {
-  packageDurationHours as durationForPackage,
-  type PackageType,
-} from "@/lib/packages";
+import { packageSchedulingBlockHours, type PackageType } from "@/lib/packages";
 
 export type { PackageType };
-export { durationForPackage as packageDurationHours };
 
 export type Reservation = {
   start: Date;
@@ -117,7 +113,7 @@ export function computeAvailableStartTimes(params: {
 }) {
   const { pkg, date, reservations, openHour, closeHour, stepMinutes } = params;
 
-  const durationHrs = durationForPackage(pkg);
+  const durationHrs = packageSchedulingBlockHours(pkg);
   const slots: string[] = [];
   const disabled = new Set<string>();
 

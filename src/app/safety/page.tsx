@@ -1,7 +1,12 @@
-// app/safety/page.tsx
+﻿// app/safety/page.tsx
 import Navbar from "../components/Navbar";
 import Link from "next/link";
 import { getServerT } from "@/i18n/server";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return buildPageMetadata({ page: "safety", path: "/safety" });
+}
 
 export default async function SafetyPage() {
   const t = await getServerT();
@@ -58,136 +63,14 @@ export default async function SafetyPage() {
           <div className="absolute top-0 right-0 w-1/3 h-full bg-surface-container-low -skew-x-12 translate-x-1/2 -z-20"></div>
         </section>
 
-        {/* Safety Pillars Grid */}
-        <section className="px-6 py-24 bg-surface-container-lowest">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16 space-y-4">
-              <h2 className="text-4xl md:text-5xl font-headline font-extrabold text-primary">
-                {t("safetyPage.pillarsTitle")}
-              </h2>
-              <p className="text-on-surface-variant max-w-2xl mx-auto">
-                {t("safetyPage.pillarsBody")}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Pillar 1 */}
-              <div className="bg-surface p-10 rounded-xl hover:shadow-2xl transition-shadow group">
-                <div className="w-16 h-16 bg-primary-container/20 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined text-4xl">person_celebrate</span>
-                </div>
-                <h3 className="text-xl font-headline font-bold text-primary mb-3">
-                  {t("safetyPage.pillar1Title")}
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  {t("safetyPage.pillar1Body")}
-                </p>
-              </div>
-
-              {/* Pillar 2 */}
-              <div className="bg-surface p-10 rounded-xl hover:shadow-2xl transition-shadow group">
-                <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined text-4xl">sanitizer</span>
-                </div>
-                <h3 className="text-xl font-headline font-bold text-secondary mb-3">
-                  {t("safetyPage.pillar2Title")}
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  {t("safetyPage.pillar2Body")}
-                </p>
-              </div>
-
-              {/* Pillar 3 */}
-              <div className="bg-surface p-10 rounded-xl hover:shadow-2xl transition-shadow group">
-                <div className="w-16 h-16 bg-tertiary-container/20 rounded-full flex items-center justify-center text-tertiary mb-6 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined text-4xl">lock_person</span>
-                </div>
-                <h3 className="text-xl font-headline font-bold text-tertiary mb-3">
-                  {t("safetyPage.pillar3Title")}
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  {t("safetyPage.pillar3Body")}
-                </p>
-              </div>
-
-              {/* Pillar 4 */}
-              <div className="bg-surface p-10 rounded-xl hover:shadow-2xl transition-shadow group">
-                <div className="w-16 h-16 bg-primary-container/20 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined text-4xl">construction</span>
-                </div>
-                <h3 className="text-xl font-headline font-bold text-primary mb-3">
-                  {t("safetyPage.pillar4Title")}
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  {t("safetyPage.pillar4Body")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Staff Certifications */}
-        <section className="px-6 py-24 bg-surface overflow-hidden">
-          <div className="max-w-7xl mx-auto bg-primary rounded-xl overflow-hidden shadow-2xl relative">
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-            <div className="p-12 md:p-20 relative z-10 flex flex-col md:flex-row items-center gap-16">
-              <div className="md:w-1/2 text-white">
-                <h2 className="text-4xl font-headline font-bold mb-6">
-                  {t("safetyPage.staffTitle")}
-                </h2>
-                <p className="text-lg text-primary-fixed opacity-90 mb-10 leading-relaxed">
-                  {t("safetyPage.staffBody")}
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <span className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-2 border border-white/20">
-                    <span className="material-symbols-outlined text-green-300" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      verified
-                    </span>
-                    {t("safetyPage.badge1")}
-                  </span>
-                  <span className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-2 border border-white/20">
-                    <span className="material-symbols-outlined text-green-300" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      verified
-                    </span>
-                    {t("safetyPage.badge2")}
-                  </span>
-                  <span className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-2 border border-white/20">
-                    <span className="material-symbols-outlined text-green-300" style={{ fontVariationSettings: "'FILL' 1" }}>
-                      verified
-                    </span>
-                    {t("safetyPage.badge3")}
-                  </span>
-                </div>
-              </div>
-
-              <div className="md:w-1/2 grid grid-cols-2 gap-6">
-                <div className="aspect-square rounded-lg overflow-hidden border-4 border-white/20 -rotate-3">
-                  <img
-                    className="w-full h-full object-cover"
-                    alt={t("safetyPage.staffImg1Alt")}
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwxeiisKIVRmb1Q-gdu0YulycOdMlvEHs4eaxELbwAToT9hLrVpSPjzYAfCEHIQcg9pqPfhH1vr9VvTxW9XsS4ZrTdRaDazRdsKhxrf9jiw_Tjkwzoet7CtTohYd0Jg1do7-VK7QbXBVK4InqHojB3-oVifuD59wQtcfE-E5GBh5NnSS1uEfbWNqRsl5gCisNaaSKqOvKls6h4nrDrGu-Z0kyYEgUbVfcZpwtY4YGpHZ6CDgrykR04oMq3wVnFZJfkh89mouRBM-Q"
-                  />
-                </div>
-                <div className="aspect-square rounded-lg overflow-hidden border-4 border-white/20 rotate-3 translate-y-8">
-                  <img
-                    className="w-full h-full object-cover"
-                    alt={t("safetyPage.staffImg2Alt")}
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1Fg_-_t8E9tXX51sZB15a4Ersc2a-3DbqN9QIQe-gPKVrltZAfahCJxhJjWA7oykEopHdRADNaJ5RaENGs1Kgj-M_GWnQoW2Tz6RDqGzmqUjnGwyujqgoEBkmLCCYSqPBrmY9ogxYqPefAJvbSly1HEiuwWSxAGP-3f4d4wv1tElc4xRVUsUuQ80VyujLWqcnNwpUHxtrI6FWOici17KHxUcaeQfR_k9WWrorCkdv40PM099Y9tlktWYWDlHviN7lZ44mQhLLwr0"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Safety FAQ */}
-        <section className="px-6 py-24 bg-surface">
+        <section id="safety-faq" className="px-6 py-24 bg-surface-container-lowest">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-headline font-extrabold text-primary text-center mb-16">
               {t("safetyPage.faqTitle")}
             </h2>
             <div className="space-y-4">
-              <details className="group bg-surface-container-highest rounded-lg">
+              <details className="group bg-surface rounded-xl shadow-sm">
                 <summary className="flex justify-between items-center p-8 cursor-pointer list-none">
                   <span className="text-xl font-bold text-primary">
                     {t("safetyPage.faqQ1")}
@@ -201,7 +84,7 @@ export default async function SafetyPage() {
                 </div>
               </details>
 
-              <details className="group bg-surface-container-highest rounded-lg">
+              <details className="group bg-surface rounded-xl shadow-sm">
                 <summary className="flex justify-between items-center p-8 cursor-pointer list-none">
                   <span className="text-xl font-bold text-primary">
                     {t("safetyPage.faqQ2")}
@@ -215,7 +98,7 @@ export default async function SafetyPage() {
                 </div>
               </details>
 
-              <details className="group bg-surface-container-highest rounded-lg">
+              <details className="group bg-surface rounded-xl shadow-sm">
                 <summary className="flex justify-between items-center p-8 cursor-pointer list-none">
                   <span className="text-xl font-bold text-primary">
                     {t("safetyPage.faqQ3")}
@@ -290,7 +173,7 @@ export default async function SafetyPage() {
               {t("safetyPage.footerTerms")}
             </Link>
             <Link
-              href="/safety#newsletter"
+              href="/safety#safety-faq"
               className="text-[#efffd9]/80 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm"
             >
               {t("safetyPage.footerFaq")}

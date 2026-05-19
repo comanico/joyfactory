@@ -1,8 +1,14 @@
 // app/parties/page.tsx
 import Navbar from "../components/Navbar";
 import PartyPackageCard from "../components/PartyPackageCard";
+import PartyExtrasSection from "../components/PartyExtrasSection";
 import { PACKAGE_TYPES } from "@/lib/packages";
 import { getServerT } from "@/i18n/server";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return buildPageMetadata({ page: "parties", path: "/parties" });
+}
 
 export default async function PartiesPage() {
   const t = await getServerT();
@@ -38,7 +44,7 @@ export default async function PartiesPage() {
               <img
                 className="w-full h-full object-cover"
                 alt={t("parties.heroAlt")}
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe5fPtJKm5hUVJhOPJJWScxMmJkoeiNOQKsvsKCoSRNn6uOQPAwOduf62KYsEI88k4_pJZhMfeyzkwPjqWQVO80jgH5YIeTktQs9M3Y05rNpdiI8sGZAkbBYx92dgrC7qxO_eWh5H9FOE7lE4b2hNWC4Iwx8AuLeiPoshrJfEkDl1mvViX2SKVRCPnWYYcVQbq9661gkfGHaIAWtwcJscQ7WaZ_QbCFiBwsLxWQX_BZS9kBO6SOlhwdM_50XpZo8yqdKZlDipHkeI"
+                src="/memories.jpg"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary-fixed rounded-full flex items-center justify-center p-6 text-center animate-bounce shadow-xl">
@@ -60,11 +66,13 @@ export default async function PartiesPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 md:gap-12 items-start">
             {PACKAGE_TYPES.map((packageId) => (
               <PartyPackageCard key={packageId} packageId={packageId} />
             ))}
           </div>
+
+          <PartyExtrasSection />
         </section>
       </main>
 

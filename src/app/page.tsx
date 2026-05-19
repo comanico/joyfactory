@@ -4,6 +4,11 @@ import Link from "next/link";
 import QuickBooking from "./components/QuickBooking";
 import { getServerT } from "@/i18n/server";
 import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return buildPageMetadata({ page: "home", path: "/" });
+}
 
 export default async function Home({
   searchParams,
@@ -96,13 +101,13 @@ export default async function Home({
             <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-tertiary rounded-full opacity-20 blur-2xl"></div>
           </div>
 
-          {/* Middle Row: Jungle Gym & Climbing Wall */}
+          {/* Middle Row: Zip line & Climbing Wall */}
           <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-surface-container-highest rounded-xl p-8 flex flex-col gap-6">
             <div className="rounded-lg overflow-hidden h-64 shadow-sm">
               <img
                 className="w-full h-full object-cover"
-                alt="modern eco-friendly wooden indoor jungle gym with rope bridges and architectural climbing structures"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6NOiBlVuqBy_LpT3C8J-02JKlWph8-uc_hq5YDATjj5p9yyn_VxsOp4RZ7L3CpadB118XddBLhhT0hxlrZyUjvmUgxR2oZJZnQO4UD98ixKR2LIuaW6t1lyqHuhaKjTUyHCtiHgygBjyM8EFVIUzoLmKp8myigfiUjKrOMjt9T378KXHbiqwyONRj0gZ1fa2m_h-28vf7TSmXGEhu764dGxQp-vbEWPIxa5kPdHjyko5-9qpkj9NHblEXvaqNhaTytpKp5EuZiH4"
+                alt={t("home.jungleAlt")}
+                src="/jungle.jpg"
               />
             </div>
             <div>
@@ -133,10 +138,6 @@ export default async function Home({
                 <p className="text-on-surface-variant text-sm mb-6 leading-relaxed">
                   {t("home.climbBody")}
                 </p>
-                <button className="flex items-center gap-2 text-secondary font-bold group-hover:gap-4 transition-all">
-                  {t("home.climbCta")}{" "}
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </button>
               </div>
               <div className="relative overflow-hidden">
                 <img

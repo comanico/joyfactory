@@ -1,8 +1,14 @@
 // app/success/page.tsx
+import type { Metadata } from "next";
 import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
 import Link from 'next/link';
 import { getServerT } from "@/i18n/server";
+
+export const metadata: Metadata = {
+  title: "Payment confirmation",
+  robots: { index: false, follow: false },
+};
 
 export default async function SuccessPage({
   searchParams,

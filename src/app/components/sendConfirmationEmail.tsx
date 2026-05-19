@@ -49,10 +49,10 @@ export async function sendConfirmationEmail({
   guests: number;
   lang: "ro" | "en";
 }) {
-  const hasTimes = Boolean(startTime && endTime);
-  const timeLine = hasTimes
-    ? `${startTime} – ${endTime}`
-    : "Whole day (VIP access)";
+  const timeLine =
+    startTime && endTime
+      ? `${startTime} – ${endTime}`
+      : startTime ?? "—";
 
   const resend = getResend();
   const result = await resend.emails.send({
