@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { PackageType } from "@/lib/packages";
 import { FEATURED_PACKAGE, PACKAGE_TIER_ORDER } from "@/lib/packages";
 import { getServerT } from "@/i18n/server";
+import { mediaUrl } from "@/lib/mediaUrl";
+import ProtectedImage from "@/app/components/ProtectedImage";
 
 const NO_MENU_FEATURE_MARKER = "__no_menu__";
 
@@ -118,10 +120,10 @@ export default async function PartyPackageCard({
   const card = (
     <>
       <div className="rounded-2xl overflow-hidden mb-6 h-40 bg-surface-container-low">
-        <img
+        <ProtectedImage
           className="w-full h-full object-cover"
           alt={t(`${baseKey}.alt`)}
-          src={`/${packageId}.jpg`}
+          src={mediaUrl(`${packageId}.jpg`)}
         />
       </div>
       <h3 className="text-xl font-headline font-extrabold mb-2">

@@ -5,6 +5,8 @@ import Link from "next/link";
 import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
 import ContactMap from "@/app/components/ContactMap";
 import { buildPageMetadata } from "@/lib/seo";
+import { mediaUrl } from "@/lib/mediaUrl";
+import ProtectedImage from "@/app/components/ProtectedImage";
 
 export async function generateMetadata() {
   return buildPageMetadata({ page: "contact", path: "/contact" });
@@ -32,10 +34,10 @@ export default async function ContactPage() {
         <section className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[250px]">
           {/* Large Image */}
           <div className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl bg-surface-container-low shadow-sm">
-            <img
+            <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="vibrant indoor playground with soft purple and green climbing structures, sun streaming through large windows, children laughing in the distance"
-              src="/imagination.jpg"
+              src={mediaUrl("imagination.jpg")}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-2xl">
@@ -46,10 +48,10 @@ export default async function ContactPage() {
 
           {/* Tall Image */}
           <div className="md:row-span-2 relative group overflow-hidden rounded-xl bg-surface-container-low">
-            <img
+            <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="close up of a child's hands navigating colorful rounded bouldering grips in a safe, soft-textured indoor climbing area"
-              src="/climber.jpg"
+              src={mediaUrl("climber.jpg")}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-xl">
@@ -60,36 +62,36 @@ export default async function ContactPage() {
 
           {/* Wide Image Top */}
           <div className="relative group overflow-hidden rounded-xl bg-surface-container-low">
-            <img
+            <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="overhead view of a modern ball pit filled with pastel purple and lime green balls, minimalist and high-end playground aesthetic"
-              src="/society.jpg"
+              src={mediaUrl("society.jpg")}
             />
           </div>
 
           {/* Wide Image Bottom */}
           <div className="relative group overflow-hidden rounded-xl bg-surface-container-low">
-            <img
+            <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="a cozy reading nook for kids with soft organic shaped cushions in a high-end educational play space"
-              src="/relax.jpg"
+              src={mediaUrl("relax.jpg")}
             />
           </div>
 
           {/* Bottom Row Bento Items */}
           <div className="md:col-span-1 relative group overflow-hidden rounded-xl bg-surface-container-low">
-            <img
+            <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="group of happy toddlers playing with interactive wall panels that glow with soft light, modern educational toys"
-              src="/screen.jpg"
+              src={mediaUrl("screen.jpg")}
             />
           </div>
 
           <div className="md:col-span-3 relative group overflow-hidden rounded-xl bg-surface-container-low">
-            <img
+            <ProtectedImage
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="wide shot of a clean, sophisticated café area for parents overlooking the play zone, soft lighting and premium furniture"
-              src="/cloud.jpg"
+              src={mediaUrl("cloud.jpg")}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
               <span className="text-white font-headline font-bold text-2xl">

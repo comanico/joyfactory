@@ -5,6 +5,8 @@ import QuickBooking from "./components/QuickBooking";
 import { getServerT } from "@/i18n/server";
 import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
 import { buildPageMetadata } from "@/lib/seo";
+import { mediaUrl } from "@/lib/mediaUrl";
+import ProtectedImage from "@/app/components/ProtectedImage";
 
 export async function generateMetadata() {
   return buildPageMetadata({ page: "home", path: "/" });
@@ -43,10 +45,10 @@ export default async function Home({
           {/* Large Feature Card: Ball Pit */}
           <div className="col-span-12 lg:col-span-8 bg-surface-container-low rounded-xl overflow-hidden relative group">
             <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent z-10 opacity-60"></div>
-            <img
+            <ProtectedImage
               className="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
               alt="luxury indoor ball pit with thousands of white and pastel purple balls in a modern minimalist playroom setting"
-              src="/ball-pit-homepage.JPG"
+              src={mediaUrl("ball-pit-homepage.JPG")}
             />
             <div className="absolute bottom-0 left-0 p-12 z-20 w-full">
               <div className="flex items-center gap-3 mb-4">
@@ -104,10 +106,10 @@ export default async function Home({
           {/* Middle Row: Zip line & Climbing Wall */}
           <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-surface-container-highest rounded-xl p-8 flex flex-col gap-6">
             <div className="rounded-lg overflow-hidden h-64 shadow-sm">
-              <img
+              <ProtectedImage
                 className="w-full h-full object-cover"
                 alt={t("home.jungleAlt")}
-                src="/jungle.jpg"
+                src={mediaUrl("jungle.jpg")}
               />
             </div>
             <div>
@@ -140,10 +142,10 @@ export default async function Home({
                 </p>
               </div>
               <div className="relative overflow-hidden">
-                <img
+                <ProtectedImage
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   alt="colorful geometric climbing wall inside a bright modern recreational facility with safety mats"
-                  src="/climbing-homepage.JPG"
+                  src={mediaUrl("climbing-homepage.JPG")}
                 />
               </div>
             </div>

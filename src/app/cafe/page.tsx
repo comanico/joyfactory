@@ -2,6 +2,8 @@
 import Navbar from "../components/Navbar";
 import { getServerT } from "@/i18n/server";
 import { buildPageMetadata } from "@/lib/seo";
+import { mediaUrl } from "@/lib/mediaUrl";
+import ProtectedImage from "@/app/components/ProtectedImage";
 
 export async function generateMetadata() {
   return buildPageMetadata({ page: "cafe", path: "/cafe" });
@@ -30,10 +32,10 @@ export default async function CafePage() {
 
           <div className="flex-1 relative">
             <div className="w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl">
-              <img
+              <ProtectedImage
                 className="w-full h-full object-cover"
                 alt="modern cozy café with large windows overlooking indoor playground, parents relaxing with coffee"
-                src="/cafenea.jpg"
+                src={mediaUrl("cafenea.jpg")}
               />
             </div>
             <div className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-3xl shadow-xl flex items-center gap-4">

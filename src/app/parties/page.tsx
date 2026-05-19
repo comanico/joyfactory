@@ -5,6 +5,8 @@ import PartyExtrasSection from "../components/PartyExtrasSection";
 import { PACKAGE_TYPES } from "@/lib/packages";
 import { getServerT } from "@/i18n/server";
 import { buildPageMetadata } from "@/lib/seo";
+import { mediaUrl } from "@/lib/mediaUrl";
+import ProtectedImage from "@/app/components/ProtectedImage";
 
 export async function generateMetadata() {
   return buildPageMetadata({ page: "parties", path: "/parties" });
@@ -41,10 +43,10 @@ export default async function PartiesPage() {
 
           <div className="flex-1 relative">
             <div className="w-full h-[400px] rounded-xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
-              <img
+              <ProtectedImage
                 className="w-full h-full object-cover"
                 alt={t("parties.heroAlt")}
-                src="/memories.jpg"
+                src={mediaUrl("memories.jpg")}
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary-fixed rounded-full flex items-center justify-center p-6 text-center animate-bounce shadow-xl">

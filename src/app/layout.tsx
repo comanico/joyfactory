@@ -4,6 +4,7 @@ import { Toaster } from "sonner"
 import "vanilla-calendar-pro/styles/index.css";
 import "./globals.css";
 import GdprConsent from "./components/GdprConsent";
+import ImageProtection from "./components/ImageProtection";
 import { I18nProvider } from "@/i18n/client";
 import { getServerLang } from "@/i18n/server";
 import { getRootMetadata } from "@/lib/seo";
@@ -39,6 +40,7 @@ export default async function RootLayout({
       <body className="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
         <ClerkProvider signInUrl="/sign-in" signInFallbackRedirectUrl="/admin" afterSignOutUrl="/">
           <I18nProvider initialLang={lang}>{children}</I18nProvider>
+          <ImageProtection />
           <GdprConsent />
           <Toaster />
         </ClerkProvider>

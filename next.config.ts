@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  async redirects() {
+    return [
+      {
+        source:
+          "/:file((?!media/)[^/]+\\.(?:jpg|jpeg|JPG|png|webp|gif|GIF))",
+        destination: "/404",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

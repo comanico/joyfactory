@@ -1,5 +1,7 @@
 import { getServerT } from "@/i18n/server";
 import LangSwitch from "./LangSwitch";
+import { mediaUrl } from "@/lib/mediaUrl";
+import ProtectedImage from "@/app/components/ProtectedImage";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata() {
@@ -46,8 +48,8 @@ export default async function UnderConstructionPage() {
           </div>
 
           <div className="flex justify-center pt-4">
-            <img
-              src="/FunFactory%20Logo%20SVG.svg"
+            <ProtectedImage
+              src={mediaUrl("FunFactory Logo SVG.svg")}
               alt={t("brand")}
               className="h-12 w-auto opacity-90"
             />
