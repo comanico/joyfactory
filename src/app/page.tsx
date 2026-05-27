@@ -151,19 +151,19 @@ export default async function Home({
             </div>
           </div>
 
-          {/* Creative Zone */}
+          {/* Gaming & VR */}
           <div className="col-span-12 lg:col-span-3 bg-secondary-container rounded-xl p-10 flex flex-col items-center text-center justify-center relative overflow-hidden">
             <span
               className="material-symbols-outlined text-secondary text-6xl mb-4"
               style={{ fontVariationSettings: "'FILL' 1" }}
             >
-              palette
+              sports_esports
             </span>
             <h3 className="text-2xl font-headline font-black text-on-secondary-container mb-2">
-              {t("home.artTitle")}
+              {t("home.gamesVrTitle")}
             </h3>
             <p className="text-on-secondary-container/80 text-sm">
-              {t("home.artBody")}
+              {t("home.gamesVrBody")}
             </p>
             <div className="absolute top-0 right-0 p-4">
               <div className="w-12 h-12 bg-on-secondary-container/10 rounded-full animate-pulse"></div>

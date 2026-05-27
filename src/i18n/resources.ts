@@ -201,9 +201,9 @@ export const resources = {
         climbBody:
           "Prize geometrice turnate și sisteme auto-belay pentru distracție sigură, fără griji.",
         climbCta: "Învață tehnici",
-        artTitle: "Atelier de artă",
-        artBody:
-          "Acolo unde micii Picasso își găsesc pânza digitală și fizică.",
+        gamesVrTitle: "Jocuri video & VR",
+        gamesVrBody:
+          "Consolă, titluri pentru toate vârstele și experiențe VR captivante — joacă solo sau în echipă, sub supravegherea echipei noastre.",
         safetyBannerTitle: "Siguranța pe primul loc, mereu.",
         safetyBannerBody:
           "Curățat din oră în oră cu dezinfectanți eco-certificați. Supravegheat complet de \"Joy Guides\".",
@@ -729,8 +729,9 @@ export const resources = {
         climbBody:
           "Custom-molded geometric holds and auto-belay systems for safe, gravity-defying fun.",
         climbCta: "Learn Techniques",
-        artTitle: "Art Atelier",
-        artBody: "Where little Picassos find their digital and physical canvas.",
+        gamesVrTitle: "Gaming & VR",
+        gamesVrBody:
+          "Console play, age-appropriate titles, and immersive VR experiences — solo or squad up, with our team keeping every session safe and fun.",
         safetyBannerTitle: "Safety First, Always.",
         safetyBannerBody:
           "Cleaned hourly with eco-certified sanitizers. Fully supervised by trained 'Joy Guides'.",
