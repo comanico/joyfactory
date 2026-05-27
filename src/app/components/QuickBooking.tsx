@@ -16,7 +16,7 @@ import { toast } from 'sonner';
 import BookingCalendar from './BookingCalendar';
 import { useTranslation } from "react-i18next";
 import type { Reservation } from './bookingAvailability';
-import { computeAvailableStartTimes } from './bookingAvailability';
+import { computeAvailableStartTimes, toISODateLocal } from './bookingAvailability';
 import {
   isPackageType,
   type PackageType,
@@ -184,7 +184,7 @@ export default function QuickBooking(props: {
     try {
       const result = await createPaymentIntent({
         packageType,
-        dateISO: selectedDate!.toISOString().slice(0, 10),
+        dateISO: toISODateLocal(selectedDate!),
         timeHHMM: selectedTime,
         firstName: firstName.trim(),
         lastName: lastName.trim(),
