@@ -1,5 +1,6 @@
 // app/cafe/page.tsx
 import Navbar from "../components/Navbar";
+import CafeMenuSection from "../components/CafeMenuSection";
 import { getServerT } from "@/i18n/server";
 import { buildPageMetadata } from "@/lib/seo";
 import { mediaUrl } from "@/lib/mediaUrl";
@@ -48,52 +49,7 @@ export default async function CafePage() {
           </div>
         </header>
 
-        {/* Menu Grid */}
-        <section className="mb-24">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-headline font-extrabold text-on-surface">{t("cafe.menuTitle")}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Coffee & Drinks */}
-            <div className="bg-surface-container-lowest rounded-3xl p-8">
-              <h3 className="font-headline font-bold text-2xl mb-6 flex items-center gap-3">
-                <span className="material-symbols-outlined">local_cafe</span> {t("cafe.coffeeTitle")}
-              </h3>
-              <ul className="space-y-6">
-                <li className="flex justify-between"><span>Flat White</span><span className="font-medium">$5.50</span></li>
-                <li className="flex justify-between"><span>Matcha Latte</span><span className="font-medium">$6.00</span></li>
-                <li className="flex justify-between"><span>Golden Turmeric Milk</span><span className="font-medium">$5.75</span></li>
-                <li className="flex justify-between"><span>Strawberry Lemonade (Kids)</span><span className="font-medium">$4.25</span></li>
-              </ul>
-            </div>
-
-            {/* Pastries */}
-            <div className="bg-surface-container-lowest rounded-3xl p-8">
-              <h3 className="font-headline font-bold text-2xl mb-6 flex items-center gap-3">
-                <span className="material-symbols-outlined">bakery_dining</span> {t("cafe.pastriesTitle")}
-              </h3>
-              <ul className="space-y-6">
-                <li className="flex justify-between"><span>Almond Croissant</span><span className="font-medium">$4.95</span></li>
-                <li className="flex justify-between"><span>Banana Chocolate Chip Muffin</span><span className="font-medium">$4.50</span></li>
-                <li className="flex justify-between"><span>Blueberry Lemon Loaf</span><span className="font-medium">$5.25</span></li>
-              </ul>
-            </div>
-
-            {/* Kid-Friendly */}
-            <div className="bg-primary text-on-primary rounded-3xl p-8">
-              <h3 className="font-headline font-bold text-2xl mb-6 flex items-center gap-3">
-                <span className="material-symbols-outlined">child_care</span> {t("cafe.kidsTitle")}
-              </h3>
-              <ul className="space-y-6">
-                <li className="flex justify-between"><span>Fruit Cup + Yogurt</span><span className="font-medium">$6.50</span></li>
-                <li className="flex justify-between"><span>PB&amp;J Mini Sandwich</span><span className="font-medium">$5.95</span></li>
-                <li className="flex justify-between"><span>Cheese Quesadilla</span><span className="font-medium">$5.75</span></li>
-              </ul>
-              <p className="text-xs mt-8 opacity-75">{t("cafe.kidsNote")}</p>
-            </div>
-          </div>
-        </section>
+        <CafeMenuSection />
       </main>
 
       {/* Footer */}

@@ -183,7 +183,7 @@ export const resources = {
         infinityTitle: "Piscina infinită cu bile",
         infinityBody:
           "Un ocean de 50.000 de perle antimicrobiene. Un peisaj senzorial creat pentru plutire și încântare tactilă.",
-        ages: "Vârste 3–12",
+        ages: "Vârste 3+",
         toddlerTitleLine1: "Sanctuar",
         toddlerTitleLine2: "pentru cei mici",
         toddlerBody:
@@ -275,6 +275,11 @@ export const resources = {
         kidsTitle: "Gustări pentru cei mici",
         kidsNote:
           "Toate produsele pentru copii vin cu un biscuit zâmbăreț gratuit 🍪",
+        menuUnderConstruction: {
+          badge: "În curând",
+          title: "Meniul este în construcție",
+          body: "Lucrăm la meniul nostru. Revino în curând pentru cafea, patiserie și gustări.",
+        },
         whyTitle: "De ce iubesc părinții cafeneaua noastră",
         why1: "Vedere completă către toate zonele de joacă",
         why2: "Organic & din surse locale",
@@ -304,7 +309,7 @@ export const resources = {
           basic: {
             alt: "Petrecere FUN BASIC la FunFactory",
             price: "1000 LEI",
-            priceMeta: "/ 15 copii",
+            priceMeta: "/ 15-20 copii",
             duration: "3 ore de petrecere + 1 oră GRATIS",
             blurb:
               "Spațiu exclusiv, zonă modulară completă și libertatea de a aduce propria mâncare.",
@@ -706,7 +711,7 @@ export const resources = {
         infinityTitle: "The Infinity Ball Pit",
         infinityBody:
           "A sea of 50,000 antimicrobial pearls. Dive into a sensory-rich landscape designed for physical buoyancy and tactile delight.",
-        ages: "Ages 3–12",
+        ages: "Ages 3+",
         toddlerTitleLine1: "Toddler",
         toddlerTitleLine2: "Sanctuary",
         toddlerBody:
@@ -795,6 +800,11 @@ export const resources = {
         pastriesTitle: "Fresh Pastries",
         kidsTitle: "Little Bites",
         kidsNote: "All kid items come with a free smiley-face cookie 🍪",
+        menuUnderConstruction: {
+          badge: "Coming soon",
+          title: "Menu under construction",
+          body: "We're putting the finishing touches on our menu. Check back soon for coffee, pastries, and bites.",
+        },
         whyTitle: "Why Parents Love Our Café",
         why1: "Full view of all play zones",
         why2: "Organic & locally sourced",
@@ -824,7 +834,7 @@ export const resources = {
           basic: {
             alt: "FUN BASIC party at FunFactory",
             price: "1000 RON",
-            priceMeta: "/ 15 children",
+            priceMeta: "/ 15-20 children",
             duration: "3 hours of party + 1 hour FREE",
             blurb:
               "Exclusive space, full modular play zone, and freedom to bring your own food.",
