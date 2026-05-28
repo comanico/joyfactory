@@ -4,6 +4,8 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { PACKAGE_TYPES, type PackageType } from "@/lib/packages";
 
+const NO_MENU_FEATURE_MARKER = "__no_menu__";
+
 export function PackageTypeButtons({
   packageType,
   onSelect,
@@ -44,12 +46,21 @@ export function PackageDetailsCard({ packageType }: { packageType: PackageType }
     const featureList = t(`${baseKey}.features`, {
       returnObjects: true,
     }) as string[];
+
+    const normalized = (Array.isArray(featureList) ? featureList : []).map((feature) => {
+      const isNoMenu = feature === NO_MENU_FEATURE_MARKER;
+      return {
+        key: isNoMenu ? NO_MENU_FEATURE_MARKER : feature,
+        text: isNoMenu ? t("parties.noMenuFeature") : feature,
+        negative: isNoMenu,
+      };
+    });
     return {
       title: t(`packages.${packageType}`),
       meta: `${t(`${baseKey}.price`)} · ${t(`${baseKey}.priceMeta`)}`,
       duration: t(`${baseKey}.duration`),
       blurb: t(`${baseKey}.blurb`),
-      features: Array.isArray(featureList) ? featureList : [],
+      features: normalized,
     };
   }, [baseKey, packageType, t]);
 
@@ -61,11 +72,22 @@ export function PackageDetailsCard({ packageType }: { packageType: PackageType }
       <p className="mt-4 text-on-surface-variant font-medium">{blurb}</p>
       <ul className="mt-4 space-y-2 max-h-64 overflow-y-auto pr-1">
         {features.map((feature) => (
-          <li key={feature} className="flex gap-2 text-on-surface">
-            <span className="material-symbols-outlined text-primary text-[20px] leading-6 shrink-0">
-              check_circle
-            </span>
-            <span className="font-medium text-sm">{feature}</span>
+          <li key={feature.key} className="flex gap-2 text-on-surface">
+            {feature.negative ? (
+              <span
+                className="flex h-[20px] w-[20px] shrink-0 mt-0.5 items-center justify-center rounded-full border-2 border-red-600 text-red-600"
+                aria-hidden
+              >
+                <span className="material-symbols-outlined text-[12px] leading-none font-bold">
+                  close
+                </span>
+              </span>
+            ) : (
+              <span className="material-symbols-outlined text-primary text-[20px] leading-6 shrink-0">
+                check_circle
+              </span>
+            )}
+            <span className="font-medium text-sm">{feature.text}</span>
           </li>
         ))}
       </ul>
