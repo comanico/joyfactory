@@ -103,6 +103,17 @@ export function overlaps(aStart: Date, aEnd: Date, bStart: Date, bEnd: Date) {
   return aStart < bEnd && bStart < aEnd;
 }
 
+/** Saturday and Sunday in Bucharest (calendar day from `date`). */
+export function isBucharestWeekend(date: Date): boolean {
+  const iso = toISODateLocal(date);
+  const [y, m, d] = iso.split("-").map(Number);
+  const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+  return dow === 0 || dow === 6;
+}
+
+/** Weekend party start times (Bucharest wall clock). */
+export const WEEKEND_START_TIMES = ["10:00", "17:00"] as const;
+
 export function computeAvailableStartTimes(params: {
   pkg: PackageType;
   date: Date;
@@ -120,18 +131,35 @@ export function computeAvailableStartTimes(params: {
   const dayReservations = reservations.filter((r) => anyReservationTouchesDay([r], date));
 
   const d = bucharestParts(date);
-  const startMs = Date.UTC(d.year, d.month - 1, d.day, openHour, 0, 0, 0);
+  const durationMs = durationHrs * 60 * 60_000;
   const endMs = Date.UTC(d.year, d.month - 1, d.day, closeHour, 0, 0, 0);
 
-  const durationMs = durationHrs * 60 * 60_000;
-  const stepMs = stepMinutes * 60_000;
+  const startHours = isBucharestWeekend(date)
+    ? WEEKEND_START_TIMES.map((t) => Number(t.split(":")[0]))
+    : null;
 
-  for (let tMs = startMs; tMs < endMs; tMs += stepMs) {
+  const hourCandidates =
+    startHours ??
+    (() => {
+      const hours: number[] = [];
+      const stepMs = stepMinutes * 60_000;
+      const startMs = Date.UTC(d.year, d.month - 1, d.day, openHour, 0, 0, 0);
+      for (let tMs = startMs; tMs < endMs; tMs += stepMs) {
+        const slotEndMs = tMs + durationMs;
+        if (slotEndMs > endMs) break;
+        hours.push(new Date(tMs).getUTCHours());
+      }
+      return hours;
+    })();
+
+  for (const hour of hourCandidates) {
+    const tMs = Date.UTC(d.year, d.month - 1, d.day, hour, 0, 0, 0);
     const slotEndMs = tMs + durationMs;
-    if (slotEndMs > endMs) break;
 
-    const t = new Date(tMs);
-    const label = `${pad2(t.getUTCHours())}:${pad2(t.getUTCMinutes())}`;
+    // Weekdays: party + cleaning must finish by close. Weekends allow 17:00 (ends after close).
+    if (!startHours && slotEndMs > endMs) continue;
+
+    const label = `${pad2(hour)}:00`;
     slots.push(label);
 
     const overlapsAny = dayReservations.some((r) => {

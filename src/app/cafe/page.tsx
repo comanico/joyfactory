@@ -24,7 +24,9 @@ export default async function CafePage() {
               {t("cafe.badge")}
             </span>
             <h1 className="text-5xl md:text-7xl font-headline font-extrabold text-primary tracking-tighter mb-6 leading-tight">
-              {t("cafe.heroTitleLine1")}<br/>{t("cafe.heroTitleLine2")}
+              {t("cafe.heroTitleLine1")}
+              <br />
+              {t("cafe.heroTitleLine2")}
             </h1>
             <p className="text-xl text-on-surface-variant max-w-lg leading-relaxed">
               {t("cafe.heroBody")}
@@ -39,13 +41,6 @@ export default async function CafePage() {
                 src={mediaUrl("cafenea.JPG")}
               />
             </div>
-            <div className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-3xl shadow-xl flex items-center gap-4">
-              <span className="material-symbols-outlined text-4xl text-secondary">local_cafe</span>
-              <div>
-                <p className="font-headline font-bold text-xl">{t("cafe.roastedTitle")}</p>
-                <p className="text-on-surface-variant text-sm">{t("cafe.roastedSubtitle")}</p>
-              </div>
-            </div>
           </div>
         </header>
 
@@ -56,19 +51,58 @@ export default async function CafePage() {
       <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-16 py-20 w-full max-w-screen-2xl mx-auto">
           <div className="space-y-6">
-            <div className="text-2xl font-black text-[#63367c] font-headline">FunFactory</div>
+            <div className="text-2xl font-black text-[#63367c] font-headline">
+              FunFactory
+            </div>
             <p className="text-[#0e2000] opacity-80 font-body leading-relaxed max-w-xs">
               {t("cafe.footerAbout")}
             </p>
           </div>
           <div className="space-y-6">
-            <h4 className="font-bold text-[#63367c] font-headline text-lg">{t("cafe.quickLinks")}</h4>
+            <h4 className="font-bold text-[#63367c] font-headline text-lg">
+              {t("cafe.quickLinks")}
+            </h4>
             <ul className="space-y-3 font-body">
-              <li><a href="/" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.playZones")}</a></li>
-              <li><a href="/parties" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.parties")}</a></li>
-              <li><a href="/cafe" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.cafe")}</a></li>
-              <li><a href="/safety" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.safety")}</a></li>
-              <li><a href="/contact" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.contact")}</a></li>
+              <li>
+                <a
+                  href="/"
+                  className="text-[#0e2000] opacity-80 hover:underline"
+                >
+                  {t("nav.playZones")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/parties"
+                  className="text-[#0e2000] opacity-80 hover:underline"
+                >
+                  {t("nav.parties")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/cafe"
+                  className="text-[#0e2000] opacity-80 hover:underline"
+                >
+                  {t("nav.cafe")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/safety"
+                  className="text-[#0e2000] opacity-80 hover:underline"
+                >
+                  {t("nav.safety")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-[#0e2000] opacity-80 hover:underline"
+                >
+                  {t("nav.contact")}
+                </a>
+              </li>
             </ul>
           </div>
         </div>

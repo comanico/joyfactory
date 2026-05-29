@@ -183,7 +183,7 @@ export const resources = {
           "Conceput pentru joacă rafinată. Fiecare zonă este un spațiu atent curatat care îmbină activitatea fizică energică cu descoperirea creativă.",
         infinityTitle: "Piscina infinită cu bile",
         infinityBody:
-          "Un ocean de 50.000 de perle antimicrobiene. Un peisaj senzorial creat pentru plutire și încântare tactilă.",
+          "Un ocean de 50.000 de perle. Un peisaj senzorial creat pentru plutire și încântare tactilă.",
         ages: "Vârste 3+",
         toddlerTitleLine1: "Sanctuar",
         toddlerTitleLine2: "pentru cei mici",
@@ -207,7 +207,7 @@ export const resources = {
           "Consolă, titluri pentru toate vârstele și experiențe VR captivante — joacă solo sau în echipă, sub supravegherea echipei noastre.",
         safetyBannerTitle: "Siguranța pe primul loc, mereu.",
         safetyBannerBody:
-          "Curățat din oră în oră cu dezinfectanți eco-certificați. Supravegheat complet de \"Joy Guides\".",
+          "După fiecare petrecere, zona este curățată și dezinfectată.",
         safetyBannerCta: "Vezi protocolul de siguranță",
       },
       footer: {
@@ -275,7 +275,7 @@ export const resources = {
         heroTitleLine1: "Cafeneaua confortabilă,",
         heroTitleLine2: "unde părinții respiră.",
         heroBody:
-          "Cafea premium, patiserie proaspătă și o priveliște perfectă către zonele de joacă. Relaxează-te cât timp copiii explorează.",
+          "Cafea premium, arome intense și o priveliște perfectă către zonele de joacă. Relaxează-te cât timp copiii explorează.",
         roastedTitle: "Prăjit proaspăt zilnic",
         roastedSubtitle: "Organic • Local • Opțiuni pentru copii",
         menuTitle: "Meniul de azi",
@@ -350,7 +350,7 @@ export const resources = {
             inheritedFromLabel: "Din FUN BASIC",
             plusLabel: "În plus:",
             select: "Alege FUN START",
-            features: ["Meniu pentru copii"],
+            features: ["1 suc, Pizza, Crispy cu cartofi prăjiți, paste, covrigei, sărățele, napolitane"],
           },
           premium: {
             alt: "Petrecere FUN PREMIUM la FunFactory",
@@ -412,7 +412,7 @@ export const resources = {
             },
             pinata: {
               name: "Piñata cu dulciuri",
-              price: "150 lei / 15 copii",
+              price: "150 lei",
             },
             vr: {
               name: "Echipament VR",
@@ -502,20 +502,20 @@ export const resources = {
         staffImg2Alt:
           "Membru al echipei demonstrând o trusă de prim ajutor prietenoasă pentru copii într-o sală de joacă luminoasă",
         faqTitle: "Întrebări frecvente despre siguranță",
-        faqQ1: "Care este limita de vârstă pentru piscina cu bile?",
+        faqQ1: "Care este limita de vârstă pentru spațiul de joacă?",
         faqA1:
-          "Piscina principală este gândită pentru 4–12 ani. Pentru cei mici există o piscină dedicată în zona Toddler, exclusiv sub 3 ani.",
+          "Conceptul a fost gândit pentru copii de la 3 ani. Iar jocurile interactive (ex. arcade, subsoccer, tiroliana) nu au o limită de vârstă.",
         faqQ2: "Cât de des sunt inspectate echipamentele?",
         faqA2:
-          "Siguranța e dinamică! „Joy Guides” fac verificări structurale în fiecare dimineață, iar ingineri certificați efectuează audit complet trimestrial.",
+          "Siguranța este pe primul loc! Personalul face verificări zilnice ale spațiului de joacă, iar periodic se fac inspecții de către personalul calificat.",
         faqQ3: "Sunt permise gustările de acasă?",
         faqA3:
-          "Pentru un mediu sigur pentru alergii, te rugăm să nu aduci mâncare în zonele de joacă. Cafeneaua oferă opțiuni fără nuci, pregătite controlat.",
-        ctaTitle: "Mai ai întrebări?",
+          "Ne dorim să vă oferim cele mai frumoase amintiri, iar dacă asta înseamnă să vă aduceți gustări de acasă, aveți această posibilitate.",
+        ctaTitle: "Contactează-ne",
         ctaBody:
-          "Ofițerii noștri de siguranță sunt disponibili să îți explice protocoalele sau să răspundă preocupărilor specifice.",
+          "Personalul nostru este întotdeanua disponibil să îți explice protocoalele noastre sau să răspundă întrebărilor tale.",
         ctaBook: "Rezervă o sesiune de joacă",
-        ctaContact: "Contactează ofițerul de siguranță",
+        ctaContact: "Mai ai întrebări?",
         footerTagline: "Împuternicim joaca prin siguranță sofisticată.",
         footerContact: "Contact",
         footerPrivacy: "Politica de confidențialitate",
@@ -730,7 +730,7 @@ export const resources = {
           "Designed for sophisticated play. Each zone is a carefully curated environment that balances high-energy physical activity with creative discovery.",
         infinityTitle: "The Infinity Ball Pit",
         infinityBody:
-          "A sea of 50,000 antimicrobial pearls. Dive into a sensory-rich landscape designed for physical buoyancy and tactile delight.",
+          "A sea of 50,000 pearls. Dive into a sensory-rich landscape designed for physical buoyancy and tactile delight.",
         ages: "Ages 3+",
         toddlerTitleLine1: "Toddler",
         toddlerTitleLine2: "Sanctuary",
@@ -754,7 +754,7 @@ export const resources = {
           "Console play, age-appropriate titles, and immersive VR experiences — solo or squad up, with our team keeping every session safe and fun.",
         safetyBannerTitle: "Safety First, Always.",
         safetyBannerBody:
-          "Cleaned hourly with eco-certified sanitizers. Fully supervised by trained 'Joy Guides'.",
+          "After each party, the zone is cleaned and disinfected.",
         safetyBannerCta: "View Safety Protocol",
       },
       footer: {
@@ -896,7 +896,7 @@ export const resources = {
             inheritedFromLabel: "From FUN BASIC",
             plusLabel: "Plus:",
             select: "Choose FUN START",
-            features: ["Kids menu"],
+            features: ["Juice, Pizza, Crispy with fries, pasta, pretzels, salty crackers, wafers"],
           },
           premium: {
             alt: "FUN PREMIUM party at FunFactory",
@@ -958,7 +958,7 @@ export const resources = {
             },
             pinata: {
               name: "Candy piñata",
-              price: "150 RON / 15 children",
+              price: "150 RON",
             },
             vr: {
               name: "VR equipment",
@@ -1046,15 +1046,15 @@ export const resources = {
         staffImg2Alt:
           "Professional staff member demonstrating a child-friendly first aid kit in a bright playroom",
         faqTitle: "Safety FAQ",
-        faqQ1: "What is the age limit for the ball pit?",
+        faqQ1: "What is the age limit for playground?",
         faqA1:
-          "Our main ball pit is designed for ages 4-12. For our smaller guests, we have a dedicated Toddler Zone ball pit that is exclusively for children under 3.",
+          "The concept is designed for children from 3 years old. And the interactive games (e.g. arcade, subsoccer, tiroliana) have no age limit.",
         faqQ2: "How often is the equipment inspected?",
         faqA2:
-          "Safety is dynamic! Our Joy Guides perform structural walk-throughs every morning. Additionally, certified third-party safety engineers perform a full audit every quarter.",
+          "The staff performs daily inspections of the playground, and periodic inspections by qualified staff.",
         faqQ3: "Are snacks from home allowed?",
         faqA3:
-          "To maintain our strict allergy-safe environment, we ask that no outside food be brought into the play areas. Our café offers a range of nut-free, kid-friendly options.",
+          "We want to offer you the most beautiful memories, and if that means bringing snacks from home, you have this option.",
         ctaTitle: "Still have questions?",
         ctaBody:
           "Our Safety Officers are always available to walk you through our protocols or address specific concerns.",
