@@ -350,7 +350,13 @@ export const resources = {
             inheritedFromLabel: "Din FUN BASIC",
             plusLabel: "În plus:",
             select: "Alege FUN START",
-            features: ["1 suc, Pizza, Crispy cu cartofi prăjiți, paste, covrigei, sărățele, napolitane"],
+            features: [
+              "Suc",
+              "Pizza/Crispy cu cartofi prăjiți/Paste",
+              "Covrigei",
+              "Sărățele",
+              "Napolitane",
+            ],
           },
           premium: {
             alt: "Petrecere FUN PREMIUM la FunFactory",
@@ -896,7 +902,13 @@ export const resources = {
             inheritedFromLabel: "From FUN BASIC",
             plusLabel: "Plus:",
             select: "Choose FUN START",
-            features: ["Juice, Pizza, Crispy with fries, pasta, pretzels, salty crackers, wafers"],
+            features: [
+              "Juice",
+              "Pizza/Crispy with fries/Pasta",
+              "Pretzels",
+              "Salty crackers",
+              "Wafers",
+            ],
           },
           premium: {
             alt: "FUN PREMIUM party at FunFactory",
