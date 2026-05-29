@@ -250,7 +250,7 @@ export default function QuickBooking(props: {
             <div>
               <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.firstName")}</label>
               <input
-                className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
+                className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary placeholder:text-on-surface-variant/60"
                 placeholder="Alex"
                 type="text"
                 value={firstName}
@@ -261,7 +261,7 @@ export default function QuickBooking(props: {
             <div>
               <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.lastName")}</label>
               <input
-                className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
+                className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary placeholder:text-on-surface-variant/60"
                 placeholder="Joyner"
                 type="text"
                 value={lastName}
@@ -274,7 +274,7 @@ export default function QuickBooking(props: {
           <div>
             <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.email")}</label>
             <input
-              className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
+              className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary placeholder:text-on-surface-variant/60"
               placeholder="you@email.com"
               type="email"
               value={email}
@@ -286,9 +286,13 @@ export default function QuickBooking(props: {
           <div>
             <label className="block text-sm font-headline font-bold text-on-surface-variant mb-2">{t("booking.phone")}</label>
             <input
-              className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary"
-              placeholder="+1 (555) 123-4567"
-              type="tel"
+              id="booking-phone"
+              name="phone"
+              className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary placeholder:text-on-surface-variant/60"
+              placeholder={t("booking.phoneExample")}
+              type="text"
+              inputMode="tel"
+              autoComplete="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required

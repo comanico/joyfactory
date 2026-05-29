@@ -4,6 +4,7 @@ import { getServerT } from "@/i18n/server";
 import Link from "next/link";
 import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
 import ContactMap from "@/app/components/ContactMap";
+import ContactForm from "@/app/components/ContactForm";
 import { buildPageMetadata } from "@/lib/seo";
 import { mediaUrl } from "@/lib/mediaUrl";
 import ProtectedImage from "@/app/components/ProtectedImage";
@@ -165,72 +166,7 @@ export default async function ContactPage() {
             {/* Inquiry Form */}
             <div className="lg:col-span-7 bg-surface-container-lowest p-10 md:p-16 rounded-xl shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-container opacity-20 rounded-full blur-3xl -mr-16 -mt-16"></div>
-              <form className="space-y-8 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                      {t("booking.firstName")}
-                    </label>
-                    <input
-                      className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
-                      placeholder="Alex"
-                      type="text"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                      {t("booking.lastName")}
-                    </label>
-                    <input
-                      className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
-                      placeholder="Joyner"
-                      type="text"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                    {t("booking.email")}
-                  </label>
-                  <input
-                    className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
-                    placeholder="alex@example.com"
-                    type="email"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                    {t("contactPage.inquiryType", "Tip solicitare")}
-                  </label>
-                  <select className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface appearance-none">
-                    <option>{t("contactPage.inquiry.general", "Întrebare generală")}</option>
-                    <option>{t("contactPage.inquiry.party", "Solicitare rezervare petrecere")}</option>
-                    <option>{t("contactPage.inquiry.group", "Tarife pentru grupuri")}</option>
-                    <option>{t("contactPage.inquiry.safety", "Siguranță & accesibilitate")}</option>
-                    <option>{t("contactPage.inquiry.feedback", "Feedback")}</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-headline font-bold text-on-surface-variant px-1">
-                    {t("contactPage.message", "Mesajul tău")}
-                  </label>
-                  <textarea
-                    className="w-full bg-surface-container-highest border-0 rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
-                    placeholder={t("contactPage.messagePlaceholder", "Cu ce te putem ajuta?")}
-                    rows={4}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-primary text-on-primary font-headline font-bold py-5 rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all"
-                >
-                  {t("contactPage.send", "Trimite solicitarea")}
-                </button>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </section>

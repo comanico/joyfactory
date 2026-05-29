@@ -82,6 +82,7 @@ export const resources = {
         lastName: "Nume",
         email: "Adresă de email",
         phone: "Telefon",
+        phoneExample: "0767 123 456",
         choosePackage: "Alege pachetul",
         selectStartTime: "Alege ora de început",
         selectDateToSeeTimes: "Alege o dată pentru a vedea orele disponibile.",
@@ -446,6 +447,18 @@ export const resources = {
         message: "Mesajul tău",
         messagePlaceholder: "Cu ce te putem ajuta?",
         send: "Trimite solicitarea",
+        sending: "Se trimite…",
+        sendSuccess:
+          "Mulțumim! Mesajul tău a fost trimis. Te contactăm în curând.",
+        phonePlaceholder: "07xx xxx xxx",
+        errors: {
+          emailRequired: "Adresa de email este obligatorie.",
+          phoneRequired: "Numărul de telefon este obligatoriu.",
+          invalidEmail: "Introdu o adresă de email validă.",
+          invalidPhone: "Introdu un număr de telefon valid (minim 8 cifre).",
+          sendFailed:
+            "Nu am putut trimite mesajul. Încearcă din nou sau sună-ne.",
+        },
       },
       safetyPage: {
         promise: "Promisiunea noastră",
@@ -610,6 +623,7 @@ export const resources = {
         lastName: "Last Name",
         email: "Email address",
         phone: "Phone Number",
+        phoneExample: "0767 123 456",
         choosePackage: "Choose Package",
         selectStartTime: "Select Start Time",
         selectDateToSeeTimes: "Select a date to see available start times.",
@@ -972,6 +986,16 @@ export const resources = {
         message: "Your Message",
         messagePlaceholder: "How can we help you today?",
         send: "Send Inquiry",
+        sending: "Sending…",
+        sendSuccess: "Thank you! Your message was sent. We'll get back to you soon.",
+        phonePlaceholder: "07xx xxx xxx",
+        errors: {
+          emailRequired: "Email address is required.",
+          phoneRequired: "Phone number is required.",
+          invalidEmail: "Please enter a valid email address.",
+          invalidPhone: "Please enter a valid phone number (at least 8 digits).",
+          sendFailed: "We couldn't send your message. Please try again or call us.",
+        },
       },
       safetyPage: {
         promise: "Our Promise",

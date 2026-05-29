@@ -1,23 +1,8 @@
 "use server";
 
-import { Resend } from "resend";
 import { ConfirmationEmail } from "../../emails/confirmation";
 import { packageLabel } from "../../lib/packageLabels";
-
-function getResend() {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    throw new Error("RESEND_API_KEY is not set on the server environment.");
-  }
-  return new Resend(key);
-}
-
-function defaultFrom() {
-  return (
-    process.env.RESEND_FROM?.trim() ??
-    "FunFactory Bookings <bookings@fun-factory.ro>"
-  );
-}
+import { defaultFrom, getResend } from "@/lib/resend";
 
 function greetingFromEmail(email: string) {
   const local = email.split("@")[0]?.trim();
