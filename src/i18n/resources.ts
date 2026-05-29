@@ -302,7 +302,7 @@ export const resources = {
         heroTitleLine1: "Petreceri magice,",
         heroTitleLine2: "fără stres.",
         heroBody:
-          "De la disco neon la ceaiuri cozy pentru cei mici, noi facem curățenia — tu creezi amintirile.",
+          "De la mini-discotecă, scena cu lasere și jocuri de lumini, până la baloane de săpun și măști cu personaje, tu te distrezi iar noi îți creăm amintirile.",
         heroCta: "Începe aventura",
         heroAlt:
           "Cameră vibrantă pentru petrecere, cu baloane colorate și masă decorată într-un loc de joacă indoor modern",
@@ -854,7 +854,7 @@ export const resources = {
         heroTitleLine1: "Magical Parties,",
         heroTitleLine2: "Zero Stress.",
         heroBody:
-          "From neon disco bashes to cozy toddler tea parties, we handle the mess while you make the memories.",
+          "From mini-discos, laser stages, light-up games, to bubble balloons and face masks with characters, you have fun while we build your memories.",
         heroCta: "Start Your Adventure",
         heroAlt:
           "Vibrant children's birthday party room with colorful balloons and a decorated table in a modern indoor playground",
