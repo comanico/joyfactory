@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar";
 import Link from "next/link";
 import QuickBooking from "./components/QuickBooking";
 import { getServerT } from "@/i18n/server";
-import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
 import { buildPageMetadata } from "@/lib/seo";
 import { mediaUrl } from "@/lib/mediaUrl";
 import ProtectedImage from "@/app/components/ProtectedImage";
@@ -202,7 +201,6 @@ export default async function Home({
 
       {/* Footer */}
       <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000] font-['Plus_Jakarta_Sans'] leading-relaxed">
-        <FocusNewsletterOnHash />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-16 py-20 w-full">
           <div className="flex flex-col gap-6">
             <div className="text-2xl font-black text-[#63367c]">FunFactory</div>
@@ -246,32 +244,6 @@ export default async function Home({
               >
                 {t("footer.contact")}
               </Link>
-              <Link
-                href="#newsletter"
-                className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all font-bold text-[#63367c]"
-              >
-                {t("footer.newsletter")}
-              </Link>
-            </div>
-
-            <div id="newsletter" className="pt-4">
-              <div className="font-bold text-[#63367c] uppercase tracking-widest text-sm mb-2">
-                {t("footer.stay")}
-              </div>
-              <p className="text-[#0e2000] opacity-80 text-sm mb-3">
-                {t("footer.stayBody")}
-              </p>
-              <div className="flex gap-2">
-                <input
-                  id="newsletter-email"
-                  className="bg-surface-container-lowest border-0 rounded-full px-6 py-3 w-full"
-                  placeholder={t("footer.emailPlaceholder")}
-                  type="email"
-                />
-                <button className="bg-primary text-on-primary px-5 rounded-full font-bold shrink-0">
-                  {t("footer.subscribe")}
-                </button>
-              </div>
             </div>
           </div>
         </div>

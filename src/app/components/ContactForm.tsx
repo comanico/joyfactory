@@ -44,10 +44,6 @@ export default function ContactForm() {
     return opt ? t(opt.key) : t("contactPage.inquiry.general");
   }, [inquiryType, t]);
 
-  const emailOk = email.trim().length > 0 && isValidEmail(email);
-  const phoneOk = phone.trim().length > 0 && isValidPhone(phone);
-  const canSubmit = emailOk && phoneOk && !submitting;
-
   const errorMessage = (code: ContactFormError) => {
     const map: Record<ContactFormError, string> = {
       email_required: t("contactPage.errors.emailRequired"),
@@ -167,6 +163,7 @@ export default function ContactForm() {
             onChange={(e) => {
               setEmail(e.target.value);
               setFieldError(null);
+              setSuccess(false);
             }}
             className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all"
             placeholder="alex@example.com"
@@ -190,6 +187,7 @@ export default function ContactForm() {
             onChange={(e) => {
               setPhone(e.target.value);
               setFieldError(null);
+              setSuccess(false);
             }}
             className="w-full bg-surface-container-highest border-0 rounded-full px-6 py-4 focus:ring-2 focus:ring-primary text-on-surface transition-all placeholder:text-on-surface-variant/60"
             placeholder={t("contactPage.phonePlaceholder")}
@@ -256,7 +254,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={!canSubmit}
+        disabled={submitting}
         className="w-full bg-primary text-on-primary font-headline font-bold py-5 rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
         {submitting ? t("contactPage.sending") : t("contactPage.send")}

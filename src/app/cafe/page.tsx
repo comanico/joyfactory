@@ -54,7 +54,7 @@ export default async function CafePage() {
 
       {/* Footer */}
       <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000]">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-16 py-20 w-full max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-16 py-20 w-full max-w-screen-2xl mx-auto">
           <div className="space-y-6">
             <div className="text-2xl font-black text-[#63367c] font-headline">FunFactory</div>
             <p className="text-[#0e2000] opacity-80 font-body leading-relaxed max-w-xs">
@@ -68,16 +68,8 @@ export default async function CafePage() {
               <li><a href="/parties" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.parties")}</a></li>
               <li><a href="/cafe" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.cafe")}</a></li>
               <li><a href="/safety" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.safety")}</a></li>
+              <li><a href="/contact" className="text-[#0e2000] opacity-80 hover:underline">{t("nav.contact")}</a></li>
             </ul>
-          </div>
-          <div className="space-y-6">
-            <h4 className="font-bold text-[#63367c] font-headline text-lg">{t("cafe.stay")}</h4>
-            <div className="flex gap-2">
-              <input className="bg-surface-container-lowest border-0 rounded-full px-6 py-3 w-full" placeholder={t("cafe.emailPlaceholder")} type="text"/>
-              <button className="bg-primary text-on-primary w-12 h-12 rounded-full flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </div>
           </div>
         </div>
       </footer>

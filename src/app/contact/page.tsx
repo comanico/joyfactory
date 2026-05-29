@@ -2,7 +2,6 @@
 import Navbar from "../components/Navbar";
 import { getServerT } from "@/i18n/server";
 import Link from "next/link";
-import FocusNewsletterOnHash from "@/app/components/FocusNewsletterOnHash";
 import ContactMap from "@/app/components/ContactMap";
 import ContactForm from "@/app/components/ContactForm";
 import { buildPageMetadata } from "@/lib/seo";
@@ -40,11 +39,6 @@ export default async function ContactPage() {
               alt="vibrant indoor playground with soft purple and green climbing structures, sun streaming through large windows, children laughing in the distance"
               src={mediaUrl("imagination.JPG")}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-              <span className="text-white font-headline font-bold text-2xl">
-                The Cloud Climber
-              </span>
-            </div>
           </div>
 
           {/* Tall Image */}
@@ -54,11 +48,6 @@ export default async function ContactPage() {
               alt="close up of a child's hands navigating colorful rounded bouldering grips in a safe, soft-textured indoor climbing area"
               src={mediaUrl("climber.JPG")}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-              <span className="text-white font-headline font-bold text-xl">
-                Tactile Play
-              </span>
-            </div>
           </div>
 
           {/* Wide Image Top */}
@@ -94,11 +83,6 @@ export default async function ContactPage() {
               alt="wide shot of a clean, sophisticated café area for parents overlooking the play zone, soft lighting and premium furniture"
               src={mediaUrl("cloud.JPG")}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-              <span className="text-white font-headline font-bold text-2xl">
-                Sophisticated Joy for Everyone
-              </span>
-            </div>
           </div>
         </section>
 
@@ -174,20 +158,18 @@ export default async function ContactPage() {
 
       {/* Footer (matches the style from your HTML) */}
       <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000]">
-        <FocusNewsletterOnHash />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-16 py-20 w-full max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-16 py-20 w-full max-w-screen-2xl mx-auto">
           <div className="space-y-6">
             <div className="text-2xl font-black text-[#63367c] font-headline">
               FunFactory
             </div>
             <p className="text-[#0e2000] opacity-80 font-body leading-relaxed max-w-xs">
-              Curating elevated play experiences for the next generation of
-              explorers. Where safety meets boundless imagination.
+              {t("footer.about")}
             </p>
           </div>
           <div className="space-y-6">
             <h4 className="font-bold text-[#63367c] font-headline text-lg">
-              Quick Links
+              {t("footer.explore")}
             </h4>
             <ul className="space-y-3 font-body">
               <li>
@@ -195,7 +177,7 @@ export default async function ContactPage() {
                   href="/privacy"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
-                  Privacy Policy
+                  {t("footer.privacy")}
                 </Link>
               </li>
               <li>
@@ -203,7 +185,7 @@ export default async function ContactPage() {
                   href="/terms"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
-                  Terms of Service
+                  {t("footer.terms")}
                 </Link>
               </li>
               <li>
@@ -211,51 +193,15 @@ export default async function ContactPage() {
                   href="/safety"
                   className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
                 >
-                  Safety Rules
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#newsletter"
-                  className="text-[#0e2000] opacity-80 hover:underline decoration-2 transition-all"
-                >
-                  Join Newsletter
+                  {t("footer.safety")}
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="space-y-6">
-            <h4 className="font-bold text-[#63367c] font-headline text-lg">
-              Stay in the Loop
-            </h4>
-            <p className="text-[#0e2000] opacity-80 font-body leading-relaxed">
-              Get exclusive event invites and play tips delivered to your inbox.
-            </p>
-            <div id="newsletter" className="flex gap-2">
-              <input
-                id="newsletter-email"
-                className="bg-surface-container-lowest border-0 rounded-full px-6 py-3 w-full"
-                placeholder="Email Address"
-                type="text"
-              />
-              <button className="bg-primary text-on-primary w-12 h-12 rounded-full flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </div>
-          </div>
         </div>
         <div className="w-full text-center py-8 border-t border-primary/10 mx-auto max-w-screen-xl">
           <p className="text-[#0e2000] opacity-60 text-sm">
-            © 2026 FunFactory. All rights reserved. Designed for Sophisticated
-            Joy.
+            {t("footer.copyright")}
           </p>
         </div>
       </footer>

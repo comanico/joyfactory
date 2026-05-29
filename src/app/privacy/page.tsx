@@ -23,6 +23,21 @@ export default async function PrivacyPage() {
             {t("privacyPage.intro")}
           </p>
 
+          <div className="mt-8 rounded-2xl bg-surface-container-low border border-outline-variant/20 p-6 md:p-8">
+            <h2 className="text-lg font-headline font-extrabold text-on-surface">
+              {t("privacyPage.operator.title")}
+            </h2>
+            <p className="mt-3 font-headline font-bold text-primary">
+              {t("privacyPage.operator.company")}
+            </p>
+            <p className="text-on-surface-variant text-sm mt-1">
+              {t("privacyPage.operator.cuiLabel")} {t("privacyPage.operator.cui")}
+            </p>
+            <p className="text-on-surface-variant mt-4 leading-relaxed">
+              {t("privacyPage.operator.body")}
+            </p>
+          </div>
+
           <div className="mt-12 space-y-10">
             <section>
               <h2 className="text-2xl font-headline font-extrabold text-on-surface">

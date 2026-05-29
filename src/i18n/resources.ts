@@ -219,12 +219,6 @@ export const resources = {
         safety: "Reguli de siguranță",
         connect: "Conectează-te",
         contact: "Contact",
-        newsletter: "Abonează-te la newsletter",
-        stay: "Rămâi la curent",
-        stayBody:
-          "Primește invitații la evenimente și tips & tricks de joacă, direct pe email.",
-        emailPlaceholder: "Adresă de email",
-        subscribe: "Abonează-te",
         copyright:
           "© 2026 FunFactory. Toate drepturile rezervate. Creat pentru bucurie sofisticată.",
       },
@@ -232,11 +226,18 @@ export const resources = {
         title: "Politica de confidențialitate",
         updated: "Ultima actualizare: 5 mai 2026",
         intro:
-          "Respectăm confidențialitatea ta. Această pagină explică ce date colectăm, de ce le folosim și ce opțiuni ai.",
+          "Respectăm confidențialitatea ta. Această politică se aplică site-ului FunFactory și serviciilor oferite de operatorul legal de mai jos.",
+        operator: {
+          title: "Operatorul datelor și al serviciilor",
+          company: "MAVLI JOY S.R.L.",
+          cuiLabel: "Înregistrare (CUI):",
+          cui: "53949481",
+          body: "Site-ul FunFactory, rezervările online și activitățile desfășurate în locație sunt operate de MAVLI JOY S.R.L., înregistrată în România (CUI 53949481).",
+        },
         sections: {
           s1t: "Ce colectăm",
           s1b:
-            "Putem colecta date de contact (ex. email) atunci când faci o rezervare sau te abonezi la newsletter, plus date tehnice minime pentru funcționarea site-ului.",
+            "Putem colecta date de contact (ex. email și telefon) atunci când faci o rezervare sau trimiți formularul de contact, plus date tehnice minime pentru funcționarea site-ului.",
           s2t: "Cum folosim datele",
           s2b:
             "Folosim datele pentru a confirma rezervări, a trimite comunicări relevante (ex. confirmări), a îmbunătăți experiența și pentru obligații legale.",
@@ -249,7 +250,14 @@ export const resources = {
         title: "Termeni și condiții",
         updated: "Ultima actualizare: 5 mai 2026",
         intro:
-          "Prin utilizarea FunFactory, ești de acord cu termenii de mai jos. Aceștia descriu regulile de utilizare și condițiile de rezervare.",
+          "Prin utilizarea site-ului FunFactory și a serviciilor noastre, ești de acord cu termenii de mai jos. Aceștia descriu regulile de utilizare și condițiile de rezervare.",
+        operator: {
+          title: "Furnizorul serviciilor",
+          company: "MAVLI JOY S.R.L.",
+          cuiLabel: "Înregistrare (CUI):",
+          cui: "53949481",
+          body: "Serviciile FunFactory (loc de joacă, petreceri, rezervări online) sunt furnizate de MAVLI JOY S.R.L., societate înregistrată în România (CUI 53949481).",
+        },
         sections: {
           s1t: "Rezervări și plăți",
           s1b:
@@ -288,8 +296,6 @@ export const resources = {
         footerAbout:
           "Creăm experiențe de joacă premium pentru următoarea generație de exploratori.",
         quickLinks: "Linkuri rapide",
-        stay: "Rămâi la curent",
-        emailPlaceholder: "Adresă de email",
       },
       parties: {
         badge: "Sărbătorește cu noi",
@@ -760,11 +766,6 @@ export const resources = {
         safety: "Safety Rules",
         connect: "Connect",
         contact: "Contact Us",
-        newsletter: "Join Newsletter",
-        stay: "Stay in the Loop",
-        stayBody: "Get exclusive event invites and play tips delivered to your inbox.",
-        emailPlaceholder: "Email Address",
-        subscribe: "Subscribe",
         copyright:
           "© 2026 FunFactory. All rights reserved. Designed for Sophisticated Joy.",
       },
@@ -772,11 +773,18 @@ export const resources = {
         title: "Privacy Policy",
         updated: "Last updated: May 5, 2026",
         intro:
-          "We respect your privacy. This page explains what data we collect, why we use it, and the choices you have.",
+          "We respect your privacy. This policy applies to the FunFactory website and services provided by the legal operator identified below.",
+        operator: {
+          title: "Data controller and service operator",
+          company: "MAVLI JOY S.R.L.",
+          cuiLabel: "Registration (CUI):",
+          cui: "53949481",
+          body: "The FunFactory website, online bookings, and on-site activities are operated by MAVLI JOY S.R.L., registered in Romania (CUI 53949481).",
+        },
         sections: {
           s1t: "What we collect",
           s1b:
-            "We may collect contact details (e.g. email) when you book or join the newsletter, plus minimal technical data needed to operate the site.",
+            "We may collect contact details (e.g. email and phone) when you book or use the contact form, plus minimal technical data needed to operate the site.",
           s2t: "How we use data",
           s2b:
             "We use data to confirm reservations, send relevant communications (e.g. confirmations), improve the experience, and meet legal obligations.",
@@ -789,7 +797,14 @@ export const resources = {
         title: "Terms of Service",
         updated: "Last updated: May 5, 2026",
         intro:
-          "By using FunFactory, you agree to the terms below. They describe usage rules and booking conditions.",
+          "By using the FunFactory website and our services, you agree to the terms below. They describe usage rules and booking conditions.",
+        operator: {
+          title: "Service provider",
+          company: "MAVLI JOY S.R.L.",
+          cuiLabel: "Registration (CUI):",
+          cui: "53949481",
+          body: "FunFactory services (play center, parties, online booking) are provided by MAVLI JOY S.R.L., a company registered in Romania (CUI 53949481).",
+        },
         sections: {
           s1t: "Bookings and payments",
           s1b:
@@ -827,8 +842,6 @@ export const resources = {
         footerAbout:
           "Curating elevated play experiences for the next generation of explorers.",
         quickLinks: "Quick Links",
-        stay: "Stay in the Loop",
-        emailPlaceholder: "Email Address",
       },
       parties: {
         badge: "Celebrate with Us",
