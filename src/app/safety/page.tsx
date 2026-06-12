@@ -146,7 +146,7 @@ export default async function SafetyPage() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full rounded-t-[3rem] mt-12 bg-[#63367c] dark:bg-[#1a0029] shadow-2xl">
+      <footer className="w-full rounded-t-[3rem] mt-12 bg-[#63367c] shadow-2xl">
         <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-7xl mx-auto">
           <div className="mb-8 md:mb-0">
             <div className="text-xl font-bold text-white mb-2">FunFactory</div>

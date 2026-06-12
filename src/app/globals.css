@@ -1,6 +1,9 @@
 /* app/globals.css */
 @import "tailwindcss";
 
+/* Dark mode only when `.dark` is set — site always uses light theme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Colors - exact match from your original HTML */
   --color-on-secondary-container: #006b76;
@@ -72,6 +75,11 @@
 
   :root {
     font-family: var(--font-family-body);
+    color-scheme: light only;
+  }
+
+  html {
+    color-scheme: light only;
   }
   .font-headline {
     font-family: var(--font-family-headline);
@@ -89,11 +97,6 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 2rem;
-}
-
-/* Optional: make sure dark mode works the same */
-.dark {
-  color-scheme: dark;
 }
 
 /* Vanilla Calendar Pro theme tweaks (FunFactory colors) */

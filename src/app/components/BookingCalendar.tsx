@@ -73,15 +73,10 @@ export default function BookingCalendar({
   const calendarRef = useRef<Calendar | null>(null);
   const onChangeRef = useRef(onChange);
   const disabledDatesRef = useRef<string[]>([]);
-  const packageTypeRef = useRef<PackageType>(packageType);
 
   useEffect(() => {
     onChangeRef.current = onChange;
   }, [onChange]);
-
-  useEffect(() => {
-    packageTypeRef.current = packageType;
-  }, [packageType]);
 
   const disabledDates = useMemo(
     () => {
@@ -111,17 +106,6 @@ export default function BookingCalendar({
       selectedTheme: "light",
       onCreateDateEls(self, dateEl) {
         dateEl.classList.add("jf-cal-day");
-
-        // Make VIP-disabled dates feel "hard disabled" visually.
-        if (packageTypeRef.current === "vip") {
-          const d = getIsoDateFromEl(dateEl);
-          if (d && disabledDatesRef.current.includes(d)) {
-            dateEl.setAttribute(
-              "title",
-              "Unavailable (VIP requires whole-day exclusivity)",
-            );
-          }
-        }
       },
       onClickDate(self, event) {
         const target = event.target as HTMLElement | null;

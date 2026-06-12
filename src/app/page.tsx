@@ -123,9 +123,6 @@ export default async function Home({
               <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">
                 {t("home.jungleTag1")}
               </span>
-              <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">
-                {t("home.jungleTag2")}
-              </span>
             </div>
           </div>
 
@@ -200,7 +197,7 @@ export default async function Home({
       </main>
 
       {/* Footer */}
-      <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000] font-['Plus_Jakarta_Sans'] leading-relaxed">
+      <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] font-['Plus_Jakarta_Sans'] leading-relaxed">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-16 py-20 w-full">
           <div className="flex flex-col gap-6">
             <div className="text-2xl font-black text-[#63367c]">FunFactory</div>

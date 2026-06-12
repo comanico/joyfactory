@@ -2,14 +2,14 @@
 
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { PACKAGE_TYPES, type PackageType } from "@/lib/packages";
+import { BOOKABLE_PACKAGES, type PackageType } from "@/lib/packages";
 
 const NO_MENU_FEATURE_MARKER = "__no_menu__";
 
 export function PackageTypeButtons({
   packageType,
   onSelect,
-  className = "grid grid-cols-2 sm:grid-cols-4 gap-2",
+  className = "grid grid-cols-2 gap-2",
 }: {
   packageType: PackageType;
   onSelect: (pkg: PackageType) => void;
@@ -19,7 +19,7 @@ export function PackageTypeButtons({
 
   return (
     <div className={className}>
-      {PACKAGE_TYPES.map((pkg) => (
+      {BOOKABLE_PACKAGES.map((pkg) => (
         <button
           key={pkg}
           type="button"

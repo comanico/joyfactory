@@ -19,12 +19,12 @@ export const resources = {
           home: {
             title: `${BRAND} — Zone de joacă & petreceri pentru copii`,
             description:
-              "Descoperă FunFactory: piscină cu bile, cățărare, petreceri FUN BASIC–VIP și rezervare online. Joacă sigură și distracție pentru întreaga familie.",
+              "Descoperă FunFactory: piscină cu bile, cățărare, petreceri Pachet 1–VIP și rezervare online. Joacă sigură și distracție pentru întreaga familie.",
           },
-          parties: {
-            title: `Petreceri copii — Pachete FUN BASIC, START, PREMIUM & VIP`,
+          packages: {
+            title: `Pachete petreceri copii — Pachet 1 & 2`,
             description:
-              "Organizează petrecerea perfectă la FunFactory: pachete de la 1000 LEI, meniu pentru copii, gazdă dedicată, VR și experiențe VIP. Rezervă acum.",
+              "Alege pachetul potrivit la FunFactory: Pachet 1 de la 1000 LEI, Pachet 2 cu meniu pentru copii, gazdă dedicată și multe extra. Rezervă acum.",
           },
           cafe: {
             title: `Cafenea ${BRAND} — Cafea & gustări cu vedere la zona de joacă`,
@@ -60,7 +60,7 @@ export const resources = {
       },
       nav: {
         playZones: "Zone de joacă",
-        parties: "Petreceri",
+        packages: "Pachete",
         cafe: "Cafenea",
         safety: "Siguranță",
         contact: "Contact",
@@ -68,8 +68,8 @@ export const resources = {
         language: "Limbă",
       },
       packages: {
-        basic: "FUN BASIC",
-        start: "FUN START",
+        basic: "PACHET 1",
+        start: "PACHET 2",
         premium: "FUN PREMIUM",
         vip: "FUN VIP EXPERIENCE",
       },
@@ -196,7 +196,6 @@ export const resources = {
           "Zbor deasupra zonei de joacă pe o tiroliană de 8 metri — senzație de viteză, cu ham și supraveghere din partea echipei.",
         jungleAlt: "Copii pe tiroliană în zona de joacă FunFactory",
         jungleTag1: "8 metri",
-        jungleTag2: "Cu ham de siguranță",
         climbTitleLine1: "Cățărare",
         climbTitleLine2: "la înălțime",
         climbBody:
@@ -309,30 +308,30 @@ export const resources = {
         topRated: "Locație de top!",
         chooseTitle: "Alege-ți sărbătoarea",
         chooseBody:
-          "Patru pachete de petrecere — de la joacă pură la experiența VIP completă.",
+          "Două pachete de petrecere — de la joacă cu mâncare adusă de acasă la meniu copii inclus.",
         mostPopular: "CEL MAI POPULAR",
-        noMenuFeature: "FĂRĂ MENIU (poți aduce mâncare și snackuri!)",
+        noMenuFeature:
+          "FĂRĂ MENIU (Ai libertatea de a aduce mâncarea și snack-urile tale de acasă/catering).",
         packages: {
           basic: {
-            alt: "Petrecere FUN BASIC la FunFactory",
+            alt: "Petrecere Pachet 1 la FunFactory",
             price: "1000 LEI",
-            priceMeta: "/ 15-20 copii",
+            priceMeta: "Pentru 15-20 copii",
             duration: "3 ore de petrecere + 1 oră GRATIS",
             blurb:
-              "Spațiu exclusiv, zonă modulară completă și libertatea de a aduce propria mâncare.",
-            includesLabel: "Include:",
-            select: "Alege FUN BASIC",
+              "Spațiu exclusiv, zone de joacă complete. Fără meniu — aduceți mâncare de acasă sau catering.",
+            includesLabel: "Ce include Pachetul 1:",
+            select: "Alege PACHET 1",
             features: [
               "Spațiu exclusiv pentru petrecere",
               "Invitație digitală personalizată",
-              "Zonă modulară 60 mp (piscină și fântână de bile, panou interactiv, panouri de cățărare, tobogane LED)",
-              "Tiroliană 8 m",
+              "Zonă modulară de 60 mp (piscină și fântână de bile, panou interactiv, panouri de cățărare, tobogane LED)",
+              "Tiroliană de 8 m",
               "Joc arcade interactiv",
-              "PS4",
-              "Subsoccer & masă de fotbal (NOU)",
-              "Jocuri și jucării (bucătărie, supermarket, căsuță de păpuși cu accesorii, banc de scule, zonă construcții Lego Duplo, cuburi)",
-              "Accesorii petrecere bază",
-              "Cifră aniversară • Baloane",
+              "Consolă PS4",
+              "Subsoccer & masă de fotbal (Nou!)",
+              "Jocuri și jucării (bucătărie, supermarket, căsuță de păpuși cu accesorii, banc de scule, zonă de construcții cu Lego Duplo și cuburi)",
+              "Accesorii de bază pentru petrecere, cifră aniversară, baloane",
               "Baloane de săpun",
               "Mini-discotecă (muzică distractivă și jocuri de lumini)",
               "Apă nelimitată",
@@ -340,19 +339,18 @@ export const resources = {
             ],
           },
           start: {
-            alt: "Petrecere FUN START la FunFactory",
+            alt: "Petrecere Pachet 2 la FunFactory",
             price: "1350 LEI",
-            priceMeta: "/ 10 copii",
+            priceMeta: "Pentru 10 copii",
             duration: "3 ore de petrecere + 1 oră GRATIS",
             blurb:
-              "Toate facilitățile de joacă din FUN BASIC, plus meniu pentru copii.",
-            includesLabel: "Include:",
-            inheritedFromLabel: "Din FUN BASIC",
-            plusLabel: "În plus:",
-            select: "Alege FUN START",
+              "Tot ce include Pachetul 1 (spațiu exclusiv, zone de joacă, tiroliană, PS4, Subsoccer, jucării, mini-discotecă, apă nelimitată), plus meniu copii inclus.",
+            includesLabel: "Ce include Pachetul 2:",
+            inheritedFromLabel: "Din PACHET 1",
+            plusLabel: "Catering copii inclus:",
+            select: "Alege PACHET 2",
             features: [
-              "Suc",
-              "Pizza/Crispy cu cartofi prăjiți/Paste",
+              "1 suc (un suc pentru fiecare copil)",
               "Covrigei",
               "Sărățele",
               "Napolitane",
@@ -364,9 +362,9 @@ export const resources = {
             priceMeta: "/ 15 copii",
             duration: "3 ore de petrecere + 1 oră GRATIS",
             blurb:
-              "Tot ce include FUN START, plus gazdă dedicată, VR și surprize premium.",
+              "Tot ce include Pachetul 2, plus gazdă dedicată, VR și surprize premium.",
             includesLabel: "Include:",
-            inheritedFromLabel: "Din FUN START",
+            inheritedFromLabel: "Din PACHET 2",
             plusLabel: "În plus:",
             select: "Alege FUN PREMIUM",
             features: [
@@ -397,6 +395,16 @@ export const resources = {
               "Două pizza family pentru părinți",
             ],
           },
+        },
+        includedInAll: {
+          title: "Ce este inclus în ambele pachete (indiferent de alegere):",
+          intro: "La baza fiecărei petreceri, beneficiezi implicit de:",
+          items: [
+            "Spațiu exclusiv și gazdă dedicată.",
+            "Baloane și accesorii de petrecere.",
+            "Apă nelimitată.",
+            "Mini-discotecă cu jocuri de lumini și baloane de săpun.",
+          ],
         },
         extras: {
           title: "Opțiuni disponibile (pentru toate pachetele)",
@@ -572,12 +580,12 @@ export const resources = {
           home: {
             title: `${BRAND} — Play zones & kids parties`,
             description:
-              "Discover FunFactory: ball pit, climbing, FUN BASIC–VIP party packages, and online booking. Safe play and joy for the whole family.",
+              "Discover FunFactory: ball pit, climbing, Package 1–VIP party packages, and online booking. Safe play and joy for the whole family.",
           },
-          parties: {
-            title: `Kids parties — FUN BASIC, START, PREMIUM & VIP packages`,
+          packages: {
+            title: `Kids party packages — Package 1 & 2`,
             description:
-              "Host the perfect party at FunFactory: packages from 1000 RON, kids menu, dedicated host, VR, and VIP experiences. Book now.",
+              "Choose the right package at FunFactory: Package 1 from 1000 RON, Package 2 with kids menu, dedicated host, and optional add-ons. Book now.",
           },
           cafe: {
             title: `${BRAND} Café — Coffee & treats with a view of play zones`,
@@ -613,7 +621,7 @@ export const resources = {
       },
       nav: {
         playZones: "Play Zones",
-        parties: "Parties",
+        packages: "Packages",
         cafe: "Café",
         safety: "Safety",
         contact: "Contact",
@@ -621,8 +629,8 @@ export const resources = {
         language: "Language",
       },
       packages: {
-        basic: "FUN BASIC",
-        start: "FUN START",
+        basic: "PACKAGE 1",
+        start: "PACKAGE 2",
         premium: "FUN PREMIUM",
         vip: "FUN VIP EXPERIENCE",
       },
@@ -749,7 +757,6 @@ export const resources = {
           "Soar above the play floor on an 8-meter zip line — a rush of speed with a safety harness and staff supervision.",
         jungleAlt: "Children on the zip line in the FunFactory play zone",
         jungleTag1: "8 meters",
-        jungleTag2: "Safety harness",
         climbTitleLine1: "Sky-High",
         climbTitleLine2: "Climbing",
         climbBody:
@@ -861,30 +868,30 @@ export const resources = {
         topRated: "Top Rated Venue!",
         chooseTitle: "Choose Your Celebration",
         chooseBody:
-          "Four party packages — from pure play to the full VIP experience.",
+          "Two party packages — from bring-your-own food to an included kids menu.",
         mostPopular: "MOST POPULAR",
-        noMenuFeature: "NO MENU (you may bring food and snacks!)",
+        noMenuFeature:
+          "NO MENU (You're free to bring your own food and snacks from home or catering).",
         packages: {
           basic: {
-            alt: "FUN BASIC party at FunFactory",
+            alt: "Package 1 party at FunFactory",
             price: "1000 RON",
-            priceMeta: "/ 15-20 children",
+            priceMeta: "For 15-20 children",
             duration: "3 hours of party + 1 hour FREE",
             blurb:
-              "Exclusive space, full modular play zone, and freedom to bring your own food.",
-            includesLabel: "Includes:",
-            select: "Choose FUN BASIC",
+              "Exclusive space and full play zones. No menu — bring your own food or catering.",
+            includesLabel: "Package 1 includes:",
+            select: "Choose PACKAGE 1",
             features: [
               "Exclusive party space",
               "Personalized digital invitation",
               "60 sqm modular zone (ball pit & fountain, interactive panel, climbing walls, LED slides)",
               "8 m zip line",
               "Interactive arcade game",
-              "PS4",
-              "Subsoccer & foosball table (NEW)",
+              "PS4 console",
+              "Subsoccer & foosball table (New!)",
               "Games & toys (kitchen, supermarket, dollhouse with accessories, tool bench, Lego Duplo building zone, blocks)",
-              "Basic party accessories",
-              "Birthday number • Balloons",
+              "Basic party accessories, birthday number, balloons",
               "Bubble balloons",
               "Mini disco (fun music & light games)",
               "Unlimited water",
@@ -892,19 +899,18 @@ export const resources = {
             ],
           },
           start: {
-            alt: "FUN START party at FunFactory",
+            alt: "Package 2 party at FunFactory",
             price: "1350 RON",
-            priceMeta: "/ 10 children",
+            priceMeta: "For 10 children",
             duration: "3 hours of party + 1 hour FREE",
             blurb:
-              "All FUN BASIC play facilities, plus a kids menu.",
-            includesLabel: "Includes:",
-            inheritedFromLabel: "From FUN BASIC",
-            plusLabel: "Plus:",
-            select: "Choose FUN START",
+              "Everything in Package 1 (exclusive space, play zones, zip line, PS4, Subsoccer, toys, mini disco, unlimited water), plus kids menu included.",
+            includesLabel: "Package 2 includes:",
+            inheritedFromLabel: "From PACKAGE 1",
+            plusLabel: "Kids catering included:",
+            select: "Choose PACKAGE 2",
             features: [
-              "Juice",
-              "Pizza/Crispy with fries/Pasta",
+              "1 juice (one juice per child)",
               "Pretzels",
               "Salty crackers",
               "Wafers",
@@ -916,9 +922,9 @@ export const resources = {
             priceMeta: "/ 15 children",
             duration: "3 hours of party + 1 hour FREE",
             blurb:
-              "Everything in FUN START, plus a dedicated host, VR, and premium extras.",
+              "Everything in Package 2, plus a dedicated host, VR, and premium extras.",
             includesLabel: "Includes:",
-            inheritedFromLabel: "From FUN START",
+            inheritedFromLabel: "From PACKAGE 2",
             plusLabel: "Plus:",
             select: "Choose FUN PREMIUM",
             features: [
@@ -949,6 +955,16 @@ export const resources = {
               "Two family pizzas for parents",
             ],
           },
+        },
+        includedInAll: {
+          title: "Included in both packages (whatever you choose):",
+          intro: "Every party includes by default:",
+          items: [
+            "Exclusive space and a dedicated host.",
+            "Balloons and party accessories.",
+            "Unlimited water.",
+            "Mini disco with light games and bubble balloons.",
+          ],
         },
         extras: {
           title: "Available add-ons (for all packages)",

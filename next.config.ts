@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/parties",
+        destination: "/packages",
+        permanent: true,
+      },
+      {
         source:
           "/:file((?!media/)[^/]+\\.(?:jpg|jpeg|JPG|png|webp|gif|GIF))",
         destination: "/404",

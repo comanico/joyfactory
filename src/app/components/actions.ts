@@ -9,6 +9,7 @@ import {
   computeAvailableStartTimes,
 } from './bookingAvailability';
 import {
+  isBookablePackage,
   isPackageType,
   packageGuestCount,
   packagePartyDurationHours,
@@ -141,6 +142,9 @@ export async function createPaymentIntent(data: {
 
   if (!isPackageType(data.packageType)) {
     throw new Error("Invalid package selection.");
+  }
+  if (!isBookablePackage(data.packageType)) {
+    throw new Error("This package is no longer available for online booking.");
   }
 
   const quote = await fetchPackageDepositQuote(stripe, data.packageType);

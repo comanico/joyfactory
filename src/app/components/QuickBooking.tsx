@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 import type { Reservation } from './bookingAvailability';
 import { computeAvailableStartTimes, toISODateLocal } from './bookingAvailability';
 import {
-  isPackageType,
+  isBookablePackage,
   type PackageType,
 } from '@/lib/packages';
 import {
@@ -81,7 +81,7 @@ export default function QuickBooking(props: {
     const dateISO = props.initialDateISO;
     const time = props.initialTime;
 
-    if (isPackageType(pkg)) {
+    if (isBookablePackage(pkg)) {
       setPackageType(pkg);
     }
 

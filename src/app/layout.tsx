@@ -22,6 +22,7 @@ export default async function RootLayout({
   return (
     <html lang={lang} className="light">
       <head>
+        <meta name="color-scheme" content="light" />
         <link
           rel="icon"
           type="image/svg+xml"

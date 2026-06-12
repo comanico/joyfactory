@@ -7,7 +7,7 @@ const OG_IMAGE_PATH = "/FunFactory%20Logo%20SVG.svg";
 
 export type SeoPageKey =
   | "home"
-  | "parties"
+  | "packages"
   | "cafe"
   | "safety"
   | "contact"
@@ -149,7 +149,7 @@ export async function getRootMetadata(): Promise<Metadata> {
 /** Paths included in sitemap.xml */
 export const PUBLIC_SITEMAP_PATHS = [
   "/",
-  "/parties",
+  "/packages",
   "/cafe",
   "/safety",
   "/contact",

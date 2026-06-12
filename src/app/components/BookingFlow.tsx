@@ -3,15 +3,12 @@
 import { useEffect, useMemo, useState } from "react";
 import BookingCalendar from "./BookingCalendar";
 import type { PackageType, Reservation } from "./bookingAvailability";
-import {
-  anyReservationTouchesDay,
-  computeAvailableStartTimes,
-} from "./bookingAvailability";
+import { computeAvailableStartTimes } from "./bookingAvailability";
 import { getReservations } from "./actions";
 import { formatBucharestDate } from "../../../lib/bucharestTime";
 
 export default function BookingFlow() {
-  const [packageType, setPackageType] = useState<PackageType>("premium");
+  const [packageType, setPackageType] = useState<PackageType>("basic");
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<string | null>(null);
 
@@ -37,11 +34,6 @@ export default function BookingFlow() {
     };
   }, []);
 
-  const vipDayTaken = useMemo(() => {
-    if (!date) return false;
-    return anyReservationTouchesDay(reservations, date);
-  }, [date, reservations]);
-
   const slotInfo = useMemo(() => {
     if (!date) return null;
     return computeAvailableStartTimes({
@@ -66,13 +58,11 @@ export default function BookingFlow() {
               Pick your package &amp; date
             </h3>
             <p className="text-on-surface-variant max-w-xl">
-              VIP blocks entire days that already have any reservation. Basic &amp;
-              Premium keep all future dates selectable, but disable already-booked
-              time slots.
+              Choose Package 1 or Package 2, then pick an available date and start time.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <button
               type="button"
               onClick={() => {
@@ -86,42 +76,25 @@ export default function BookingFlow() {
                   : "bg-surface-container-lowest border-outline-variant/20 hover:bg-surface-container",
               ].join(" ")}
             >
-              <div className="font-headline font-extrabold">Basic</div>
-              <div className="text-sm opacity-80">2 hours</div>
+              <div className="font-headline font-extrabold">Package 1</div>
+              <div className="text-sm opacity-80">3 hours</div>
             </button>
 
             <button
               type="button"
               onClick={() => {
-                setPackageType("premium");
+                setPackageType("start");
                 setTime(null);
               }}
               className={[
                 "rounded-2xl px-5 py-4 text-left border transition-colors",
-                packageType === "premium"
+                packageType === "start"
                   ? "bg-primary text-on-primary border-primary"
                   : "bg-surface-container-lowest border-outline-variant/20 hover:bg-surface-container",
               ].join(" ")}
             >
-              <div className="font-headline font-extrabold">Premium</div>
-              <div className="text-sm opacity-80">4 hours</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                setPackageType("vip");
-                setTime(null);
-              }}
-              className={[
-                "rounded-2xl px-5 py-4 text-left border transition-colors",
-                packageType === "vip"
-                  ? "bg-primary text-on-primary border-primary"
-                  : "bg-surface-container-lowest border-outline-variant/20 hover:bg-surface-container",
-              ].join(" ")}
-            >
-              <div className="font-headline font-extrabold">VIP</div>
-              <div className="text-sm opacity-80">Whole day</div>
+              <div className="font-headline font-extrabold">Package 2</div>
+              <div className="text-sm opacity-80">3 hours + kids menu</div>
             </button>
           </div>
 
@@ -146,22 +119,6 @@ export default function BookingFlow() {
               <p className="text-on-surface-variant">
                 Select a date to see available hours.
               </p>
-            ) : packageType === "vip" ? (
-              <div className="space-y-2">
-                <p className="text-on-surface-variant">
-                  VIP requires exclusive access for the whole day.
-                </p>
-                <div
-                  className={[
-                    "rounded-2xl px-4 py-3 text-sm font-medium",
-                    vipDayTaken
-                      ? "bg-error-container text-on-error-container"
-                      : "bg-secondary-container text-on-secondary-container",
-                  ].join(" ")}
-                >
-                  {vipDayTaken ? "Unavailable (already booked)" : "Available"}
-                </div>
-              </div>
             ) : (
               <div className="space-y-3">
                 <p className="text-on-surface-variant text-sm">
@@ -217,13 +174,13 @@ export default function BookingFlow() {
                 <span className="font-headline font-bold text-on-surface">
                   Time:
                 </span>{" "}
-                {packageType === "vip" ? "— (whole day)" : time || "—"}
+                {time || "—"}
               </div>
             </div>
 
             <button
               type="button"
-              disabled={!date || (packageType !== "vip" && !time)}
+              disabled={!date || !time}
               className="mt-6 w-full bg-tertiary text-on-tertiary font-headline font-bold py-4 rounded-2xl shadow-lg disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-xl transition-all"
             >
               Continue to details
@@ -234,4 +191,3 @@ export default function BookingFlow() {
     </section>
   );
 }
-

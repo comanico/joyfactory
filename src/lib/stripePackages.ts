@@ -1,16 +1,14 @@
 import type Stripe from "stripe";
 import {
-  PACKAGE_TYPES,
+  BOOKABLE_PACKAGES,
   resolveStripePriceId,
   type PackageType,
 } from "@/lib/packages";
 
 /** Expected `package_key` on each Stripe Product (for validation only). */
 export const STRIPE_PACKAGE_KEYS: Record<PackageType, string> = {
-  basic: "fun_basic",
-  start: "fun_start",
-  premium: "fun_premium",
-  vip: "fun_vip",
+  basic: "fun_package_1",
+  start: "fun_package_2",
 };
 
 export type PackageDepositQuote = {
@@ -92,7 +90,7 @@ export async function fetchAllPackageDepositQuotes(
   stripe: Stripe,
 ): Promise<Record<PackageType, PackageDepositQuote>> {
   const entries = await Promise.all(
-    PACKAGE_TYPES.map(async (pkg) => {
+    BOOKABLE_PACKAGES.map(async (pkg) => {
       const quote = await fetchPackageDepositQuote(stripe, pkg);
       return [pkg, quote] as const;
     }),

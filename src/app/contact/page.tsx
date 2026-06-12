@@ -157,7 +157,7 @@ export default async function ContactPage() {
       </main>
 
       {/* Footer (matches the style from your HTML) */}
-      <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6] dark:bg-[#0e2000]">
+      <footer className="w-full rounded-t-[3rem] mt-20 bg-[#dbffb6]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-16 py-20 w-full max-w-screen-2xl mx-auto">
           <div className="space-y-6">
             <div className="text-2xl font-black text-[#63367c] font-headline">

@@ -1,7 +1,21 @@
-export const PACKAGE_TYPES = ["basic", "start", "premium", "vip"] as const;
+export const PACKAGE_TYPES = ["basic", "start"] as const;
 export type PackageType = (typeof PACKAGE_TYPES)[number];
 
-/** Display order for tier upgrades on the parties page. */
+/** Packages shown on the /packages page and homepage booking. */
+export const PARTIES_PAGE_PACKAGES = PACKAGE_TYPES;
+
+/** Alias for packages customers can book online. */
+export const BOOKABLE_PACKAGES = PACKAGE_TYPES;
+
+export type BookablePackageType = PackageType;
+
+export function isBookablePackage(
+  value: string | undefined | null,
+): value is BookablePackageType {
+  return (BOOKABLE_PACKAGES as readonly string[]).includes(value ?? "");
+}
+
+/** Display order for tier upgrades on the packages page. */
 export const PACKAGE_TIER_ORDER: PackageType[] = [...PACKAGE_TYPES];
 
 export function isPackageType(value: string | undefined | null): value is PackageType {
@@ -35,44 +49,35 @@ export function packageGuestCount(pkg: PackageType): number {
       return 15;
     case "start":
       return 10;
-    case "premium":
-      return 15;
-    case "vip":
-      return 20;
   }
 }
 
-export function stripePriceEnvKey(pkg: PackageType): string {
+/** Env var names for Stripe Price IDs (new names first, legacy fallbacks). */
+export function stripePriceEnvKeys(pkg: PackageType): readonly string[] {
   switch (pkg) {
     case "basic":
-      return "STRIPE_PRICE_BASIC";
+      return ["STRIPE_PRICE_PACKAGE_1", "STRIPE_PRICE_BASIC"];
     case "start":
-      return "STRIPE_PRICE_START";
-    case "premium":
-      return "STRIPE_PRICE_PREMIUM";
-    case "vip":
-      return "STRIPE_PRICE_VIP";
+      return ["STRIPE_PRICE_PACKAGE_2", "STRIPE_PRICE_START"];
   }
 }
 
 export function resolveStripePriceId(pkg: PackageType): string {
-  const key = stripePriceEnvKey(pkg);
-  const id = process.env[key]?.trim();
-  if (!id) {
-    throw new Error(`Missing ${key} for package "${pkg}".`);
+  for (const key of stripePriceEnvKeys(pkg)) {
+    const id = process.env[key]?.trim();
+    if (id) return id;
   }
-  return id;
+  const keys = stripePriceEnvKeys(pkg).join(" or ");
+  throw new Error(`Missing ${keys} for package "${pkg}".`);
 }
 
-/** Highlighted tier on the parties page. */
-export const FEATURED_PACKAGE: PackageType = "premium";
+/** Highlighted tier on the packages page. */
+export const FEATURED_PACKAGE: PackageType = "start";
 
 /** 10% deposit in RON (fallback when Stripe metadata is unavailable). */
 export const PACKAGE_DEPOSIT_LEI: Record<PackageType, number> = {
   basic: 100,
   start: 135,
-  premium: 185,
-  vip: 260,
 };
 
 export function formatDepositForButton(lei: number): string {

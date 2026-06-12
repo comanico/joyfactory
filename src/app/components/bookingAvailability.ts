@@ -78,25 +78,10 @@ export function anyReservationTouchesDay(reservations: Reservation[], day: Date)
 
 /** Legacy VIP bookings may still block whole days on the calendar. */
 export function computeDisabledDatesForPackage(
-  pkg: PackageType,
-  reservations: Reservation[],
+  _pkg: PackageType,
+  _reservations: Reservation[],
 ) {
-  if (pkg !== "vip") return [];
-
-  const disabled = new Set<string>();
-  for (const r of reservations) {
-    const sp = bucharestParts(r.start);
-    const ep = bucharestParts(r.end);
-
-    let cursorMs = Date.UTC(sp.year, sp.month - 1, sp.day, 0, 0, 0, 0);
-    const endMs = Date.UTC(ep.year, ep.month - 1, ep.day, 0, 0, 0, 0);
-
-    while (cursorMs <= endMs) {
-      disabled.add(toISODateLocal(new Date(cursorMs)));
-      cursorMs += 24 * 60 * 60_000;
-    }
-  }
-  return Array.from(disabled);
+  return [];
 }
 
 export function overlaps(aStart: Date, aEnd: Date, bStart: Date, bEnd: Date) {

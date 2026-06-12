@@ -169,18 +169,18 @@ export default async function PartyPackageCard({
           <div
             className={
               isFeatured
-                ? "rounded-xl bg-white/10 border border-white/15 p-4 mb-6"
-                : "rounded-xl bg-primary/5 border border-primary/10 p-4 mb-6"
+                ? "rounded-xl bg-white/10 border border-white/15 p-6 md:p-8 mb-6"
+                : "rounded-xl bg-primary/5 border border-primary/10 p-6 md:p-8 mb-6"
             }
           >
             <p
-              className={`text-[11px] font-headline font-extrabold uppercase tracking-wide mb-3 ${
+              className={`text-[11px] font-headline font-extrabold uppercase tracking-wide mb-4 ${
                 isFeatured ? "text-secondary-container" : "text-secondary"
               }`}
             >
               {t(`${baseKey}.inheritedFromLabel`)}
             </p>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               {inherited.map((feature) => (
                 <FeatureRow
                   key={`inherited-${feature}`}
@@ -239,7 +239,7 @@ export default async function PartyPackageCard({
   }
 
   return (
-    <div className="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl transition-all">
+    <div className="h-full bg-surface-container-lowest p-8 md:p-10 lg:p-12 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl transition-all flex flex-col">
       {card}
     </div>
   );
