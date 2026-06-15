@@ -193,7 +193,7 @@ export const resources = {
         toddlerBullet2: "Panouri senzoriale interactive",
         jungleTitle: "Tiroliană 8 m",
         jungleBody:
-          "Zbor deasupra zonei de joacă pe o tiroliană de 8 metri — senzație de viteză, cu ham și supraveghere din partea echipei.",
+          "Zbor deasupra zonei de joacă pe o tiroliană de 8 metri — senzație de viteză cu supraveghere din partea echipei.",
         jungleAlt: "Copii pe tiroliană în zona de joacă FunFactory",
         jungleTag1: "8 metri",
         climbTitleLine1: "Cățărare",
@@ -754,7 +754,7 @@ export const resources = {
         toddlerBullet2: "Sensory Wall Panels",
         jungleTitle: "8 m Zip Line",
         jungleBody:
-          "Soar above the play floor on an 8-meter zip line — a rush of speed with a safety harness and staff supervision.",
+          "Soar above the play floor on an 8-meter zip line — a rush of speed with staff supervision.",
         jungleAlt: "Children on the zip line in the FunFactory play zone",
         jungleTag1: "8 meters",
         climbTitleLine1: "Sky-High",
