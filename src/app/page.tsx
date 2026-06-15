@@ -45,6 +45,7 @@ export default async function Home({
           <div className="col-span-12 lg:col-span-8 bg-surface-container-low rounded-xl overflow-hidden relative group">
             <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent z-10 opacity-60"></div>
             <ProtectedImage
+              priority
               className="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
               alt="luxury indoor ball pit with thousands of white and pastel purple balls in a modern minimalist playroom setting"
               src={mediaUrl("ball-pit-homepage.JPG")}

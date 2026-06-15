@@ -49,6 +49,7 @@ export default async function UnderConstructionPage() {
 
           <div className="flex justify-center pt-4">
             <ProtectedImage
+              priority
               src={mediaUrl("FunFactory Logo SVG.svg")}
               alt={t("brand")}
               className="h-12 w-auto opacity-90"

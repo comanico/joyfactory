@@ -41,6 +41,7 @@ export default async function SafetyPage() {
               <div className="absolute -top-10 -right-10 w-64 h-64 bg-surface-container-high rounded-full blur-3xl opacity-50 -z-10"></div>
               <div className="rounded-xl overflow-hidden shadow-2xl border-8 border-white transform rotate-2">
                 <ProtectedImage
+                  priority
                   className="w-full h-[500px] object-cover"
                   alt={t("safetyPage.heroAlt")}
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh54UsFEz56C_-6UI976mwjHah57YfgGTKI8M5fc9YBw_9dKTWKkJW4IeU5G0YSxLVX950aN0--33bWfXr-l8CtdKb-WIYchuD_PaR90XE5AVlLfHw0jM0CW9bQ7EpaA38oHGrHpw5Uc1YynHm7EFA6okyi8O68IDj9Q_Fp4iEDZUeGt0-T8N-V7rKDRxuLXnoxKfJ4ik1nOcr210WtMiLsOQTYvlsUGWCJT-s5LpNLFIFm4jY4EvfRgCmJxFVLw9YV90FkbrWuSU"

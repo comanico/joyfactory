@@ -36,6 +36,7 @@ export default async function CafePage() {
           <div className="flex-1 relative">
             <div className="w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl">
               <ProtectedImage
+                priority
                 className="w-full h-full object-cover"
                 alt="modern cozy café with large windows overlooking indoor playground, parents relaxing with coffee"
                 src={mediaUrl("cafenea.JPG")}

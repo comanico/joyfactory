@@ -44,6 +44,7 @@ export default async function PackagesPage() {
           <div className="flex-1 relative">
             <div className="w-full h-[400px] rounded-xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
               <ProtectedImage
+                priority
                 className="w-full h-full object-cover"
                 alt={t("parties.heroAlt")}
                 src={mediaUrl("memories.JPG")}
