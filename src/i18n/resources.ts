@@ -208,6 +208,29 @@ export const resources = {
         safetyBannerBody:
           "După fiecare petrecere, zona este curățată și dezinfectată.",
         safetyBannerCta: "Vezi protocolul de siguranță",
+        gallery: {
+          title: "Momente de bucurie",
+          subtitle: "O privire în lumea FunFactory — petreceri, joacă și amintiri.",
+          carouselLabel: "Galerie foto FunFactory",
+          prev: "Imaginea anterioară",
+          next: "Imaginea următoare",
+          goToSlide: "Mergi la imaginea {{number}}",
+          slides: {
+            ballPit: "Piscina infinită cu bile la FunFactory",
+            memories: "Amintiri de petrecere la FunFactory",
+            jungle: "Copii pe tiroliană în zona de joacă FunFactory",
+            climbing: "Perete de cățărare colorat în zona de joacă FunFactory",
+            society: "Vedere de sus asupra piscinei cu bile FunFactory",
+            imagination: "Spațiu de joacă indoor vibrant FunFactory",
+            climber: "Copil la peretele de cățărare FunFactory",
+            relax: "Colț de relaxare pentru copii la FunFactory",
+            screen: "Copii la panouri interactive FunFactory",
+            cloud: "Cafeneaua FunFactory cu vedere spre zona de joacă",
+            cafe: "Cafeneaua FunFactory",
+            package1: "Petrecere Pachet 1 la FunFactory",
+            package2: "Petrecere Pachet 2 la FunFactory",
+          },
+        },
       },
       footer: {
         about:
@@ -769,6 +792,29 @@ export const resources = {
         safetyBannerBody:
           "After each party, the zone is cleaned and disinfected.",
         safetyBannerCta: "View Safety Protocol",
+        gallery: {
+          title: "Moments of joy",
+          subtitle: "A peek inside FunFactory — parties, play, and memories.",
+          carouselLabel: "FunFactory photo gallery",
+          prev: "Previous image",
+          next: "Next image",
+          goToSlide: "Go to image {{number}}",
+          slides: {
+            ballPit: "FunFactory infinity ball pit",
+            memories: "Party memories at FunFactory",
+            jungle: "Children on the zip line in the FunFactory play zone",
+            climbing: "Colorful climbing wall at FunFactory",
+            society: "Overhead view of the FunFactory ball pit",
+            imagination: "Vibrant FunFactory indoor play zone",
+            climber: "Child on the FunFactory climbing wall",
+            relax: "Cozy kids reading nook at FunFactory",
+            screen: "Children at interactive wall panels at FunFactory",
+            cloud: "FunFactory café overlooking the play zone",
+            cafe: "FunFactory café",
+            package1: "Package 1 party at FunFactory",
+            package2: "Package 2 party at FunFactory",
+          },
+        },
       },
       footer: {
         about:

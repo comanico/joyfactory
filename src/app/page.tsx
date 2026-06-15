@@ -2,6 +2,7 @@
 import Navbar from "./components/Navbar";
 import Link from "next/link";
 import QuickBooking from "./components/QuickBooking";
+import HomeGalleryCarousel from "./components/HomeGalleryCarousel";
 import { getServerT } from "@/i18n/server";
 import { buildPageMetadata } from "@/lib/seo";
 import { mediaUrl } from "@/lib/mediaUrl";
@@ -195,6 +196,7 @@ export default async function Home({
           initialDateISO={sp.date}
           initialTime={sp.time}
         />
+        <HomeGalleryCarousel />
       </main>
 
       {/* Footer */}
