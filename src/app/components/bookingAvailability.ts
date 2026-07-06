@@ -76,12 +76,16 @@ export function anyReservationTouchesDay(reservations: Reservation[], day: Date)
   });
 }
 
-/** Legacy VIP bookings may still block whole days on the calendar. */
+/** Days with any confirmed booking are unavailable (one party per day). */
 export function computeDisabledDatesForPackage(
   _pkg: PackageType,
-  _reservations: Reservation[],
+  reservations: Reservation[],
 ) {
-  return [];
+  const disabled = new Set<string>();
+  for (const r of reservations) {
+    disabled.add(toISODateLocal(r.start));
+  }
+  return Array.from(disabled);
 }
 
 export function overlaps(aStart: Date, aEnd: Date, bStart: Date, bEnd: Date) {
@@ -113,7 +117,7 @@ export function computeAvailableStartTimes(params: {
   const slots: string[] = [];
   const disabled = new Set<string>();
 
-  const dayReservations = reservations.filter((r) => anyReservationTouchesDay([r], date));
+  const dayFullyBooked = anyReservationTouchesDay(reservations, date);
 
   const d = bucharestParts(date);
   const durationMs = durationHrs * 60 * 60_000;
@@ -147,12 +151,9 @@ export function computeAvailableStartTimes(params: {
     const label = `${pad2(hour)}:00`;
     slots.push(label);
 
-    const overlapsAny = dayReservations.some((r) => {
-      const rs = bucharestWallMs(r.start);
-      const re = bucharestWallMs(r.end);
-      return tMs < re && rs < slotEndMs;
-    });
-    if (overlapsAny) disabled.add(label);
+    if (dayFullyBooked) {
+      disabled.add(label);
+    }
   }
 
   return { slots, disabled };
