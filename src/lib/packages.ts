@@ -77,7 +77,7 @@ export const FEATURED_PACKAGE: PackageType = "start";
 /** Deposit in RON (fallback when Stripe metadata is unavailable). */
 export const PACKAGE_DEPOSIT_LEI: Record<PackageType, number> = {
   basic: 300,
-  start: 135,
+  start: 300,
 };
 
 export function formatDepositForButton(lei: number): string {
