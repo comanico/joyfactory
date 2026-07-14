@@ -74,9 +74,9 @@ export function resolveStripePriceId(pkg: PackageType): string {
 /** Highlighted tier on the packages page. */
 export const FEATURED_PACKAGE: PackageType = "start";
 
-/** 10% deposit in RON (fallback when Stripe metadata is unavailable). */
+/** Deposit in RON (fallback when Stripe metadata is unavailable). */
 export const PACKAGE_DEPOSIT_LEI: Record<PackageType, number> = {
-  basic: 100,
+  basic: 300,
   start: 135,
 };
 

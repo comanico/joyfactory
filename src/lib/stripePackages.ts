@@ -16,7 +16,7 @@ export type PackageDepositQuote = {
   stripePackageKey: string;
   name: string;
   fullPriceLei: number;
-  /** 10% of full_price (display / metadata). */
+  /** 10% of full_price when Stripe Price amount is unavailable (display / metadata). */
   depositLei: number;
   /** Amount charged by Stripe Price (minor units, bani). */
   depositAmountMinor: number;
@@ -59,10 +59,13 @@ export function quoteFromStripePrice(
   const stripePackageKey = meta.package_key?.trim() || expectedKey;
 
   const fullPriceLei = parseLei(meta.full_price);
-  const depositLei =
-    fullPriceLei > 0 ? Math.round(fullPriceLei * 0.1) : Math.round((price.unit_amount ?? 0) / 100);
 
-  const depositAmountMinor = price.unit_amount ?? Math.round(depositLei * 100);
+  const depositAmountMinor =
+    price.unit_amount ??
+    (fullPriceLei > 0
+      ? Math.round(fullPriceLei * 0.1 * 100)
+      : 0);
+  const depositLei = Math.round(depositAmountMinor / 100);
   const fullAmountMinor =
     fullPriceLei > 0 ? Math.round(fullPriceLei * 100) : depositAmountMinor * 10;
 
